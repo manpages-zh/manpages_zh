@@ -1,0 +1,74 @@
+ronn-fomart(7) -- 基于markdown的手册编写格式
+=============================================
+
+##描述DESCRIPTION
+
+ronn(1)命令可以将注释文本转化成UNIX手册页，ronn-format(7)包含markdown(7)格式的所有特性，同还引入了一些其他的约定和标记。ronn-format(7)并不包含所有的roff(7)格式特性。
+
+##手册标题MANPAGE TITLE
+
+手册标题由名称、类别和一行描述性文本组成，文件必须以Setext中最高阶标题的形式开始。如下范例：
+
+	ls(1) -- list directory contents
+	================================
+
+##章节标题SECTION HEADINGS
+
+章节标题可以用markdown(7)语法中的二级类atx形式或者二阶类Setext形式。如下范例：
+
+	## HEADING TEXT
+	或者
+	HEADING TEXT
+	------------
+
+##行内标记INLINE MARKUP
+
+通常man(1)手册使用的加粗、斜体和下划线，ronn使用如下语法来完成。
+
+* \``反斜杠`\` (兼容Markdown):
+反斜杠可以用来包裹代码、标志、命令符和其他类似物，在man(1)中表现为粗体，HTML代码为`<code>`。
+
+* \*\***双星**\*\*（兼容Markdown）:
+同样表现为粗体，与反斜杠不同，其内部使用的标志语言依然会被识别，HTML代码为`<strong>`。
+
+* <<尖括号>>（不兼容Markdown）:
+该自定义标志内部文本表现为文本下添加了下划线，在网页中显示为斜体，HTML代码为`<var/>`。
+
+* \__下划线_\_（兼容Markdown）:
+强调，可以用来表示选项参数，表现为文本下添加下划线，HTML代码为`<em>`。
+
+下面例子使用ronn语法来表示Grep(1)的描述行：
+
+	`Grep` searches the named input <FILE> (or standard input if
+	no files are named, or the file name `-` is given) for lines
+	containing a match to the given <PATTERN>. By default, `grep`
+	prints the matching lines.
+
+##列表DEFINITION LISTS
+
+在ronn中定义列表的方式同Markdown一致，但是要求列表的第一行以分号`:`结束，此后可以包含段落，代码和嵌套列表等。下面的例子以BSD test(1)的DESCRIPTION为例。
+	 
+	* `-b` <file>:
+	True if <file> exists and is a block special file.
+
+	* `-c` <file>:
+	True if _file_ exists and is a character special file.
+
+	* `-d` <file>:
+	True if file exists and is a directory.
+
+##链接LINKS
+
+ronn支持所有markdown(7)的链接特点。
+
+	## SECTION 1
+
+	See the following section.
+
+	## SECTION 2
+
+	See [SECTION 1][] or [to put it another way][SECTION 1].
+
+##更多SEE ALSO
+
+ronn(1), markdown(7), roff(7)
