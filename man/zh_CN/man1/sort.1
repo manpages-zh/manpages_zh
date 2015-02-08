@@ -1,0 +1,108 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "SORT" "1" "February 2015" "" ""
+.
+.SH "NAME"
+\fBsort\fR \- 文本文件排序，合并，检查工具
+.
+.SH "前言PROLOG"
+This manual page is part of the POSIX Programmer’s Manual\. The Linux implementation of this interface may differ (consult the corresponding Linux manual page for details of Linux behavior), or the interface may not be implemented on Linux\.
+.
+.SH "描述DESCRIPTION"
+sort可以实现以下功能： 1\. 对文件排序并输出 2\. 合并已排序的文件并输出 3\. 检查单个文件是否已排序
+.
+.SH "语法SYNOPSIS"
+sort [\-bcfMnrtk][源文件][\-o 输出文件]
+.
+.IP "\(bu" 4
+\fB\-b\fR: 忽略每一行前面的所有空白部分，从第一个可见字符开始比较。
+.
+.IP "\(bu" 4
+\-c: 检查文件是否已经按照顺序排序，如果乱序，则输出第一个乱序的行的相关信息，最后返回。
+.
+.IP "\(bu" 4
+\fB\-C\fR: 会检查文件是否已排好序，如果乱序，不输出内容，仅返回11。
+.
+.IP "\(bu" 4
+\fB\-f\fR: 排序时，忽略大小写字母。
+.
+.IP "\(bu" 4
+\fB−g\fR: 按照通常的数字值顺序作比较。
+.
+.IP "\(bu" 4
+\fB\-k\fR: 选择以哪个区间进行排序。
+.
+.IP "\(bu" 4
+\fB−m\fR: 合并已经排序好的文件，不排序。
+.
+.IP "\(bu" 4
+\fB\-M\fR: 会以月份来排序，比如JAN小于FEB等。
+.
+.IP "\(bu" 4
+\fB\-n\fR: 依照数值的大小排序。
+.
+.IP "\(bu" 4
+\fB\-o<输出文件>\fR: 将排序后的结果存入指定的文件。
+.
+.IP "\(bu" 4
+\fB\-r\fR: 以相反的顺序来排序。
+.
+.IP "\(bu" 4
+\fB\-t<分隔字符>\fR: 指定排序时所用的栏位分隔字符。
+.
+.IP "\(bu" 4
+\fB−z\fR: 以0字节结束行，而不是使用换行符。
+.
+.IP "\(bu" 4
+\fB−−help\fR 显示帮助并退出。
+.
+.IP "\(bu" 4
+\fB−−version\fR 输出版本信息并退出。
+.
+.IP "" 0
+.
+.SH "说明DESCRIPTION"
+.
+.IP "1." 4
+sort将文件的每一行作为一个单位，相互比较，比较原则是从首字符向后，依次按ASCII码值进行比较，最后将他们按升序输出。用户可以保存排序后的文件内容，或把排序后的文件内容输出。下例中用户把排序后的文件内容保存到名为result的文件中。 $ sort seq\.txt > result
+.
+.IP "2." 4
+sort的\fB\-u\fR选项可以去除输入中的重复行。
+.
+.IP "3." 4
+sort的\fB\-r\fR选项,sort默认的排序方式是升序，使用\-r选项可以改成降序。
+.
+.IP "4." 4
+sort的\fB\-o\fR选项。sort默认是把结果输出到标准输出，所以需要用重定向才能将结果写入文件，但是用重定向输出到原文件中会清空原文件。\fB\-o\fR选项可以将结果写入原文件。
+.
+.IP "5." 4
+sort的\fB\-n\fR选项表示以数值来排序，默认情况下2比10大，因为sort会将10当作1和0。
+.
+.IP "6." 4
+sort的\fB\-t\fR选项和\fB\-k\fR选项
+.
+.IP
+$ cat fruit_name banana:30:5\.5 apple:10:2\.5 pear:90:2\.3 orange:20:3\.4
+.
+.IP "" 0
+.
+.P
+这个文件有三列，列与列之间用冒号隔开了，第一列表示水果类型，第二列表示水果数量，第三列表示水果价格。要以水果数量来排序，即以第二列来排序，则可以使用\fB\-t\fR选项设定间隔符。指定了间隔符之后，就可以用\-k来指定列数了。
+.
+.IP "" 4
+.
+.nf
+
+$ sort \-n \-k 2 \-t \':\' fruit_num
+apple:10:2\.5
+orange:20:3\.4
+banana:30:5\.5
+pear:90:2\.3
+.
+.fi
+.
+.IP "" 0
+.
+.SH "链接LINKS"
+来自：东方雨中漫步者:\fIhttp://www\.cnblogs\.com/dong008259/\fR 原文地址：\fIhttp://www\.cnblogs\.com/dong008259/archive/2011/12/08/2281214\.html\fR

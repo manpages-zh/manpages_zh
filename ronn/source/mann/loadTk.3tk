@@ -1,0 +1,110 @@
+'\"
+'\" Copyright (c) 1995-1996 Sun Microsystems, Inc.
+'\"
+'\" See the file "license.terms" for information on usage and redistribution
+'\" of this file, and for a DISCLAIMER OF ALL WARRANTIES.
+'\" 
+'\" RCS: @(#) $Id: loadTk.n,v 1.2 2003/11/24 05:09:59 bbbush Exp $
+'\" 
+'\" The definitions below are for supplemental macros used in Tcl/Tk
+'\" manual entries.
+'\"
+'\" .AP type name in/out ?indent?
+'\"	Start paragraph describing an argument to a library procedure.
+'\"	type is type of argument (int, etc.), in/out is either "in", "out",
+'\"	or "in/out" to describe whether procedure reads or modifies arg,
+'\"	and indent is equivalent to second arg of .IP (shouldn't ever be
+'\"	needed;  use .AS below instead)
+'\"
+'\" .AS ?type? ?name?
+'\"	Give maximum sizes of arguments for setting tab stops.  Type and
+'\"	name are examples of largest possible arguments that will be passed
+'\"	to .AP later.  If args are omitted, default tab stops are used.
+'\"
+'\" .BS
+'\"	Start box enclosure.  From here until next .BE, everything will be
+'\"	enclosed in one large box.
+'\"
+'\" .BE
+'\"	End of box enclosure.
+'\"
+'\" .CS
+'\"	Begin code excerpt.
+'\"
+'\" .CE
+'\"	End code excerpt.
+'\"
+'\" .VS ?version? ?br?
+'\"	Begin vertical sidebar, for use in marking newly-changed parts
+'\"	of man pages.  The first argument is ignored and used for recording
+'\"	the version when the .VS was added, so that the sidebars can be
+'\"	found and removed when they reach a certain age.  If another argument
+'\"	is present, then a line break is forced before starting the sidebar.
+'\"
+'\" .VE
+'\"	End of vertical sidebar.
+'\"
+'\" .DS
+'\"	Begin an indented unfilled display.
+'\"
+'\" .DE
+'\"	End of indented unfilled display.
+'\"
+'\" .SO
+'\"	Start of list of standard options for a Tk widget.  The
+'\"	options follow on successive lines, in four columns separated
+'\"	by tabs.
+'\"
+'\" .SE
+'\"	End of list of standard options for a Tk widget.
+'\"
+'\" .OP cmdName dbName dbClass
+'\"	Start of description of a specific option.  cmdName gives the
+'\"	option's name as specified in the class command, dbName gives
+'\"	the option's name in the option database, and dbClass gives
+'\"	the option's class in the option database.
+'\"
+'\" .UL arg1 arg2
+'\"	Print arg1 underlined, then print arg2 normally.
+'\"
+'\" RCS: @(#) $Id: loadTk.n,v 1.2 2003/11/24 05:09:59 bbbush Exp $
+'\"
+'\"	# Set up traps and other miscellaneous stuff for Tcl/Tk man pages.
+.TH "loadTk" 3tk 8.0 Tk "Tk Built-In Commands"
+.SH NAME
+loadTk \- 把 Tk 装载到一个安全解释器中。
+.SH "总览 SYNOPSIS"
+\fB::safe::loadTk \fIslave\fR ?\fB\-use\fR \fIwindowId\fR? ?\fB\-display\fR \fIdisplayName\fR? 
+
+Safe Tk 基于 Safe Tcl 之上，它提供一种机制，允许对自动装载和安全解释器的包的受限制和有中介的访问。Safe Tk 增加为安全 Tk 操作配置解释器和把 Tk 装载到安全解释器的功能。
+
+.SH "描述 DESCRIPTION"
+.PP
+\fB::safe::loadTk\fR 命令在指明的解释器中初始化需要的数据结构并把 Tk 装载到其中。这个命令返回这个安全解释器的名字。如果指定了 \fB\-use\fR，使用由指定的系统决定的标识符 \fIwindowId\fR 所标识的窗口来包含这个解释器的 ``.'' 窗口；它可以是任何有效的 id，最终引用属于另一个应用的一个窗口。出于方便，如果你想要使用的窗口是应用的一个 Tk 窗口，则你可以使用这个窗口的名字(比如: \fB.x.y\fR)来替代它的窗口 Id (\fB[winfo id .x.y]\fR)。在未指定 \fB-use\fR 的时候，为这个安全解释器的 ``.'' 窗口建立一个新的顶层窗口。在 X11 上如果你想让嵌入的窗口使用其他的显示器而不是缺省的那个，可以用 \fB\-display\fR 指定它。实现的细节请参见下面的安全要点 (\fBSECURITY ISSUES\fR)  章节。
+
+.SH "安全要点 SECURITY ISSUES"
+.PP
+请阅读 Tcl 的 \fBsafe\fR 手册页来获悉对 Safe Tcl 做的基本安全考虑。
+.PP
+\fB::safe::loadTk\fR 把从解释器接受的 \fBtk_library\fR 的值增加到安全解释器的虚拟路径上，这样自动装载就能在安全解释器中工作了。
+.PP
+.PP
+就不信任从解释器对启动的陈述而论，Tk 初始化现在是安全的。\fB::safe::loadTk\fR 注册从解释器的名字，这样在调用 Tk 初始化(\fBTk_SafeInit\fR)和依次调用主解释器的 \fB::safe::InitTk\fR 的时候，它将返回想要的 \fBargv\fR 等价物(\fB\-use\fR \fIwindowId\fR，正确的 \fB\-display \fR等等...)。
+.PP
+在未使用 \fB\-use\fR 的时候，对新建立的顶层窗口进行特殊装饰，这样用户总能意识到呈现的用户界面来自潜在不安全的代码并可以轻易的删除相应的解释器。
+.PP
+在 X11 上，有冲突的 \fB\-use\fR 和 \fB\-display\fR 将生成一个致命的 X 错误。
+
+.SH "参见 SEE ALSO"
+safe(n), interp(n), library(n), load(n), package(n), source(n), unknown(n)
+ 
+.SH "关键字 KEYWORDS"
+alias, auto\-loading, auto_mkindex, load, master interpreter, safe
+interpreter, slave interpreter, source
+
+.SH "[中文版维护人]"
+.B 寒蝉退士
+.SH "[中文版最新更新]"
+.B 2002/05/15
+.SH "《中国 Linux 论坛 man 手册页翻译计划》:"
+.BI http://cmpp.linuxforum.net
