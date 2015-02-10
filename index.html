@@ -1,28 +1,90 @@
-<h1>另一个中文manpages翻译计划（AMP计划）</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>另一个中文manpages翻译计划（AMP计划）</title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
+  </style>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
 
-<h3>1. manpages?</h3>
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
+
+  <div class='man-navigation' style='display:none'>
+  </div>
+
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>index</li>
+    <li class='tc'></li>
+    <li class='tr'>index</li>
+  </ol>
+
+  <h1>另一个中文manpages翻译计划（AMP计划）</h1>
+<h3 id="1-manpages-">1. manpages?</h3>
 
 <p>man大概早就被GNU抛弃了，他们现在主打以texinfo格式为基础编写的INFO文件，目前man程序（2015.2.10)处于无人管理的状态，不过man已经存在足够久了，所以即便如此，man本身还是可用的，鉴于习惯和很多对INFO的不满而言，很多人/项目依然选择man，因此即便是现在，manpage依然有存在的价值，也会有更长的存在时间。</p>
 
-<h3>2. 为什么需要中文manpages?</h3>
+<h3 id="2-manpages-">2. 为什么需要中文manpages?</h3>
 
 <p>本国人阅读外国文章毕竟不顺，更何况很多刚刚接触Linux的人对很多词汇都很陌生，即便是常见的外文词汇，也会因为语言环境的不同而产生歧义，所以没有中文manpages对很多人来说无所谓，但做了不见得有坏处，就当锦上添花吧。</p>
 
-<h3>3. 中文manpages现状</h3>
+<h3 id="3-manpages-">3. 中文manpages现状</h3>
 
 <p>说来好笑，很多人做了很多事，但是都停在了半路上，所以你使用的Gnu/Linux系统上大概会有中文manpages,但你看了之后可能最终还是会选择读原版的manpages,不过以前的项目和网上的教程可以为AMP提供很多素材，而不至于从头开始，所以你会发现，AMP会有很多引用的部分，因为版权的问题，我希望能够尽可能的提供详细的引用信息，将来也会把足够的时间放在维护这个方面，如果有问题，请告知。</p>
 
-<h3>4. AMP计划</h3>
+<h3 id="4-AMP-">4. AMP计划</h3>
 
 <p>这个名字并不重要，你也可以复制一份，另开分店。只是我一直以来希望能够有一份长久维护，切实能用的中文manpages,但现在没有，只能自己解决啦。当然我也希望更多的人参与进来，<code>罗马不是一天就能建立起来的</code>，前人的经验告诉我们不要心急，作为一个开放/公益/长远的计划，一个人做是不可能完成的，妄图一蹴而就是不现实的，因此我非常乐意看到他人的贡献，不管你是贡献一段还是修改一处错误，即便只是修改语法或者标点符号都是很欢迎的，中文自有中文的美嘛。</p>
 
 <p>只有在有一个起点的情况下，更多的人才能够参与进来。</p>
 
-<h3>5. 使用ronn-format格式</h3>
+<h3 id="5-ronn-format-">5. 使用ronn-format格式</h3>
 
 <p>ronn-format来自于github上<strong>rtomayko/ronn</strong> ，格式兼容于Markdown的格式，并且可以方便美观的转换为man使用的groff格式和html格式。用户不需要学习groff语法，利用已有的markdown知识即可完成manpage的编写。</p>
 
-<h3>6. 怎么安装？</h3>
+<h3 id="6-">6. 怎么安装？</h3>
 
 <p>manpages为文本文件，是不需要安装的。man使用特定的文件系统，类似于<code>/home/youname/man/zh_CN/man1/man.1</code>这样子，你把下载的manpages手册放在硬盘上你心仪的位置，然后保证manpath能找到即可。manpath可以通过设置环境变量来实现，如果你使用的是bash,并且把下载的manpages放在用户根目录下，命名为manpages,那么你可以在<code>.bashrc</code>加入下面语句：</p>
 
@@ -33,7 +95,7 @@
 
 <h1>项目主页</h1>
 
-<p>项目托管在Github上，并且直接使用ronn生成的HTML文件，可以供用户在线查看manpages手册，地址是:<a href="http://intetnet.github.io/" title="intetnet/intetnet.github.io">http://intetnet.github.io/</a>。</p>
+<p>项目托管在Github上，并且直接使用ronn生成的HTML文件，可以供用户在线查看manpages手册，地址是:<a href="http://intetnet.github.io/" title="intetnet/intetnet.github.io" data-bare-link="true">http://intetnet.github.io/</a>。</p>
 
 <p>manpages下载地址是:<a href="https://github.com/intetnet/intetnet.github.io">https://github.com/intetnet/intetnet.github.io/</a>。</p>
 
@@ -46,3 +108,14 @@
 <p><a href="./sort.1.html">sort</a></p>
 
 <p><a href="./grep.1.html">grep</a></p>
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'></li>
+    <li class='tc'>February 2015</li>
+    <li class='tr'>index</li>
+  </ol>
+
+  </div>
+</body>
+</html>
