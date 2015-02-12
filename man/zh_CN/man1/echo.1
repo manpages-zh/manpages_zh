@@ -13,10 +13,10 @@
 \fBecho [<\-n>] 字符串\fR
 .
 .P
-字符串可以加引号，也可以不加引号。用echo命令输出加引号的字符串时，将字符串原样输出；用echo命令输出不加引号的字符串时，将字符串中的各个单词作为字符串输出，各字符串之间用一个空格分割。
+字符串可以加引号，也可以不加引号。用echo命令输出加引号的字符串时，将字符 串原样输出；用echo命令输出不加引号的字符串时，将字符串中的各个单词作为字 符串输出，各字符串之间用一个空格分割。
 .
 .P
-如果使用了\fB\-n\fR选项，在兼容XSI(X/Open System Interfaces Extension)的系统下，下列符号将会被识别并重定义：
+如果使用了\fB\-n\fR选项，在兼容\fBXSI(X/Open System Interfaces Extension)\fR的系 统下，下列符号将会被识别并重定义：
 .
 .IP "" 4
 .
@@ -38,10 +38,10 @@
 .IP "" 0
 .
 .P
-提醒：你的shell可能有其自己版本的echo命令。该命令通常会取代此处描述的版本。具体请参阅你的shell的文档以了解它所支持的选项。
+提醒：你的shell可能有其自己版本的echo命令。该命令通常会取代此处描述的版 本。具体请参阅你的shell的文档以了解它所支持的选项。
 .
 .P
-本程序的完整文档使用Texinfo手册进行维护。如果info和本程序已经正确地安装在了你的电脑上，通过下述命令
+本程序的完整文档使用Texinfo手册进行维护。如果info和本程序已经正确地安装 在了你的电脑上，通过下述命令
 .
 .IP "" 4
 .
@@ -60,11 +60,18 @@ info coreutils \'echo invocation\'
 .
 .nf
 
-echo hello          #将hello输出到终端。
+将hello输出到终端
 
-echo hello >file        #将hello保存到文件file中，如果没有文件会新建一个文件。如果已经有文件则会覆盖以前的文件。
+echo hello
 
-echo hello >>file       #将结果追加到文件file中。
+将hello保存到文件file中，如果没有文件会新建一个文件。如果已经有
+文件则会覆盖以前的文件
+
+echo hello >file
+
+将结果追加到文件file中
+
+echo hello >>file
 .
 .fi
 .

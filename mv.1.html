@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>mv(1) - 移动(改名)文件</title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
+  </style>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
+
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
+
+  <div class='man-navigation' style='display:none'>
+    <a href="#NAME">NAME</a>
+    <a href="#-">描述</a>
+    <a href="#-">格式</a>
+    <a href="#-">参数</a>
+    <a href="#-">实例</a>
+    <a href="#SEE-ALSO">SEE ALSO</a>
+    <a href="#-">链接</a>
+  </div>
+
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>mv(1)</li>
+    <li class='tc'></li>
+    <li class='tr'>mv(1)</li>
+  </ol>
+
+  <h2 id="NAME">NAME</h2>
+<p class="man-name">
+  <code>mv</code> - <span class="man-whatis">移动(改名)文件</span>
+</p>
+
+<h2 id="-">描述</h2>
+
+<p>mv命令来为文件或目录改名或将文件由一个目录移入另一个目录中。该命令等同
+于DOS系统下的ren和move命令的组合。它的使用权限是所有用户。</p>
+
+<h2 id="-">格式</h2>
+
+<p><code>mv [-if]</code> <code>文件</code> <code>目标文件</code></p>
+
+<p><code>mv [-if]</code> <code>文件</code> <code>目录</code></p>
+
+<p>mv命令将<code>文件</code>重命名或将其移至一个新的目录中，在这里，<code>文件</code>也可以是目
+录，因为在Linux系统下，目录也是一个文件。</p>
+
+<p>第一种格式下，mv命令完成<code>文件</code>的重命名，对于目录，则是修改目录名。此时
+，<code>文件</code>只能有一个，它将所给的源文件重命名为给定的目标文件名。</p>
+
+<p>在第二种格式下，<code>文件</code>可以有多个，mv命令将指定的<code>文件</code>均移至目标目录中
+。在跨文件系统移动文件时，mv先拷贝，再将原有文件删除，而链至该文件的链
+接也将丢失。</p>
+
+<h2 id="-">参数</h2>
+
+<dl>
+<dt class="flush"><code>-i</code></dt><dd><p>交互方式操作，如果mv操作将导致对已存在的目标文件的覆盖，此时系
+统询问是否重写，要求用户回答”y”或”n”，这样可以避免误覆盖文件。</p></dd>
+<dt class="flush"><code>-f</code></dt><dd><p>禁止交互操作，mv操作要覆盖某个已有的目标文件时不给任何指示，指
+定此参数后<code>-i</code>参数将不再起作用。</p></dd>
+</dl>
+
+
+<h2 id="-">实例</h2>
+
+<pre><code>将文件test重命名为done:
+
+mv test done
+
+将文件log1,log2,log3移动到目录test中:          
+
+mv log1 log2 log3 test/
+
+移动目录:   
+
+ mv dir1/ dir2/ 
+
+移动当前文件夹下的所有文件到上一级(用".."表示)目录:
+
+mv * ../
+
+将`/home/user`中的所有文件移到当前目录(用”.”表示)中:
+
+mv /home/user/* ./
+</code></pre>
+
+<h2 id="SEE-ALSO">SEE ALSO</h2>
+
+<p><span class="man-ref">cp<span class="s">(1)</span></span>, <span class="man-ref">ln<span class="s">(1)</span></span></p>
+
+<p>The Base Definitions volume of POSIX.1-2008, Chapter 8, Environment
+Variabls, Section 12.2, Utility Syntax Guidelines</p>
+
+<p>The System Interfaces volume of POSIX.1-2008, rename()</p>
+
+<h2 id="-">链接</h2>
+
+<p>修改自如下文章：</p>
+
+<p><a href="http://www.cnblogs.com/peida/archive/2012/10/27/2743022.html" data-bare-link="true">http://www.cnblogs.com/peida/archive/2012/10/27/2743022.html</a></p>
+
+<p><a href="http://www.9usb.net/200902/linux-mv.html" data-bare-link="true">http://www.9usb.net/200902/linux-mv.html</a></p>
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'></li>
+    <li class='tc'>February 2015</li>
+    <li class='tr'>mv(1)</li>
+  </ol>
+
+  </div>
+</body>
+</html>

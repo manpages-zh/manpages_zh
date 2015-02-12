@@ -1,20 +1,26 @@
 tee(1P) -- 读取标准输入的数据，并将其内容输出成文件
-================================================
+==========================================================
 
 ##序言PROLOG
 
-This manual page is part of the POSIX Programmer’s Manual. The Linux implementation of this interface may differ (consult the corresponding Linux manual page for details of Linux behavior), or the interface may not be implemented on Linux.
+This manual page is part of the POSIX Programmer’s Manual. The Linux
+implementation of this interface may differ (consult the corresponding
+Linux manual page for details of Linux behavior), or the interface may
+not be implemented on Linux.
 
 ##说明DESCRIPTION
 
-tee会从标准输入读取数据，将其保存成零个或多个文件。我们可利用tee把管道导入的数据存成文件。
+tee会从标准输入读取数据，将其保存成零个或多个文件。我们可利用tee把管道导
+入的数据存成文件。
 
 ##语法SYNOPSIS
 
-`tee` [<-ai>][<--help>][<--version>][<文件…>]
+`tee [<-ai>][<--help>][<--version>][<文件…>]`
 
 * `-a`:
-附加到既有文件的后面，而非覆盖它。如果给予tee指令的文件名称已经存在，预设会覆盖该文件的内容。加上此参数后，数据会新增在该文件内容的最后面，而不会删除原先之内容。
+附加到既有文件的后面，而非覆盖它。如果给予tee指令的文件名称已经存
+在，预设会覆盖该文件的内容。加上此参数后，数据会新增在该文件内容的
+最后面，而不会删除原先之内容。
 
 * `-i`:
 忽略中断信号
@@ -25,9 +31,12 @@ tee会从标准输入读取数据，将其保存成零个或多个文件。我�
 * `--version`:
 显示版本信息
 
-范例：
+##范例：
 
-列出文本文件story的内容，同时复制3份副本，文件名称分别为copy1、copy2、copy3：`$ cat slayers.story |tee ss-copy1 ss-copy2 ss-copy3`
+列出文本文件story的内容，同时复制3份副本，文件名称分别为copy1、copy2、
+copy3
+	
+	$ cat slayers.story |tee ss-copy1 ss-copy2 ss-copy3
 
 ##环境变量ENVIRONMENT VARIABLES 
 
@@ -41,14 +50,15 @@ tee受到如下环境变量的影响。详情参考locale(1)
 
 ##退出标识EXIT STATUS
 
-如果返回值是0,表示标准输入正常复制到输出文件中。
-如果返回值大于0,表示出现错误。
+如果返回值是0,表示标准输入正常复制到输出文件中。如果返回值大于0,表示出现
+错误。
 
 ##参考SEE ALSO
 
 Capter 1, Introduction, cat
 
-The Base Definitions volume of POSIX.1-2008, Chapter 8, Environment Variables, Section 12.2, Utility Syntax Guidelines
+The Base Definitions volume of POSIX.1-2008, Chapter 8, Environment
+Variables, Section 12.2, Utility Syntax Guidelines
 
 The System Interfaces volume of POSIX.1-2008, lseek()
 

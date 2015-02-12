@@ -79,9 +79,12 @@
 
 <p><code>echo [&lt;-n>] 字符串</code></p>
 
-<p>字符串可以加引号，也可以不加引号。用echo命令输出加引号的字符串时，将字符串原样输出；用echo命令输出不加引号的字符串时，将字符串中的各个单词作为字符串输出，各字符串之间用一个空格分割。</p>
+<p>字符串可以加引号，也可以不加引号。用echo命令输出加引号的字符串时，将字符
+串原样输出；用echo命令输出不加引号的字符串时，将字符串中的各个单词作为字
+符串输出，各字符串之间用一个空格分割。</p>
 
-<p>如果使用了<code>-n</code>选项，在兼容XSI(X/Open System Interfaces Extension)的系统下，下列符号将会被识别并重定义：</p>
+<p>如果使用了<code>-n</code>选项，在兼容<code>XSI(X/Open System Interfaces Extension)</code>的系
+统下，下列符号将会被识别并重定义：</p>
 
 <pre><code>\a  发出警告声
 \b  删除前一个字符
@@ -95,9 +98,11 @@
 \0nnn   插入八进制数NNN（1到3位）表示的ASCII字节
 </code></pre>
 
-<p>提醒：你的shell可能有其自己版本的echo命令。该命令通常会取代此处描述的版本。具体请参阅你的shell的文档以了解它所支持的选项。</p>
+<p>提醒：你的shell可能有其自己版本的echo命令。该命令通常会取代此处描述的版
+本。具体请参阅你的shell的文档以了解它所支持的选项。</p>
 
-<p>本程序的完整文档使用Texinfo手册进行维护。如果info和本程序已经正确地安装在了你的电脑上，通过下述命令</p>
+<p>本程序的完整文档使用Texinfo手册进行维护。如果info和本程序已经正确地安装
+在了你的电脑上，通过下述命令</p>
 
 <pre><code>info coreutils 'echo invocation'
 </code></pre>
@@ -106,11 +111,18 @@
 
 <h2 id="-EXAMPLES">范例EXAMPLES</h2>
 
-<pre><code>echo hello          #将hello输出到终端。
+<pre><code>将hello输出到终端
 
-echo hello &gt;file        #将hello保存到文件file中，如果没有文件会新建一个文件。如果已经有文件则会覆盖以前的文件。
+echo hello       
 
-echo hello &gt;&gt;file       #将结果追加到文件file中。
+将hello保存到文件file中，如果没有文件会新建一个文件。如果已经有
+文件则会覆盖以前的文件
+
+echo hello &gt;file        
+
+将结果追加到文件file中
+
+echo hello &gt;&gt;file       
 </code></pre>
 
 <h2 id="-COPYRIGHT">版权COPYRIGHT</h2>

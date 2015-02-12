@@ -54,12 +54,12 @@
 
   <div class='man-navigation' style='display:none'>
     <a href="#NAME">NAME</a>
-    <a href="#-DESCRIPTION">描述DESCRIPTION</a>
-    <a href="#-MANPAGE-TITLE">手册标题MANPAGE TITLE</a>
-    <a href="#-SECTION-HEADINGS">章节标题SECTION HEADINGS</a>
-    <a href="#-INLINE-MARKUP">行内标记INLINE MARKUP</a>
-    <a href="#-DEFINITION-LISTS">列表DEFINITION LISTS</a>
-    <a href="#-LINKS">链接LINKS</a>
+    <a href="#-">描述</a>
+    <a href="#-">手册标题</a>
+    <a href="#-">章节标题</a>
+    <a href="#-">行内标记</a>
+    <a href="#-">列表</a>
+    <a href="#-">链接</a>
     <a href="#-SEE-ALSO">更多SEE ALSO</a>
   </div>
 
@@ -74,37 +74,45 @@
   <code>ronn-fomart</code> - <span class="man-whatis">基于markdown的手册编写格式</span>
 </p>
 
-<h2 id="-DESCRIPTION">描述DESCRIPTION</h2>
+<h2 id="-">描述</h2>
 
-<p><span class="man-ref">ronn<span class="s">(1)</span></span>命令可以将注释文本转化成UNIX手册页，<span class="man-ref">ronn-format<span class="s">(7)</span></span>包含<span class="man-ref">markdown<span class="s">(7)</span></span>格式的所有特性，同还引入了一些其他的约定和标记。<span class="man-ref">ronn-format<span class="s">(7)</span></span>并不包含所有的<span class="man-ref">roff<span class="s">(7)</span></span>格式特性。</p>
+<p><code>ronn</code>命令可以将注释文本转化成<code>man</code>手册页，<code>ronn-format</code>包含markdown格式
+的所有特性，同还引入了一些其他在<code>man</code>手册中使用的约定和标记。注意，
+<code>ronn-format</code>并不包含所有的<code>roff</code>格式特性。</p>
 
-<h2 id="-MANPAGE-TITLE">手册标题MANPAGE TITLE</h2>
+<h2 id="-">手册标题</h2>
 
-<p>手册标题由名称、类别和一行描述性文本组成，文件必须以Setext中最高阶标题的形式开始。如下范例：</p>
+<p>手册标题由名称、类别和一行描述性文本组成，文件必须以Setext中最高阶标题的
+形式开始。如下范例：</p>
 
 <pre><code>ls(1) -- list directory contents
 ================================
 </code></pre>
 
-<h2 id="-SECTION-HEADINGS">章节标题SECTION HEADINGS</h2>
+<h2 id="-">章节标题</h2>
 
-<p>章节标题可以用<span class="man-ref">markdown<span class="s">(7)</span></span>语法中的二级类atx形式或者二阶类Setext形式。如下范例：</p>
+<p>章节标题可以用<code>markdown</code>语法中的二级类atx形式或者二阶类<code>Setext</code>形式。如下
+范例：</p>
 
-<pre><code>## HEADING TEXT
+<pre><code>##HEADING TEXT
 或者
 HEADING TEXT
 ------------
 </code></pre>
 
-<h2 id="-INLINE-MARKUP">行内标记INLINE MARKUP</h2>
+<h2 id="-">行内标记</h2>
 
-<p>通常<span class="man-ref">man<span class="s">(1)</span></span>手册使用的加粗、斜体和下划线，ronn使用如下语法来完成。</p>
+<p>通常<code>man</code>手册使用的加粗、斜体和下划线，<code>ronn</code>使用如下语法来完成。</p>
 
 <dl>
-<dt>`<code>反斜杠</code>` (兼容Markdown)</dt><dd><p>反斜杠可以用来包裹代码、标志、命令符和其他类似物，在<span class="man-ref">man<span class="s">(1)</span></span>中表现为粗体，HTML代码为<code>&lt;code&gt;</code>。</p></dd>
-<dt>**<strong>双星</strong>**（兼容Markdown）</dt><dd><p>同样表现为粗体，与反斜杠不同，其内部使用的标志语言依然会被识别，HTML代码为<code>&lt;strong&gt;</code>。</p></dd>
-<dt><var>&lt;尖括号</var>>（不兼容Markdown）</dt><dd><p>该自定义标志内部文本表现为文本下添加了下划线，在网页中显示为斜体，HTML代码为<code>&lt;var/&gt;</code>。</p></dd>
-<dt>_<em>下划线</em>_（兼容Markdown）</dt><dd><p>强调，可以用来表示选项参数，表现为文本下添加下划线，HTML代码为<code>&lt;em&gt;</code>。</p></dd>
+<dt class="flush">`<code>反斜杠</code>`</dt><dd><p>兼容<code>Markdown</code>,反斜杠可以用来包裹代码、标志、命令符和其他
+类似物，在<code>man</code>中表现为粗体，HTML代码为<code>&lt;code&gt;</code>。</p></dd>
+<dt class="flush">**<strong>双星</strong>**</dt><dd><p>兼容<code>Markdown</code>,同样表现为粗体，与反斜杠不同，其内部使
+用的标志语言依然会被识别，<code>HTML</code>代码为<code>&lt;strong&gt;</code>。</p></dd>
+<dt class="flush"><var>&lt;尖括号</var>></dt><dd><p>不兼容<code>Markdown</code>,该自定义标志内部文本表现为文本下添加了下划
+线，在网页中显为斜体，<code>HTML</code>代码为<code>&lt;var/&gt;</code>。</p></dd>
+<dt class="flush">_<em>下划线</em>_</dt><dd><p>兼容Markdown,强调，可以用来表示选项参数，表现为文本下添加
+下划线，HTML代码为<code>&lt;em&gt;</code>。</p></dd>
 </dl>
 
 
@@ -116,9 +124,11 @@ containing a match to the given &lt;PATTERN>. By default, `grep`
 prints the matching lines.
 </code></pre>
 
-<h2 id="-DEFINITION-LISTS">列表DEFINITION LISTS</h2>
+<h2 id="-">列表</h2>
 
-<p>在ronn中定义列表的方式同Markdown一致，但是要求列表的第一行以分号<code>:</code>结束，此后可以包含段落，代码和嵌套列表等。下面的例子以BSD <span class="man-ref">test<span class="s">(1)</span></span>的DESCRIPTION为例。</p>
+<p>在ronn中定义列表的方式同<code>Markdown</code>一致，但是要求列表的第一行以分号<code>:</code>结
+束，此后可以包含段落，代码和嵌套列表等。下面以BSD test的<code>DESCRIPTION</code>为
+例。</p>
 
 <pre><code>* `-b` &lt;file>:
 True if &lt;file> exists and is a block special file.
@@ -130,9 +140,9 @@ True if _file_ exists and is a character special file.
 True if file exists and is a directory.
 </code></pre>
 
-<h2 id="-LINKS">链接LINKS</h2>
+<h2 id="-">链接</h2>
 
-<p>ronn支持所有<span class="man-ref">markdown<span class="s">(7)</span></span>的链接特点。</p>
+<p>ronn支持所有markdown的链接特点。</p>
 
 <pre><code>## SECTION 1
 
