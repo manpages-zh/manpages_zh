@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>ronn-fomart(7) - 基于markdown的手册编写格式</title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
+  </style>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
+
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
+
+  <div class='man-navigation' style='display:none'>
+    <a href="#NAME">NAME</a>
+    <a href="#-">描述</a>
+    <a href="#-">手册标题</a>
+    <a href="#-">章节标题</a>
+    <a href="#-">行内标记</a>
+    <a href="#-">列表</a>
+    <a href="#-">链接</a>
+    <a href="#-SEE-ALSO">更多SEE ALSO</a>
+  </div>
+
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>ronn-fomart(7)</li>
+    <li class='tc'></li>
+    <li class='tr'>ronn-fomart(7)</li>
+  </ol>
+
+  <h2 id="NAME">NAME</h2>
+<p class="man-name">
+  <code>ronn-fomart</code> - <span class="man-whatis">基于markdown的手册编写格式</span>
+</p>
+
+<h2 id="-">描述</h2>
+
+<p><code>ronn</code>命令可以将注释文本转化成<code>man</code>手册页，<code>ronn-format</code>包含markdown格式
+的所有特性，同还引入了一些其他在<code>man</code>手册中使用的约定和标记。注意，
+<code>ronn-format</code>并不包含所有的<code>roff</code>格式特性。</p>
+
+<h2 id="-">手册标题</h2>
+
+<p>手册标题由名称、类别和一行描述性文本组成，文件必须以Setext中最高阶标题的
+形式开始。如下范例：</p>
+
+<pre><code>ls(1) -- list directory contents
+================================
+</code></pre>
+
+<h2 id="-">章节标题</h2>
+
+<p>章节标题可以用<code>markdown</code>语法中的二级类atx形式或者二阶类<code>Setext</code>形式。如下
+范例：</p>
+
+<pre><code>##HEADING TEXT
+或者
+HEADING TEXT
+------------
+</code></pre>
+
+<h2 id="-">行内标记</h2>
+
+<p>通常<code>man</code>手册使用的加粗、斜体和下划线，<code>ronn</code>使用如下语法来完成。</p>
+
+<dl>
+<dt class="flush">`<code>反斜杠</code>`</dt><dd><p>兼容<code>Markdown</code>,反斜杠可以用来包裹代码、标志、命令符和其他
+类似物，在<code>man</code>中表现为粗体，HTML代码为<code>&lt;code&gt;</code>。</p></dd>
+<dt class="flush">**<strong>双星</strong>**</dt><dd><p>兼容<code>Markdown</code>,同样表现为粗体，与反斜杠不同，其内部使
+用的标志语言依然会被识别，<code>HTML</code>代码为<code>&lt;strong&gt;</code>。</p></dd>
+<dt class="flush"><var>&lt;尖括号</var>></dt><dd><p>不兼容<code>Markdown</code>,该自定义标志内部文本表现为文本下添加了下划
+线，在网页中显为斜体，<code>HTML</code>代码为<code>&lt;var/&gt;</code>。</p></dd>
+<dt class="flush">_<em>下划线</em>_</dt><dd><p>兼容Markdown,强调，可以用来表示选项参数，表现为文本下添加
+下划线，HTML代码为<code>&lt;em&gt;</code>。</p></dd>
+</dl>
+
+
+<p>下面例子使用ronn语法来表示<span class="man-ref">Grep<span class="s">(1)</span></span>的描述行：</p>
+
+<pre><code>`Grep` searches the named input &lt;FILE> (or standard input if
+no files are named, or the file name `-` is given) for lines
+containing a match to the given &lt;PATTERN>. By default, `grep`
+prints the matching lines.
+</code></pre>
+
+<h2 id="-">列表</h2>
+
+<p>在ronn中定义列表的方式同<code>Markdown</code>一致，但是要求列表的第一行以分号<code>:</code>结
+束，此后可以包含段落，代码和嵌套列表等。下面以BSD test的<code>DESCRIPTION</code>为
+例。</p>
+
+<pre><code>* `-b` &lt;file>:
+True if &lt;file> exists and is a block special file.
+
+* `-c` &lt;file>:
+True if _file_ exists and is a character special file.
+
+* `-d` &lt;file>:
+True if file exists and is a directory.
+</code></pre>
+
+<h2 id="-">链接</h2>
+
+<p>ronn支持所有markdown的链接特点。</p>
+
+<pre><code>## SECTION 1
+
+See the following section.
+
+## SECTION 2
+
+See [SECTION 1][] or [to put it another way][SECTION 1].
+</code></pre>
+
+<h2 id="-SEE-ALSO">更多SEE ALSO</h2>
+
+<p><span class="man-ref">ronn<span class="s">(1)</span></span>, <span class="man-ref">markdown<span class="s">(7)</span></span>, <span class="man-ref">roff<span class="s">(7)</span></span></p>
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'></li>
+    <li class='tc'>February 2015</li>
+    <li class='tr'>ronn-fomart(7)</li>
+  </ol>
+
+  </div>
+</body>
+</html>

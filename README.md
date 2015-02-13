@@ -1,19 +1,18 @@
 ##文件夹结构
 
-`man/`下是翻译的文件，`source/`下是参考文件，`ronn/`下是ronn的原始文件。
+`man/`下是翻译的文件，`source/`下是参考文件，`ronn/`下是ronn的原始文件，`html/`下是生成的网页文件，`Newer/`下是编译manpages可能会用到的资料。
 
-HTML文件可以在[intetnet.github.io](http://intetnet.github.io)在线查看。
+你可以把本项目clone到本地，项目主页是<http://intetnet.github.io>。
+
+在线manpages文件可以在<http://intetnet.github.io/html/list.html>上查看。
 
 ##todo
 
 如果你希望贡献本项目，你可以任意选择已有或者未有的manpages来翻译提交，下面是我最近在整理的手册。
 
+* 增加`编辑manpages`的参考资料，让更多的人参与进来。
 * git
 * bash
-
-##翻译动态
-
-完整列表可以在[这里](http://intetnet.github.io/list.html)查看。
 
 ##版权
 

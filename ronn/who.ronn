@@ -1,0 +1,100 @@
+who(1)-显示已经登录的用户
+====================================
+
+##摘要
+
+执行这项指令可得知目前有那些用户登入系统，单独执行who指令会列出登入帐号
+，使用的终端机，登入时间以及从何处登入或正在使用哪个X显示器。
+
+##选项
+
+`who` [-mTu] [-abdHlprt] [`file`]
+
+`who` [-mu] -s [-bHlprt] [`file`]
+
+`who -q [file]`
+
+`who am i`
+
+`who am I`
+
+* `-a,--all`:
+等同于`-b -d --login -p -r -t -T -u`
+
+* `-b,--boot`:
+指出最近系统启动的时间和日期
+
+* `-d,--dead`:
+显示死进程
+
+* `-H,--heading`:
+显示一个头（标题）
+
+* `-l,--login`:
+列出任何登录进程
+
+* `--lookup`:
+试图通过DNS规范主机名
+	
+* `-m`:
+仅显示关于当前终端的信息，等同于who am i和who am I命令
+
+* `-p,--process`:
+列出任何当前活动的和以前已由init生成的活动进程
+
+* `-q,--count`:
+打印一份在本地系统上的用户和用户数的快速清单
+
+* `-r,--runlevel`:
+显示当前进程的运行级别
+
+* `-s,--short`:
+仅列出名字、线路和时间字段（缺省值）
+
+* `-t,--time`:
+显示root用户上一次用date命令对系统时钟做的更改。如果date命
+令自从系统安装以来还没有被运行过，who-t命令就不产生输出。
+
+* `-T,-w,--mesg`:
+用+,-或?表示用户的消息(message)状态
+
+* `-u,--users`:
+列出用户登陆清单
+
+* `--message`:
+等同于-T
+
+* `--writable`:
+等同于-T
+	
+
+* `--help`:
+显示帮助信息,然后结束
+	
+
+* `--version`:
+显示版本信息,然后结束
+
+##扩展
+
+* `am i, am I`:
+In the POSIX locale, limit the output to describing the
+invoking user, equivalent to the −m option. The am and i or I must be
+separate arguments.
+	
+* `file`: 
+Specify a pathname of a file to substitute for the
+implementation-defined database of logged-on users that who uses by
+default. 如果没有指定`file`,缺省使用`/var/run/utmp`，`/var/log/wtmp`是比
+较常用的`file`。
+
+who的完整文档作为Texinfo手册进行维护。如果info和who程序已正确安装在你的
+站点，此命令
+
+	info core utils 'who invocation'
+
+可以访问完整的手册。
+
+##版权
+
+整理自LCTT项目`who.1`文件。

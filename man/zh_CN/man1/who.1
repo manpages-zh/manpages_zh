@@ -1,0 +1,126 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "WHO" "1" "February 2015" "" ""
+.
+.SH "NAME"
+\fBwho\fR \- 显示已经登录的用户
+.
+.SH "摘要"
+执行这项指令可得知目前有那些用户登入系统，单独执行who指令会列出登入帐号 ，使用的终端机，登入时间以及从何处登入或正在使用哪个X显示器。
+.
+.SH "选项"
+\fBwho\fR [\-mTu] [\-abdHlprt] [\fBfile\fR]
+.
+.P
+\fBwho\fR [\-mu] \-s [\-bHlprt] [\fBfile\fR]
+.
+.P
+\fBwho \-q [file]\fR
+.
+.P
+\fBwho am i\fR
+.
+.P
+\fBwho am I\fR
+.
+.TP
+\fB\-a,\-\-all\fR
+等同于\fB\-b \-d \-\-login \-p \-r \-t \-T \-u\fR
+.
+.TP
+\fB\-b,\-\-boot\fR
+指出最近系统启动的时间和日期
+.
+.TP
+\fB\-d,\-\-dead\fR
+显示死进程
+.
+.TP
+\fB\-H,\-\-heading\fR
+显示一个头（标题）
+.
+.TP
+\fB\-l,\-\-login\fR
+列出任何登录进程
+.
+.TP
+\fB\-\-lookup\fR
+试图通过DNS规范主机名
+.
+.TP
+\fB\-m\fR
+仅显示关于当前终端的信息，等同于who am i和who am I命令
+.
+.TP
+\fB\-p,\-\-process\fR
+列出任何当前活动的和以前已由init生成的活动进程
+.
+.TP
+\fB\-q,\-\-count\fR
+打印一份在本地系统上的用户和用户数的快速清单
+.
+.TP
+\fB\-r,\-\-runlevel\fR
+显示当前进程的运行级别
+.
+.TP
+\fB\-s,\-\-short\fR
+仅列出名字、线路和时间字段（缺省值）
+.
+.TP
+\fB\-t,\-\-time\fR
+显示root用户上一次用date命令对系统时钟做的更改。如果date命 令自从系统安装以来还没有被运行过，who\-t命令就不产生输出。
+.
+.TP
+\fB\-T,\-w,\-\-mesg\fR
+用+,\-或?表示用户的消息(message)状态
+.
+.TP
+\fB\-u,\-\-users\fR
+列出用户登陆清单
+.
+.TP
+\fB\-\-message\fR
+等同于\-T
+.
+.TP
+\fB\-\-writable\fR
+等同于\-T
+.
+.TP
+\fB\-\-help\fR
+显示帮助信息,然后结束
+.
+.TP
+\fB\-\-version\fR
+显示版本信息,然后结束
+.
+.SH "扩展"
+.
+.TP
+\fBam i, am I\fR
+In the POSIX locale, limit the output to describing the invoking user, equivalent to the −m option\. The am and i or I must be separate arguments\.
+.
+.TP
+\fBfile\fR
+Specify a pathname of a file to substitute for the implementation\-defined database of logged\-on users that who uses by default\.如果没有指定\fBfile\fR,缺省使用\fB/var/run/utmp\fR，\fB/var/log/wtmp\fR是比 较常用的\fBfile\fR。
+.
+.P
+who的完整文档作为Texinfo手册进行维护。如果info和who程序已正确安装在你的 站点，此命令
+.
+.IP "" 4
+.
+.nf
+
+info core utils \'who invocation\'
+.
+.fi
+.
+.IP "" 0
+.
+.P
+可以访问完整的手册。
+.
+.SH "版权"
+整理自LCTT项目\fBwho\.1\fR文件。
