@@ -1,6 +1,6 @@
 ##文件夹结构
 
-`man/`下是翻译的文件，`source/`下是参考文件，`ronn/`下是ronn的原始文件，`html/`下是生成的网页文件，`Newer/`下是编译manpages可能会用到的资料。
+`man/`下是翻译的文件，`source/`下是参考文件，`ronn/`下是ronn的原始文件，`html/`下是生成的网页文件，`Newer/`下是编辑manpages可能会用到的资料。
 
 你可以把本项目clone到本地，项目主页是<http://intetnet.github.io>。
 
@@ -8,11 +8,12 @@
 
 ##todo
 
-如果你希望贡献本项目，你可以任意选择已有或者未有的manpages来翻译提交，下面是我最近在整理的手册。
+* 增加详细的`编辑manpages`的参考资料，让更多的人参与进来，目前资料Newer/文件夹。
+* 编写一个shell脚本，用来在`ronn/`文件夹下自动调用ronn生成man手册文件，并且把html文件放到`html/`文件夹，manpages手册移动到相应的`man/zh_CN`文件夹中。
+* git手册
+* bash手册
 
-* 增加`编辑manpages`的参考资料，让更多的人参与进来。
-* git
-* bash
+如果你希望贡献本项目，你可以任意选择已有或者未有的manpages来翻译提交，也可以帮助我完成上面的todo。
 
 ##版权
 
