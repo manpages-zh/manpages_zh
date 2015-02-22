@@ -1,0 +1,157 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "MORE" "1" "February 2015" "" ""
+.
+.SH "NAME"
+\fBmore\fR \- 在显示器上阅读文件的过滤器
+.
+.SH "总览"
+\fBmore [选项] <文件>\fR
+.
+.SH "描述"
+More是一个过滤器，用于分页显示(一次一屏)文本。这个版本非常基本。less(1) 提供了more(1)的模拟，并且做了增强。
+.
+.SH "选项"
+下列选项可以从环境变量MORE中获取，要确保它们以短横线\fB"\-"\fR开头，命令行选 项能够覆盖它们。
+.
+.TP
+\fB\-num\fR
+这个选项指定屏幕的行数(以整数表示)。
+.
+.TP
+\fB\-d\fR
+让more显示提示信息"[Press space to continue，\'q\' to quit。]"，当 用户按下其他键时，显示"[Press ’h’ for instructions。]"，而不是扬 声器鸣笛。
+.
+.TP
+\fB\-l\fR
+More在通常情况下把\fB^L(form feed)\fR当做特殊字符，遇到这个字符就会暂 停。\-l选项可以阻止这种特性。
+.
+.TP
+\fB\-f\fR
+使more计数逻辑行，而不是屏幕行(就是说长行不会断到下一行)。
+.
+.TP
+\fB\-p\fR
+不卷屏，而是清除整个屏幕，然后显示文本。
+.
+.TP
+\fB\-c\fR
+不卷屏，而是从每一屏的顶部开始显示文本，每显示完一行，就清除这一 行的剩余部分。
+.
+.TP
+\fB\-s\fR
+把重复的空行压缩成一个空行。
+.
+.TP
+\fB\-u\fR
+防止下划线。
+.
+.TP
+\fB+/\fR
+在显示每个文件前，搜索+/选项指定的文本串。
+.
+.TP
+\fB+num\fR
+从行号num开始显示。
+.
+.SH "命令(COMMAND)"
+more的交互命令基于vi(1)。有些命令以一个十进制数字开始，在下面的描述里 将这个十进制数字称为\fBn\fR，\fB^X\fR则指\fBcontrol\-X\fR。
+.
+.TP
+\fBh或?\fR
+帮助，显示这些命令的摘要。
+.
+.TP
+\fBSPACE\fR
+显示接下来的n行文本。缺省值是当前的屏幕大小。
+.
+.TP
+\fBz\fR
+显示接下来的n行文本。缺省值是当前的屏幕大小。参数成为新的缺省值。
+.
+.TP
+\fBRETURN\fR
+显示接下来的n行文本。缺省值是1。参数成为新的缺省值。
+.
+.TP
+\fBd或^D\fR
+卷屏n行。缺省值是当前的卷屏大小，初始化为11。参数成为新的缺省 值。
+.
+.TP
+\fBq或Q或INTERRUPT\fR
+退出。
+.
+.TP
+\fBs\fR
+向前跳过n行文本。缺省值是1。
+.
+.TP
+\fBf\fR
+向前跳过n屏文本。缺省值是1。
+.
+.TP
+\fBb或^B\fR
+向后跳回n屏文本。缺省值是1。
+.
+.TP
+\fB’\fR
+跳到上一次搜索开始的地方。
+.
+.TP
+\fB=\fR
+显示当前行号。
+.
+.TP
+\fB/pattern\fR
+搜索第n个符合正则表达式的文本串。缺省值是1。
+.
+.TP
+\fBn\fR
+搜索最后第n个符合正则表达式的文本串。缺省值是1。
+.
+.TP
+\fB!<cmd>或:!<cmd>\fR
+在子shell中执行\fIcmd\fR。
+.
+.TP
+\fBv\fR
+启动/usr/bin/vi，指向当前行。
+.
+.TP
+\fB^L\fR
+刷新屏幕。
+.
+.TP
+\fB:n\fR
+跳到后面第n个文件。缺省值是1。
+.
+.TP
+\fB:p\fR
+跳到前面第n个文件。缺省值是1。
+.
+.TP
+\fB:f\fR
+显示当前文件名和行号。
+.
+.TP
+\fB。\fR
+重复上次命令。
+.
+.SH "环境(ENVIRONMENT)"
+More利用下面的环境变量(如果它们存在):
+.
+.TP
+\fBMORE\fR
+这个变量设置你喜欢的more选项。
+.
+.TP
+\fBSHELL\fR
+当前使用的shell(一般说来就是登录shell)。
+.
+.TP
+\fBTERM\fR
+指定终端类型，more用它来获取操作屏幕所需的终端特性。
+.
+.SH "另见SEE ALSO"
+vi(1) less(1)

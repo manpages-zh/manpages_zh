@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv='content-type' value='text/html;charset=utf8'>
   <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
-  <title>另一个中文manpages计划（AMP计划）</title>
+  <title>另一个中文手册计划（AMP计划）</title>
   <style type='text/css' media='all'>
   /* style: man */
   body#manpage {margin:0}
@@ -53,6 +53,10 @@
   <div class='mp' id='man'>
 
   <div class='man-navigation' style='display:none'>
+    <a href="#-manpages-">为什么需要中文manpages?</a>
+    <a href="#-manpages-">中文manpages现状</a>
+    <a href="#AMP-">AMP计划</a>
+    <a href="#-markdown-">推荐使用markdown格式</a>
   </div>
 
   <ol class='man-decor man-head man head'>
@@ -61,28 +65,24 @@
     <li class='tr'>index</li>
   </ol>
 
-  <h1>另一个中文manpages计划（AMP计划）</h1>
-<h3 id="1-manpages-">1. manpages?</h3>
+  <h1>另一个中文手册计划（AMP计划）</h1>
+<p>我希望借助开放和互助来持久的进行这个计划，在这个计划里没有什么限制，你可以将你翻译或修改的作品发给我，也可以进入这个计划里面，在AMP这个小计划里，你可以使用你喜欢的编辑器，用你喜欢的文件格式，翻译的不好没事，提交半成品也没事，你只要提交你的文档，总会有人帮你改正排版，你只翻译了一部分，那接下来的人就可以少翻译一部分，只有在有一个起点的情况下，更多的人才能够参与进来。</p>
 
-<p>man大概早就被GNU抛弃了，他们现在主打以texinfo格式为基础编写的INFO文件，目前man程序（2015.2.10)处于无人管理的状态，不过man已经存在足够久了，所以即便如此，man本身还是可用的，鉴于习惯和很多对INFO的不满而言，很多人/项目依然选择man，因此即便是现在，manpage依然有存在的价值，也会有更长的存在时间。</p>
-
-<h3 id="2-manpages-">2. 为什么需要中文manpages?</h3>
+<h2 id="-manpages-">为什么需要中文manpages?</h2>
 
 <p>本国人阅读外国文章毕竟不顺，更何况很多刚刚接触Linux的人对很多词汇都很陌生，即便是常见的外文词汇，也会因为语言环境的不同而产生歧义，所以没有中文manpages对很多人来说无所谓，但做了不见得有坏处，就当锦上添花吧。</p>
 
-<h3 id="3-manpages-">3. 中文manpages现状</h3>
+<h2 id="-manpages-">中文manpages现状</h2>
 
 <p>说来好笑，很多人做了很多事，但是都停在了半路上，所以你使用的Gnu/Linux系统上大概会有中文manpages,但你看了之后可能最终还是会选择读原版的manpages,不过以前的项目和网上的教程可以为AMP提供很多素材，而不至于从头开始，所以你会发现，AMP会有很多引用的部分，因为版权的问题，我希望能够尽可能的提供详细的引用信息，将来也会把足够的时间放在维护这个方面，如果有问题，请告知。</p>
 
-<h3 id="4-AMP-">4. AMP计划</h3>
+<h2 id="AMP-">AMP计划</h2>
 
-<p>这个名字并不重要，你也可以复制一份，另开分店。只是我一直以来希望能够有一份长久维护，切实能用的中文manpages,但现在没有，只能自己解决啦。当然我也希望更多的人参与进来，<code>罗马不是一天就能建立起来的</code>，前人的经验告诉我们不要心急，作为一个开放/公益/长远的计划，一个人做是不可能完成的，妄图一蹴而就是不现实的，因此我非常乐意看到他人的贡献，不管你是贡献一段还是修改一处错误，即便只是修改语法或者标点符号都是很欢迎的，中文自有中文的美嘛。</p>
+<p>这个名字并不重要，你也可以复制一份，另开分店。只是我一直以来希望能够有一份长久维护，切实能用的中文manpages,但现在没有，只能自己解决啦。当然我也希望更多的人参与进来，<code>罗马不是一天就能建立起来的</code>，前人的经验告诉我们不要心急，作为一个开放/公益/长远的计划，一个人做是不可能完成的，妄图一蹴是不现实的，因此我非常乐意看到他人的贡献，不管你是贡献一段还是修改一处错误，即便只是修改语法或者标点符号都是很欢迎的，中文自有中文的美嘛。</p>
 
-<p>只有在有一个起点的情况下，更多的人才能够参与进来。</p>
+<h2 id="-markdown-">推荐使用markdown格式</h2>
 
-<h3 id="5-ronn-format-">5. 使用ronn-format格式</h3>
-
-<p>ronn-format来自于github上rtomayko/ronn** ，格式兼容于Markdown的格式，并且可以方便美观的转换为man使用的groff格式和html格式。用户不需要学习groff语法，利用已有的markdown知识即可完成manpage的编写。</p>
+<p>目前我使用来自于github上"rtomayko/ronn"来把markdown转换为man使用的troff格式文件，为了转换后的文件更加美观，推荐您参考一下<span class="man-ref">ronn-format<span class="s">(7)</span></span>，该格式兼容于Markdown。</p>
 
 <h3 id="6-">6. 怎么安装？</h3>
 
@@ -95,9 +95,9 @@
 
 <h1>项目主页</h1>
 
-<p>项目托管在Github上，并且直接使用ronn生成的HTML文件，可以供用户在线查看manpages手册，地址是:<a href="http://intetnet.github.io/" title="intetnet/intetnet.github.io" data-bare-link="true">http://intetnet.github.io/</a>。</p>
+<p>项目托管在Github上，在线manpages手册的地址是:<a href="http://intetnet.github.io/" title="intetnet/intetnet.github.io">http://intetnet.github.io/list.html</a>。</p>
 
-<p>manpages下载地址是:<a href="https://github.com/intetnet/intetnet.github.io">https://github.com/intetnet/intetnet.github.io/</a>。</p>
+<p>文本格式的manpages下载地址是:https://github.com/intetnet/intetnet.github.io/]<a href="https://github.com/intetnet/intetnet.github.io">man</a>。</p>
 
 <h1>联系我</h1>
 
@@ -105,13 +105,13 @@
 
 <p>如果你要给我发送你翻译/整理的文章，可以跟我联系。</p>
 
-<p>如果你希望加入进来，我可以把你加入到Collaborators名单中。</p>
+<p>本项目托管于Github，如果你希望加入进来，我可以把你加入到Collaborators名单中，这需要您有一个Github的账号。</p>
 
-<p>你可以发送电子邮件到<a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#121;&#97;&#110;&#x70;&#x65;&#x6e;&#x6e;&#64;&#111;&#x75;&#x74;&#x6c;&#111;&#111;&#x6b;&#46;&#99;&#111;&#109;" data-bare-link="true">&#x79;&#x61;&#110;&#x70;&#101;&#110;&#x6e;&#x40;&#111;&#x75;&#116;&#x6c;&#x6f;&#111;&#107;&#46;&#x63;&#x6f;&#x6d;</a>。</p>
+<p>你可以发送电子邮件到<a href="&#109;&#97;&#105;&#108;&#x74;&#111;&#x3a;&#121;&#x61;&#110;&#112;&#101;&#x6e;&#110;&#x40;&#x6f;&#117;&#x74;&#108;&#x6f;&#x6f;&#107;&#46;&#99;&#x6f;&#x6d;" data-bare-link="true">&#x79;&#x61;&#110;&#112;&#101;&#110;&#x6e;&#64;&#x6f;&#117;&#116;&#108;&#111;&#x6f;&#x6b;&#46;&#x63;&#111;&#109;</a>。</p>
 
 <h1>我需要您的帮助</h1>
 
-<p>现在虽然你ronn可以方便的把markdown转化成troff文件，但是转换过来的文件依然存在一些问题，比如有些英语间距过大，生成的网页文件处在换行位置的汉字之间会出现一个空格。这些细微的地方需要手工调节，希望您在使用过程中能够帮助完善中文manpages文档。</p>
+<p>现在虽然你ronn可以方便的把markdown转化成troff文件，但是转换过来的文件依然存在一些问题，比如有些英语间距过大，不够美观。这些细微的地方需要手工调节，希望您在使用过程中能够帮助完善中文manpages文档。</p>
 
 
   <ol class='man-decor man-foot man foot'>

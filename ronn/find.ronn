@@ -25,6 +25,16 @@ arguments.
 * `-Olevel`:
 开启搜索优化
 
+##实例
+
+在/tmp中搜索文件名为core的普通文件，并将它删除
+
+	find /tmp −name core −type f −print | xargs /bin/rm −f
+
+在manpages/中寻找以xargs开头的文件，并使用gvim打开
+
+	find manpages/ -name xargs* | xargs gvim
+
 ##描述DESCRIPTION
 
 这个文档是GNU版本find命令的使用手册。find搜索目录树上的每个文件，它从左
@@ -218,9 +228,9 @@ CD-ROM,MS-DOS文件系统或AFS卷的加载点。在普通的UNIX文件系统中
 
 * `-name pattern`:
 
-基本的文件名(将路径去掉了前面的目录)与shell模式pattern相匹配。元字符
-`(*`,`?`,`[])`不会匹配文件名开头的`"."`。使用`-prune`来略过一个目录及其
-中的文件。查看`-path`的描述中的范例。
+pattern可以是文件名和shell通配符，元字符`(*`,`?`,`[])`不会匹配文件名开头
+的`"."`。使用`-prune`来略过一个目录及其中的文件。查看`-path`的描述中的范
+例。
 
 * `-newer file`:
 对文件的最近一次修改比file修改时间要晚。

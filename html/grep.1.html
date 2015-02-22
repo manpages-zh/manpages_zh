@@ -87,26 +87,31 @@
 <p>[OPTIONS]主要参数</p>
 
 <dl>
-<dt><code>-a</code> 或 <code>--text</code></dt><dd>grep原本是搜寻文字文件，若加上-a参数则可将二进制档案
-视为文本文件搜寻，相当于<code>--binary-files=text</code>这个参数。</dd>
-<dt class="flush"><code>-c</code></dt><dd>只输出匹配行的总数</dd>
-<dt class="flush"><code>-i</code></dt><dd>不区分大小写(只适用于单字符)</dd>
-<dt class="flush"><code>-h</code></dt><dd>查询多文件时不显示文件名</dd>
-<dt class="flush"><code>-l</code></dt><dd>查询多文件时只输出包含匹配字符的文件名</dd>
-<dt class="flush"><code>-n</code></dt><dd>显示匹配行及行号</dd>
-<dt class="flush"><code>-s</code></dt><dd>不显示不存在或无匹配文本的错误信息</dd>
-<dt class="flush"><code>-v</code></dt><dd>显示不包含匹配文本的所有</dd>
-<dt class="flush"><code>-l</code></dt><dd>只列出匹配的文件名</dd>
-<dt class="flush"><code>-L</code></dt><dd>列出不匹配的文件名</dd>
-<dt class="flush"><code>-w</code></dt><dd>只匹配整个单词，而不是字符串的一部分</dd>
-<dt><code>-A 数字</code> 或 <code>--after-context=数字</code></dt><dd>除了列出符合行之外，并且列出后[数字]行</dd>
-<dt><code>-B 数字</code> 或 <code>--before-context=数字</code></dt><dd>除了列出符合行之外，并且列出前[数字]行</dd>
-<dt><code>-C 数字</code> 或 <code>--context[=数字]</code></dt><dd>列出符合行之外并列出上下各[数字]行，默认值是两行</dd>
+<dt><code>-a</code> 或 <code>--text</code></dt><dd>将二进制档案视为文本文件搜寻</dd>
 </dl>
 
 
-<p>pattern 既可以是要搜索的字符串,也可以是一个正则表达式。在输入要搜索的字
-符串时最好使用双引号，而在模式匹配使用正则表达式时，注意使用单引号。</p>
+<p>grep原本是搜寻文本文件，这个参数则相当于<code>--binary-files=text</code>这个参数。</p>
+
+<dl>
+<dt class="flush"><code>-c</code></dt><dd><p>只输出匹配行的总数</p></dd>
+<dt class="flush"><code>-i</code></dt><dd><p>不区分大小写(只适用于单字符)</p></dd>
+<dt class="flush"><code>-h</code></dt><dd><p>查询多文件时不显示文件名</p></dd>
+<dt class="flush"><code>-l</code></dt><dd><p>查询多文件时只输出包含匹配字符的文件名</p></dd>
+<dt class="flush"><code>-n</code></dt><dd><p>显示匹配行及行号</p></dd>
+<dt class="flush"><code>-s</code></dt><dd><p>不显示不存在或无匹配文本的错误信息</p></dd>
+<dt class="flush"><code>-v</code></dt><dd><p>显示不包含匹配文本的所有</p></dd>
+<dt class="flush"><code>-l</code></dt><dd><p>只列出匹配的文件名</p></dd>
+<dt class="flush"><code>-L</code></dt><dd><p>列出不匹配的文件名</p></dd>
+<dt class="flush"><code>-w</code></dt><dd><p>只匹配整个单词，而不是字符串的一部分</p></dd>
+<dt><code>-A 数字</code> 或 <code>--after-context=数字</code></dt><dd><p>除了列出符合行之外，并且列出后[数字]行</p></dd>
+<dt><code>-B 数字</code> 或 <code>--before-context=数字</code></dt><dd><p>除了列出符合行之外，并且列出前[数字]行</p></dd>
+<dt><code>-C 数字</code> 或 <code>--context[=数字]</code></dt><dd><p>列出符合行之外并列出上下各[数字]行，默认值是两行</p></dd>
+</dl>
+
+
+<p>pattern既可以是要搜索的字符串,也可以是一个正则表达式。在输入要搜索的字符
+串时最好使用双引号，而在模式匹配使用正则表达式时，注意使用单引号。</p>
 
 <p>正则表达式常用参数</p>
 
