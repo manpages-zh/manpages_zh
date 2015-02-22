@@ -1,0 +1,618 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "FIND" "1" "February 2015" "" ""
+.
+.SH "NAME"
+\fBfind\fR \- 递归地在层次目录中处理文件
+.
+.SH "总览SYNOPSIS"
+find [\-H] [\-L] [\-P] [\-Olevel] [\-D help|tree|search|stat|rates|opt|exec] [路径\.\.\.] [表达式]
+.
+.P
+默认路径为当前目录，默认表达式为\fB\-print\fR，\fB\-H,\-L,\-P\fR选项决定如何对待符号 链接。
+.
+.TP
+\fB\-P\fR
+不跟踪符号链接，默认选项。
+.
+.TP
+\fB\-L\fR
+跟踪符号链接
+.
+.TP
+\fB\-H\fR
+Do not follow symbolic links, except while processing the command line arguments\.
+.
+.TP
+\fB\-D\fR
+调试选项
+.
+.TP
+\fB\-Olevel\fR
+开启搜索优化
+.
+.SH "描述DESCRIPTION"
+这个文档是GNU版本find命令的使用手册。find搜索目录树上的每个文件，它从左 至右运算给定的表达式，按照操作符优先顺序规则进行匹配，直到得出结果（第一 次在’与’操作中得出假，在’或’操作中得出真），然后find移向下一个文件名。
+.
+.P
+表达式可能由下列成份组成:操作符、选项、测试表达式以及动作。表达式以第一 个\fB"\-"\fR,\fB"()"\fR,或\fB"!"\fR字符起始的参数开始，它之前的任何参数是要搜索的路径 ，它之后的任何参数都是表达式的余下部分。如果没有路径参数，缺省用当前目录 。如果没有表达式，缺省表达式用\fB\-print\fR。
+.
+.P
+当所有文件都成功处理时find退出并返回状态值0。如果发生错误则返回一个大于0 的值。
+.
+.SH "表达式EXPRESSIONS"
+表达式是由选项、测试、动作组成，它们都以操作符分开。忽略操作符的时候，默 认使用\fB\-and\fR连接。如果表达式没有包含\fB\-prune\fR以外的动作，当表达式为真时会 执行\fB\-print\fR动作。
+.
+.P
+\fB选项\fR
+.
+.P
+选项总是影响所有操作，而不仅仅是一个指定的文件的处理，而且总是返回真值。
+.
+.P
+位置选项
+.
+.IP "" 4
+.
+.nf
+
+\-daystart \-follow \-regextype
+.
+.fi
+.
+.IP "" 0
+.
+.P
+普通选项
+.
+.IP "" 4
+.
+.nf
+
+\-depth \-\-help \-maxdepth LEVELS \-mindepth LEVELS \-mount \-noleaf
+\-\-version \-xdev \-ignore_readdir_race \-noignore_readdir_race
+.
+.fi
+.
+.IP "" 0
+.
+.P
+\fB操作符\fR
+.
+.P
+以下操作符优先级递减，未做任何指定时默认使用\fB\-and\fR。
+.
+.IP "" 4
+.
+.nf
+
+( EXPR ) !EXPR   \-not EXPR   EXPR1 \-a EXPR2   EXPR1 \-and EXPR2
+EXPR1 \-o EXPR2   EXPR1 \-or EXPR2   EXPR1 , EXPR2
+.
+.fi
+.
+.IP "" 0
+.
+.P
+\fB测试\fR
+.
+.P
+测试返回一个真值或一个假值。下式中\fBN\fR可以是\fB+N\fR或\fB\-N\fR或\fBN\fR。
+.
+.IP "" 4
+.
+.nf
+
+\-amin N \-anewer FILE \-atime N \-cmin N
+\-cnewer 文件 \-ctime N \-empty \-false \-fstype 类型 \-gid N
+\-group 名称 \-ilname 匹配模式 \-iname 匹配模式 \-inum N
+\-ipath 匹配模式 \-iregex 匹配模式
+\-links N \-lname 匹配模式 \-mmin N \-mtime N \-name 匹配模式
+\-newer 文件 \-nouser \-nogroup \-path 匹配模式 \-perm [+\-]访问模式
+\-regex 匹配模式 \-readable \-writable \-executable
+\-wholename PATTERN \-size N[bcwkMG] \-true \-type [bcdpflsD] \-uid N
+\-used N \-user NAME \-xtype [bcdpfls]
+.
+.fi
+.
+.IP "" 0
+.
+.P
+\fB动作\fR
+.
+.IP "" 4
+.
+.nf
+
+\-delete \-print0 \-printf FORMAT \-fprintf FILE FORMAT \-print
+\-fprint0 FILE \-fprint FILE \-ls \-fls FILE \-prune \-quit
+\-exec COMMAND ; \-exec COMMAND {} + \-ok COMMAND ;
+\-execdir COMMAND ; \-execdir COMMAND {} + \-okdir COMMAND ;
+.
+.fi
+.
+.IP "" 0
+.
+.SH "选项"
+所有的选项都总是返回真值，它们总会被执行，除非放在表达式中执行不到的地方 。因此，清楚起见，最好把它们放在表达式的开头部分。
+.
+.TP
+\fB\-daystart\fR
+从当日起始时开始而不是从24小时之前，计算时间 (for\-amin,\-atime,\-cmin,\-ctime,\-mmin,and\-mtime)。
+.
+.TP
+\fB\-depth\fR
+先处理目录的内容再处理目录本身。
+.
+.TP
+\fB\-follow\fR
+不检索符号链接。隐含了\fB\-noleaf\fR。
+.
+.TP
+\fB\-help,\-\-help\fR
+列出find的命令行用法的概要，然后退出。
+.
+.TP
+\fB\-maxdepth levels\fR
+指定访问下层目录的最深层数
+.
+.P
+\fB\-maxdepth 0\fR意味着只在命令行参数指定的目录中执行测试和动作。
+.
+.TP
+\fB\-mindepth levels\fR
+不在\fBlevels\fR层内执行任何测试和动作。
+.
+.P
+\fB\-mindepth 1\fR意味着处理所有的文件，除了命令行参数指定的目录中的文件。
+.
+.TP
+\fB\-mount\fR
+不进入处于其它文件系统之上的目录。可以用\fB\-xdev\fR代替，从而和一 些其他版本的find兼容。
+.
+.TP
+\fB\-noleaf\fR
+不为“目录中子目录数量比硬连接数少2”这种假设做优化。
+.
+.P
+这个选项在搜索那些不遵循UNIX文件系统链接约定的文件系统时用，比如 CD\-ROM,MS\-DOS文件系统或AFS卷的加载点。在普通的UNIX文件系统中,每个目录至 少有两个硬连接,它的名字和它的\fB\.\fR条目。另外，它的子目录(假如有)还会各有一 个\fB\.\.\fR链接到它。在find检索一个目录时，发现子目录数比它的连接数少二时，它 就知道目录中的其他条目并非目录(而是目录树中的叶(‘leaf’)节点)。除非需要检 索的是这个叶节点，否则没必要去处理它。这样可以带来很大的搜索速度提升。
+.
+.TP
+\fB\-version,\-\-version\fR
+打印find的版本号然后退出。
+.
+.TP
+\fB\-xdev\fR
+不进入处于其他文件系统之上的目录。
+.
+.SH "测试"
+数字参数可以这样给出：
+.
+.TP
+\fB+n\fR
+比n大
+.
+.TP
+\fB\-n\fR
+比n小
+.
+.TP
+\fBn\fR
+正好是n
+.
+.TP
+\fB\-amin n\fR
+对文件的最近一次访问是在n分钟之前。
+.
+.TP
+\fB\-anewer file\fR:
+
+.
+.P
+对文件的最近一次访问比file修改时间要晚。如果命令行中\fB\-follow\fR在\fB\-anewer\fR 之前，也只有在这种情况下\fB\-anewer\fR会受\fB\-follow\fR的影响。
+.
+.TP
+\fB\-atime n\fR
+对文件的最近一次访问是在n*24小时之前。
+.
+.TP
+\fB\-cmin n\fR
+对文件状态的最近一次修改是在n分钟之前。
+.
+.TP
+\fB\-cnewer file\fR
+对文件状态的最近一次修改比file修改时间要晚。如果命令行 中\fB\-follow\fR在\fB\-cnewer\fR之前，也只有在这种情况下\fB\-cnewer\fR 会受\fB\-follow\fR的影响。
+.
+.TP
+\fB\-ctime n\fR
+对文件状态的最近一次修改是在n*24小时之前。
+.
+.TP
+\fB\-empty\fR
+文件是空的普通文件或者空目录。
+.
+.TP
+\fB\-false\fR
+总是false。
+.
+.TP
+\fB\-fstype type\fR
+文件处于type类型的文件系统之上。
+.
+.P
+有效的文件系统类型在不同版本的Unix中是不同的；一些Unix中的不完全的文件系 统类型列表是这样：ufs,4\.2,4\.3,nfs,tmp,mfs,S51K,S52K\.你可以用\fB\-printf\fR加 上%F指令来查看你的文件系统的类型。
+.
+.TP
+\fB\-gid n\fR
+文件的数字形式的组ID是n。
+.
+.TP
+\fB\-group name\fR
+文件属于name组(也允许使用数字形式的组ID)\.
+.
+.TP
+\fB\-ilname pattern\fR
+和\-lname类似，但是匹配时是不区分大小写的。
+.
+.TP
+\fB\-iname pattern\fR
+和\-name类似，但是匹配时不区分大小写。
+.
+.TP
+\fB\-inum n\fR
+文件的i结点数是n。
+.
+.TP
+\fB\-ipath pattern\fR
+和\fB\-path\fR类似，但是匹配时是不区分大小写的。
+.
+.TP
+\fB\-iregex pattern\fR
+和\fB\-regex\fR类似,但是匹配时是不区分大小写的。
+.
+.TP
+\fB\-links n\fR
+文件有n个链接。
+.
+.TP
+\fB\-lname pattern\fR
+文件是一个与pattern匹配的符号链接。元字符不会对\fB/\fR或 \fB\.\fR做特殊处理。
+.
+.TP
+\fB\-mmin n\fR
+对文件数据的最近一次修改是在n分钟之前。
+.
+.TP
+\fB\-mtime n\fR
+对文件数据的最近一次修改是在n*24小时之前。
+.
+.TP
+\fB\-name pattern\fR:
+
+.
+.P
+基本的文件名(将路径去掉了前面的目录)与shell模式pattern相匹配。元字符 \fB(*\fR,\fB?\fR,\fB[])\fR不会匹配文件名开头的\fB"\."\fR。使用\fB\-prune\fR来略过一个目录及其 中的文件。查看\fB\-path\fR的描述中的范例。
+.
+.TP
+\fB\-newer file\fR
+对文件的最近一次修改比file修改时间要晚。
+.
+.P
+如果在命令行中，\fB\-follow\fR在\fB\-newer\fR之前，\fB\-newer\fR会受\fB\-follow\fR的影响。
+.
+.TP
+\fB\-nouser\fR
+没有符合文件的数字形式的用户ID的用户。
+.
+.TP
+\fB\-nogroup\fR
+没有符合文件的数字形式的组ID的组。
+.
+.TP
+\fB\-path pattern\fR
+文件名与shell模式pattern相匹配。
+.
+.P
+元字符不会对\fB/\fR或\fB\.\fR做特殊处理。例如:
+.
+.IP "" 4
+.
+.nf
+
+find \. \-path \'\./sr*sc\'
+.
+.fi
+.
+.IP "" 0
+.
+.P
+如果存在\fB\./src/misc\fR的话，会将它打印出来。因此，想要忽略一个完整的目录树 ，应当使用\fB\-prune\fR而不是检查目录树中所有的文件。例如要跳过\fBsrc/emacs\fR目 录和其中所有的文件和子目录，把其他找到的文件打印出来，应当这样：
+.
+.IP "" 4
+.
+.nf
+
+find \. \-path\'\./src/emacs\'\-prune \-o \-print
+.
+.fi
+.
+.IP "" 0
+.
+.TP
+\fB\-perm mode\fR
+文件的权限位恰好是mode(八进制或符号)。
+.
+.TP
+\fB\-perm \-mode\fR
+所有的权限位mode都被设置了的文件。
+.
+.TP
+\fB\-perm +mode\fR
+任何权限位mode被设置了的文件。
+.
+.TP
+\fB\-regex pattern\fR
+文件名与正则表达式pattern匹配。
+.
+.P
+这是对整个路径的匹配，不是搜索文件。例如，要匹配名为\fB\./fubar3\fR的文件，可 以使用正则表达式\fB\.*bar\.\fR或者\fB\.*b\.*3\fR，但是不能用\fBb\.*r3\fR。
+.
+.TP
+\fB\-size n[bckw]\fR
+文件使用了n单位个存储单元。
+.
+.P
+默认的单位是512字节的块，也可以用\fBnb\fR来指定这个值。\fBnc\fR表示字节，\fBnk\fR表 示千字节(kB)，\fBnw\fR表示两字节的字，大小不会计入\fBindirect blocks\fR，但是会 计入没有真正分配空间的疏松文件中的块。
+.
+.TP
+\fB\-true\fR
+总是true
+.
+.TP
+\fB\-type c\fR
+文件是c类型的。类型可取值如下
+.
+.IP
+b 特殊块文件(缓冲的)
+.
+.IP
+c 特殊字符文件(不缓冲)
+.
+.IP
+d 目录
+.
+.IP
+p 命名管道(FIFO)
+.
+.IP
+f 普通文件
+.
+.IP
+l 符号链接
+.
+.IP
+s 套接字
+.
+.IP
+D 门(Solaris特有)
+.
+.TP
+\fB\-uid n\fR
+文件的数字形式的用户ID是n。
+.
+.TP
+\fB\-used n\fR
+文件最后一次存取是在最后一次修改它的状态的n天之后。
+.
+.TP
+\fB\-user name\fR
+文件的所有者是name(也可以使用数字形式的用户ID)\.
+.
+.TP
+\fB\-xtype c\fR
+和\-type相同，除非文件是一个符号链接。对于符号链接：如果没有 给出\fB\-follow\fR，如果文件是一个指向c类型文件的链接，那么返回 true；如果给出了\fB\-follow\fR，如果c是‘l’那么返回true。换句话说 ，对于符号链接，\-xtype检查那些\-type不检查的文件。
+.
+.SH "动作ACTIONS"
+.
+.TP
+\fB\-exec command;\fR
+执行command
+.
+.P
+如果命令返回状态值0，那么exec返回true。所有find其余的命令行参数将作为提 供给命令的参数，直到遇到一个由‘;’组成的参数为止。命令的参数中，字符串‘{} ’将以正在处理的文件名替换。所有的‘{}’都会被替换，不仅是在单独的一个参数 中。有些版本的find不是这样做的。这些参数可能需要用‘\e’来escape或者用括号 括住，防止它们被shell展开。命令是从起始目录执行的。
+.
+.TP
+\fB\-fls file\fR
+返回true；类似\-ls但是像\-fprint那样写入file。
+.
+.TP
+\fB\-fprint file\fR
+返回true，将文件全名打印到文件file中。
+.
+.P
+如果运行find时file不存在，那么它将被创建。如果它存在，它将被覆盖。文件 \fB/dev/stdout\fR和\fB/dev/stderr\fR会作特殊处理，它们分别指的是标准输出和标准错 误输出。
+.
+.TP
+\fB\-fprint0 file\fR
+返回true,类似\fB\-print0\fR但是像\fB\-fprint\fR那样写入file。
+.
+.TP
+\fB\-fprintf fileformat\fR
+返回true；类似\-printf但是像\-fprint那样写入file。
+.
+.TP
+\fB\-ok command;\fR
+类似\-exec但是会先向用户询问(在标准输入);如果回应不是以‘ y’或‘Y’起始则不会运行command而是返回false。
+.
+.TP
+\fB\-print\fR
+返回true；在标准输出打印文件全名，然后是一个换行符。
+.
+.TP
+\fB\-print0\fR
+返回true，在标准输出打印文件全名，然后是一个null字符。这样可 以使处理find的输出程序可以正确地理解带有换行符的文件名。
+.
+.TP
+\fB\-printf format\fR
+返回true，在标准输出打印format。
+.
+.P
+字段宽度和精度可以像C函数\fBprintf\fR那样来指定。与\-print不同的是,\fB\-printf\fR 在字符串末端不会添加一个新行。可用的转义字符和指令如下：
+.
+.IP "" 4
+.
+.nf
+
+\ea  警告铃声
+\eb  回退
+\ec  立即停止以当前格式输出，刷新输出设备。
+\ef  表格结束
+\en  新行
+\er  回车
+\et  水平tab
+\ev  竖直tab
+\e\e  输出自身‘\e’
+\eNNN    ASCII编码是NNN(八进制)的字符
+.
+.fi
+.
+.IP "" 0
+.
+.P
+在\fB\e\fR字符后面使用任何其他字符会被作为普通字符，因此它们都会被打印出来。
+.
+.IP "" 4
+.
+.nf
+
+%%  输出自身‘%’
+%a  文件最后一次存取的时间。格式是C函数‘ctime’返回值的格式。
+%Ak     文件最后一次存取的时间。格式以k指定，可以是‘@’或者是C函
+    数‘strftime’的指令格式。
+.
+.fi
+.
+.IP "" 0
+.
+.P
+下面列出了k可用的值，但并不是在所有系统上都可用，因为不同系统\fBstrftime\fR 也不同。
+.
+.IP "" 4
+.
+.nf
+
+时间字段：
+
+H   小时(00\.\.23)
+I   小时(01\.\.12)
+k   小时(0\.\.23)
+l   小时(1\.\.12)
+M   分钟(00\.\.59)
+p   本地的AM或者PM
+r   12小时格式的时间(hh:mm:ss[AP]M)
+S   秒(00\.\.61)
+T   24小时格式的时间(hh:mm:ss)
+X   本地的时间表示方法(H:M:S)
+Z   时区(例如EDT)，如果不能决定时区就是空
+
+日期字段：
+
+a 本地一星期中每天的名称的缩写(Sun\.\.Sat)
+A 本地一星期中每天的全名，可变长度(Sunday\.\.Saturday)
+b 本地每月的名称的缩写(Jan\.\.Dec)
+B 本地每月的全名，可变长度(January\.\.December)
+c 本地的日期和时间表示(SatNov0412:02:33EST1989)
+d 一个月当中的日子(01\.\.31)
+D 日期(mm/dd/yy)
+h 与b相同
+j 一年当中的日子(001\.\.366)
+m 月份(01\.\.12)
+U 以星期日作为每周起始，一年当中的星期(00\.\.53)
+w 一星期当中的日子(0\.\.6)
+W 以星期一当作每周起始，一年当中的星期(00\.\.53)
+x 本地的日期表示(mm/dd/yy)
+y 年份的最后两位(00\.\.99)
+Y 年份(1970\.\.\.)
+%b 文件大小，以512字节的块为单位(四舍五入)。
+%c 文件状态最后一次修改的时间。格式是C函数‘ctime’返回值的格式。
+%Ck 文件状态最后一次修改的时间。格式以k指定，类似于%A。
+%d 文件在目录树中的深度；0意味着文件是一个命令行参数。
+%f 去掉了前面的目录的文件名(只剩下最后的成分)。
+%F 文件所在文件系统的类型；这个值可以为−fstype所用。
+%g 文件的组名，如果组没有名称就是数字形式的组ID。
+%G 文件的数字形式的组ID。
+%h 文件名的前面的目录部分(仅除去最后的成分)。
+%H 据以找到了文件的命令行参数。
+%i 文件的i结点号(16进制)。
+%k 文件大小，以1kB的块为单位(四舍五入)。
+%l 符号链接的目标(如果文件不是一个符号链接，那么结果是空字符串)
+%m 文件的权限位(8进制)。
+%n 文件的硬连接数。
+%p 文件名。
+%P 文件名，去掉了据以找到了文件的命令行参数的名称部分。
+%s 文件大小，以字节为单位。
+%t 文件最后一次修改的时间。格式是C函数‘ctime’返回值的格式。
+%Tk 文件最后一次修改的时间。格式以k指定，类似于%A。
+%u 文件的用户名，如果用户没有名称就是数字形式的用户ID。
+%U 文件的数字形式的用户ID。
+.
+.fi
+.
+.IP "" 0
+.
+.TP
+\fB\-prune\fR
+如果没有给出\fB\-depth\fR则返回true，不进入当前目录。如果给出了 \fB\-depth\fR则返回false，没有效果。
+.
+.TP
+\fB\-ls\fR
+返回true，以‘ls\-dils’格式在标准输出列出文件。
+.
+.P
+块以1kB字节为单位计数，除非设置了环境变量POSIXLY_CORRECT，那样的话会使用 512字节的块。
+.
+.SH "操作符"
+以优先级高低顺序排列：
+.
+.TP
+\fB(expr)\fR
+强制为优先
+.
+.TP
+\fB!expr\fR
+如果expr是false则返回true
+.
+.TP
+\fB\-not expr\fR
+同\fB!expr\fR
+.
+.TP
+\fBexpr1 expr2\fR
+与表达式，如果expr1为false则不会执行expr2
+.
+.TP
+\fBexpr1 \-a expr2\fR
+同\fBexpr1 expr2\fR
+.
+.TP
+\fBexpr1 \-and expr2\fR
+同\fBexpr1 expr2\fR
+.
+.TP
+\fBexpr1 \-o expr2\fR
+或表达式，如果expr1为true则不会执行expr2
+.
+.TP
+\fBexpr1 \-or expr2\fR
+同\fBexpr1 \-o expr2\fR
+.
+.TP
+\fBexpr1,expr2\fR
+列表，expr1和expr2都会被执行。expr1的值被忽略，列表的值 是expr2的值
+.
+.SH "参见"
+locate(1L), locatedb(5L), updatedb(1L), xargs(1L)
+.
+.P
+Finding Files(Info在线帮助,或者是打印的版本)
