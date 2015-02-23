@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv='content-type' value='text/html;charset=utf8'>
   <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
-  <title>完整列表</title>
+  <title>tail(1) - 输出文件尾部的内容</title>
   <style type='text/css' media='all'>
   /* style: man */
   body#manpage {margin:0}
@@ -53,52 +53,79 @@
   <div class='mp' id='man'>
 
   <div class='man-navigation' style='display:none'>
-    <a href="#man1">man1</a>
-    <a href="#man7">man7</a>
+    <a href="#NAME">NAME</a>
+    <a href="#-">描述</a>
+    <a href="#-">摘要</a>
+    <a href="#-">选项</a>
+    <a href="#-">翻译</a>
   </div>
 
   <ol class='man-decor man-head man head'>
-    <li class='tl'>list</li>
+    <li class='tl'>tail(1)</li>
     <li class='tc'></li>
-    <li class='tr'>list</li>
+    <li class='tr'>tail(1)</li>
   </ol>
 
-  <h1>完整列表</h1>
-<h2 id="man1">man1</h2>
+  <h2 id="NAME">NAME</h2>
+<p class="man-name">
+  <code>tail</code> - <span class="man-whatis">输出文件尾部的内容</span>
+</p>
 
-<p><a href="./tail.1.html">tail</a> -- 输出文件尾部的内容</p>
+<h2 id="-">描述</h2>
 
-<p><a href="./more.1.html">more</a> -- 在显示器上阅读文件的过滤器</p>
+<p>向标准输出打印文件的最后10行。有多个文件时，每个输出前会包含一个显示文件
+名的头部。当参数中没有文件，或者文件为"<code>-</code>"，将从标准输入中读取。</p>
 
-<p><a href="./find.1.html">find</a> -- 递归地在层次目录中处理文件</p>
+<h2 id="-">摘要</h2>
 
-<p><a href="./ls.1.html">ls</a> -- 列出目录内容</p>
+<p><code>tail [-f] [-c number|-n number] [file...]</code></p>
 
-<p><a href="./sed.1.html">sed</a> -- 流编辑器</p>
+<p><code>number</code>代表一个十进制的整形常数，<code>number</code>前支持以下符号</p>
 
-<p><a href="./mv.1.html">mv</a> -- 移动(改名)文件</p>
+<pre><code>+   相对文件开头
+-   相对文件结尾
+none    相对文件结尾
+</code></pre>
 
-<p><a href="./tee.1P.html">tee</a></p>
+<h2 id="-">选项</h2>
 
-<p><a href="./sort.1.html">sort</a></p>
+<dl>
+<dt><code>-c number</code></dt><dd><p>输出最后number个字节；或者，使用<code>-c +number</code>输出文件从第number个
+字节开始的内容，文件开头的字节计数为1，即<code>-c +1</code>代表文件的第一个
+字节，<code>-c -1</code>代表最后一个字节，注意如果输入含有多字节字符比如汉
+语时，并不一定会落在指定的字节下。</p></dd>
+<dt class="flush"><code>-f</code></dt><dd><p>If the input file is a regular file or if the file operand
+specifies a FIFO， do not terminate after the last line of the
+input file has been copied， but read and copy further bytes
+from the input file when they become available. If no file
+operand is specified and standard input is a pipe or FIFO， the
+-f option shall be ignored. If the input file is not a FIFO，
+pipe， or regular file， it is unspecified whether or not the -f
+option shall be ignored.</p></dd>
+<dt><code>-n number</code></dt><dd><p>等同于-c，但以行为单位，文件开头的行计数为1，即<code>-n +1</code>代表文件的
+第一行，<code>-c -1</code>代表最后一行。</p></dd>
+</dl>
 
-<p><a href="./grep.1.html">grep</a></p>
 
-<p><a href="./wc.1.html">wc</a> --显示文件的行数、词数和字节数</p>
+<p>如果没有指定<code>-c</code>和<code>-n</code>，默认为<code>-n 10</code>，即打印文件最后10行。</p>
 
-<p><a href="./echo.1.html">echo</a>   -- 显示一行文本</p>
+<p>本程序的完整文档使用Texinfo手册进行维护。如果info和本程序已经正确地安装
+在了你的电脑上，通过下述命令</p>
 
-<p><a href="./mupdf.1.html">mupdf</a> -- portable c 编写的轻量级PDF阅读器)</p>
+<pre><code>info coreutils 'tail invocation'
+</code></pre>
 
-<h2 id="man7">man7</h2>
+<p>可以访问完整的使用手册。</p>
 
-<p><a href="./ronn-format.7.html">ronn-format</a></p>
+<h2 id="-">翻译</h2>
+
+<p>由LCTT项目tail整理而来。</p>
 
 
   <ol class='man-decor man-foot man foot'>
     <li class='tl'></li>
     <li class='tc'>February 2015</li>
-    <li class='tr'>list</li>
+    <li class='tr'>tail(1)</li>
   </ol>
 
   </div>

@@ -1,0 +1,53 @@
+tail(1) -- 输出文件尾部的内容
+========================================
+
+##描述
+
+向标准输出打印文件的最后10行。有多个文件时，每个输出前会包含一个显示文件
+名的头部。当参数中没有文件，或者文件为"`-`"，将从标准输入中读取。
+
+##摘要
+
+`tail [-f] [-c number|-n number] [file...]`
+
+`number`代表一个十进制的整形常数，`number`前支持以下符号
+
+	+ 	相对文件开头
+	- 	相对文件结尾
+	none 	相对文件结尾
+
+##选项
+
+* `-c number`:
+输出最后number个字节；或者，使用`-c +number`输出文件从第number个
+字节开始的内容，文件开头的字节计数为1，即`-c +1`代表文件的第一个
+字节，`-c -1`代表最后一个字节，注意如果输入含有多字节字符比如汉
+语时，并不一定会落在指定的字节下。
+
+
+* `-f`:
+If the input file is a regular file or if the file operand
+specifies a FIFO， do not terminate after the last line of the
+input file has been copied， but read and copy further bytes
+from the input file when they become available. If no file
+operand is specified and standard input is a pipe or FIFO， the
+-f option shall be ignored. If the input file is not a FIFO，
+pipe， or regular file， it is unspecified whether or not the -f
+option shall be ignored.
+
+* `-n number`:
+等同于`-c`，但以行为单位，文件开头的行计数为1，即`-n +1`代表文件
+的第一行，`-c -1`代表最后一行。	
+
+如果没有指定`-c`和`-n`，默认为`-n 10`，即打印文件最后10行。
+
+本程序的完整文档使用Texinfo手册进行维护。如果info和本程序已经正确地安装
+在了你的电脑上，通过下述命令
+
+	info coreutils 'tail invocation'
+
+可以访问完整的使用手册。
+
+##翻译
+
+由LCTT项目tail整理而来。

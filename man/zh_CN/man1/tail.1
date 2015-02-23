@@ -1,0 +1,64 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "TAIL" "1" "February 2015" "" ""
+.
+.SH "NAME"
+\fBtail\fR \- 输出文件尾部的内容
+.
+.SH "描述"
+向标准输出打印文件的最后10行。有多个文件时，每个输出前会包含一个显示文件 名的头部。当参数中没有文件，或者文件为"\fB\-\fR"，将从标准输入中读取。
+.
+.SH "摘要"
+\fBtail [\-f] [\-c number|\-n number] [file\.\.\.]\fR
+.
+.P
+\fBnumber\fR代表一个十进制的整形常数，\fBnumber\fR前支持以下符号
+.
+.IP "" 4
+.
+.nf
+
++   相对文件开头
+\-   相对文件结尾
+none    相对文件结尾
+.
+.fi
+.
+.IP "" 0
+.
+.SH "选项"
+.
+.TP
+\fB\-c number\fR
+输出最后number个字节；或者，使用\fB\-c +number\fR输出文件从第number个 字节开始的内容，文件开头的字节计数为1，即\fB\-c +1\fR代表文件的第一个 字节，\fB\-c \-1\fR代表最后一个字节，注意如果输入含有多字节字符比如汉 语时，并不一定会落在指定的字节下。
+.
+.TP
+\fB\-f\fR
+If the input file is a regular file or if the file operand specifies a FIFO， do not terminate after the last line of the input file has been copied， but read and copy further bytes from the input file when they become available\. If no file operand is specified and standard input is a pipe or FIFO， the \-f option shall be ignored\. If the input file is not a FIFO， pipe， or regular file， it is unspecified whether or not the \-f option shall be ignored\.
+.
+.TP
+\fB\-n number\fR
+等同于\-c，但以行为单位，文件开头的行计数为1，即\fB\-n +1\fR代表文件的 第一行，\fB\-c \-1\fR代表最后一行。
+.
+.P
+如果没有指定\fB\-c\fR和\fB\-n\fR，默认为\fB\-n 10\fR，即打印文件最后10行。
+.
+.P
+本程序的完整文档使用Texinfo手册进行维护。如果info和本程序已经正确地安装 在了你的电脑上，通过下述命令
+.
+.IP "" 4
+.
+.nf
+
+info coreutils \'tail invocation\'
+.
+.fi
+.
+.IP "" 0
+.
+.P
+可以访问完整的使用手册。
+.
+.SH "翻译"
+由LCTT项目tail整理而来。
