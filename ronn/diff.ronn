@@ -1,0 +1,258 @@
+diff(1) -- 比较两个文件
+==============================
+
+##总览
+
+`diff [选项] 原文件 目标文件`
+
+##描述
+
+diff比较两个文件的内容，并在标准输出上简明扼要地列出不同之处，如果两个文
+件完全相同，则不会有额外显示。文件"`-`"表示由标准输入读入文本。
+
+If both file1 and file2 are directories, diff shall not compare block
+special files, character special files, or FIFO special files to any
+files and shall not compare regular files to directories. Further
+details are as specified in Diff Directory Comparison Format. The
+behavior of diff on other file types is implementation-defined when
+found in directories.
+
+If only one of file1 and file2 is a directory, diff shall be applied to
+the non-directory file and the file contained in the directory file with
+a filename that is the same as the last component of the non-directory
+file.
+
+##选项
+
+下面是GNU所接受的diff的所有选项的概要。有些选项有两个名字，一个是单个的
+跟在"`-`"后面字母，另一个是由"`--`"引出的长名字。多个单字母选项(除非产生
+歧义)能够组合为单行的命令行语法，如`-ac`等同于`-a -c`。长命名的选项能被
+缩短到他们的名字的任何唯一的前缀。
+
+* `-a`:
+所有的文件都视为文本文件来逐行比较
+	
+* `-b`: 
+忽略空格引起的变化  
+
+* `-B`: 
+忽略插入删除空行引起的变化
+
+* `--brief`:
+仅报告文件是否相同
+
+* `-c`:
+使用上下文输出格式
+	
+* `-C lines, --context[=lines]`:
+指定显示的上下文行数,默认三行。对于正确的操作，上下文至少要有两
+行。
+
+* `--changed-group-format=format`:
+两个文件不同之处以format格式显示，其格式是if-then-else。
+
+* `-d`:
+try hard to find a smaller set of changes
+
+* `-D name`:
+合并if-then-else格式输出，预处理宏(由name参数提供)条件。
+
+* `-e, --ed`:
+输出为一个有效的ed脚本
+	
+* `--exclude=pattern`:
+比较目录的时候，忽略和目录中与pattern(样式)相配的。
+
+* `--exclude-from=file`:
+比较目录的时候，忽略和目录中与任何包含在file(文件)的样式相配的文
+件和目录。
+
+* `--expand-tabs`:
+在输出时扩展tab为空格，保护输入文件的tab对齐方式。
+	
+* `-f`:
+产生一个很象ed脚本的输出，但是但是在他们在文件出现的顺序有改变。
+
+* `-F regexp`:
+在上下文和统一格式中，对于每一大块的不同，显示出匹配regexp的一些
+前面的行。
+
+* `--forward-ed`:
+产生象ed脚本的输出，但是它们在文件出现的顺序有改变。
+	
+* `-h`:
+这选项现在已没作用，它呈现Unix的兼容性.
+
+* `-H`:
+使用启发规则加速操作那些有许多离散的小差异的大文件.
+
+* `--horizon-lines=lines`:
+比较给定行数的有共同前缀的最后行，和有共同或缀的最前行.
+	
+* `-i`:
+忽略大小写.
+
+* `-I regexp`:
+忽略由插入，删除行(由regexp参数提供参考)带来的改变.
+
+* `--ifdef=name`:
+合并if-then-else格式输出,预处理宏(由name参数提供)条件.
+
+* `--ignore-all-space`:
+在比较行的时候忽略空白.
+
+* `--ignore-blank-lines`:
+忽略插入和删除空行
+
+* `--ignore-case`:
+忽略大小写.
+
+* `--ignore-matching-lines=regexp`:
+忽略插入删除行(由regexp参数提供参考).
+
+* `--ignore-space-change`:
+忽略空白的数量.
+
+* `--initial-tab`:
+在文本行(无论是常规的或者格式化的前后文关系)前输出tab代替空格.引
+起的原因是tab对齐方式看上去象是常规的一样.
+
+* `-l`:
+产生通过pr编码的输出.
+	
+* `-L label, --label=label`:
+使用label给出的字符在文件头代替文件名输出.
+
+* `--left-column`:
+以并列方式印出两公共行的左边
+
+* `--line-format=format`:
+使用format输出所有的行，在if-then-else格式中.
+
+* `--minimal`:
+改变算法也许发现变化的一个更小的集合.这会使diff变慢.
+
+* `-n`:
+输出RC-格式diffs;除了每条指令指定的行数受影响外象-f一样。
+	
+* `-N, --new-file`:
+在目录比较中，如果那个文件只在其中的一个目录中找到，那么它被视为
+在另一个目录中是一个空文件.
+
+* `--new-group-format=format`:
+使用format以if-then-else格式输出只在第二个文件中取出的一个行组
+
+* `--new-line-format=format`:
+使用format以if-then-else格式输出只在第二个文件中取出的一行
+
+* `--old-group-format=format`:
+使用format以if-then-else格式输出只在第一个文件中取出的一个行组
+
+* `--old-line-format=format`:
+使用format使用format以if-then-else格式输出只在第一个文件中取出的
+一行
+
+* `-p`:
+显示带有c函数的改变.
+	
+* `-P`:
+在目录比较中，如果那个文件只在其中的一个目录中找到，那么它被视为
+在另一个目录中是一个空文件.
+
+* `--paginate`:
+产生通过pr编码的输出.
+	
+* `-q`:
+仅报告文件是否相异,不报告详细的差异.
+
+* `-r`:
+当比较目录时，递归比较任何找到的子目录.
+
+* `--rcs`:
+输出RC-格式diffs;除了每条指令指定的行数受影响外象-f一样。
+
+* `--recursive`:
+当比较目录时，递归比较任何找到的子目录.
+
+* `--s, -report-identical-files`:
+报告两个文件相同.
+	
+* `-S file`:
+当比较目录时，由file开始.这用于继续中断了的比较.
+
+* `--sdiff-merge-assist`:
+打印附加的信息去帮助sdiff.sdiff在运行diff时使用这些选项.这些选项
+不是特意为使用者直接使用而准备的。
+
+* `--show-c-function`:
+显示带有c函数的改变.
+
+* `--show-function-line=regexp`:
+在上下文和统一的格式，对于每一大块的差别，显示出匹配regexp的一些
+前面的行
+
+* `--side-by-side`:
+使用并列的输出格式.
+
+* `--speed-large-files`:
+使用启发规则加速操作那些有许多离散的小差异的大文件.
+
+* `--starting-file=file`:
+当比较目录时，由file开始.这用于继续中断了的比较.
+
+* `--suppress-common-lines`:
+在并列格式中不印出公共行。
+
+* `-t`:
+在输出时扩展tab为空格，保护输入文件的tab对齐方式
+
+* `-T`:
+在文本行(无论是常规的或者格式化的前后文关系)前输出tab代替空格.引
+起的原因是tab对齐方式看上去象是常规的一样.
+	
+* `--text`:
+所有的文件都视为文本文件来逐行比较，甚至他们似乎不是文本文件.
+
+* `-u`:
+使用统一的输出格式.
+
+* `--unchanged-group-format=format`:
+使用format输出两个文件的公共行组，其格式是if-then-else.
+
+* `--unchanged-line-format=format`:
+使用format输出两个文件的公共行，其格式是if-then-else.
+
+* `--unidirectional-new-file`:
+在目录比较中，如果那个文件只在其中的一个目录中找到，那么它被视为
+在另一个目录中是一个空文件.
+
+* `-U lines, --unified[=lines]`:
+使用前后关系格式输出，显示以指定行数(一个整数),或者是三行(当行数
+没有给出时.对于正确的操作,上下文至少要有两行.
+
+* `-v, --version`:
+输出diff版本号.
+
+* `-w`:
+在比较行时忽略空格
+
+* `-W columns, --width=columns`:
+在并列格式输出时，使用指定的列宽.
+
+* `-x pattern`:
+比较目录的时候，忽略和目录中与pattern(样式)相配的.
+
+* `-X file`:
+比较目录的时候，忽略和目录中与任何包含在file(文件)的样式相配的文
+件和目录.
+
+* `-y`:
+使用并列格式输出
+	
+##参考
+
+cmp(1),comm(1),diff3(1),ed(1),patch(1),pr(1),sdiff(1).
+
+##DIAGNOSTICS
+
+退出状态为0意味着没有差别，1意味着有一些不同，2意味有许多差异。

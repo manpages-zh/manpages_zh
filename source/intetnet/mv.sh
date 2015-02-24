@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+
+mv *.ronn ~/manpages/ronn/
+mv *.?.html ~/manpages/html/
+mv *.1 ~/manpages/man/zh_CN/man1/
+echo "move done"
+
+ronn ~/manpages/html/list.ronn
+echo "update list done" 
+
+ronn ~/manpages/index.ronn
+echo "update index done"

@@ -1,0 +1,304 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "DIFF" "1" "February 2015" "" ""
+.
+.SH "NAME"
+\fBdiff\fR \- 比较两个文件
+.
+.SH "总览"
+\fBdiff [选项] 原文件 目标文件\fR
+.
+.SH "描述"
+diff比较两个文件的内容，并在标准输出上简明扼要地列出不同之处，如果两个文 件完全相同，则不会有额外显示。文件"\fB\-\fR"表示由标准输入读入文本。
+.
+.P
+If both file1 and file2 are directories, diff shall not compare block special files, character special files, or FIFO special files to any files and shall not compare regular files to directories\. Further details are as specified in Diff Directory Comparison Format\. The behavior of diff on other file types is implementation\-defined when found in directories\.
+.
+.P
+If only one of file1 and file2 is a directory, diff shall be applied to the non\-directory file and the file contained in the directory file with a filename that is the same as the last component of the non\-directory file\.
+.
+.SH "选项"
+下面是GNU所接受的diff的所有选项的概要。有些选项有两个名字，一个是单个的 跟在"\fB\-\fR"后面字母，另一个是由"\fB\-\-\fR"引出的长名字。多个单字母选项(除非产生 歧义)能够组合为单行的命令行语法，如\fB\-ac\fR等同于\fB\-a \-c\fR。长命名的选项能被 缩短到他们的名字的任何唯一的前缀。
+.
+.TP
+\fB\-a\fR
+所有的文件都视为文本文件来逐行比较
+.
+.TP
+\fB\-b\fR
+忽略空格引起的变化
+.
+.TP
+\fB\-B\fR
+忽略插入删除空行引起的变化
+.
+.TP
+\fB\-\-brief\fR
+仅报告文件是否相同
+.
+.TP
+\fB\-c\fR
+使用上下文输出格式
+.
+.TP
+\fB\-C lines, \-\-context[=lines]\fR
+指定显示的上下文行数,默认三行。对于正确的操作，上下文至少要有两 行。
+.
+.TP
+\fB\-\-changed\-group\-format=format\fR
+两个文件不同之处以format格式显示，其格式是if\-then\-else。
+.
+.TP
+\fB\-d\fR
+try hard to find a smaller set of changes
+.
+.TP
+\fB\-D name\fR
+合并if\-then\-else格式输出，预处理宏(由name参数提供)条件。
+.
+.TP
+\fB\-e, \-\-ed\fR
+输出为一个有效的ed脚本
+.
+.TP
+\fB\-\-exclude=pattern\fR
+比较目录的时候，忽略和目录中与pattern(样式)相配的。
+.
+.TP
+\fB\-\-exclude\-from=file\fR
+比较目录的时候，忽略和目录中与任何包含在file(文件)的样式相配的文 件和目录。
+.
+.TP
+\fB\-\-expand\-tabs\fR
+在输出时扩展tab为空格，保护输入文件的tab对齐方式。
+.
+.TP
+\fB\-f\fR
+产生一个很象ed脚本的输出，但是但是在他们在文件出现的顺序有改变。
+.
+.TP
+\fB\-F regexp\fR
+在上下文和统一格式中，对于每一大块的不同，显示出匹配regexp的一些 前面的行。
+.
+.TP
+\fB\-\-forward\-ed\fR
+产生象ed脚本的输出，但是它们在文件出现的顺序有改变。
+.
+.TP
+\fB\-h\fR
+这选项现在已没作用，它呈现Unix的兼容性\.
+.
+.TP
+\fB\-H\fR
+使用启发规则加速操作那些有许多离散的小差异的大文件\.
+.
+.TP
+\fB\-\-horizon\-lines=lines\fR
+比较给定行数的有共同前缀的最后行，和有共同或缀的最前行\.
+.
+.TP
+\fB\-i\fR
+忽略大小写\.
+.
+.TP
+\fB\-I regexp\fR
+忽略由插入，删除行(由regexp参数提供参考)带来的改变\.
+.
+.TP
+\fB\-\-ifdef=name\fR
+合并if\-then\-else格式输出,预处理宏(由name参数提供)条件\.
+.
+.TP
+\fB\-\-ignore\-all\-space\fR
+在比较行的时候忽略空白\.
+.
+.TP
+\fB\-\-ignore\-blank\-lines\fR
+忽略插入和删除空行
+.
+.TP
+\fB\-\-ignore\-case\fR
+忽略大小写\.
+.
+.TP
+\fB\-\-ignore\-matching\-lines=regexp\fR
+忽略插入删除行(由regexp参数提供参考)\.
+.
+.TP
+\fB\-\-ignore\-space\-change\fR
+忽略空白的数量\.
+.
+.TP
+\fB\-\-initial\-tab\fR
+在文本行(无论是常规的或者格式化的前后文关系)前输出tab代替空格\.引 起的原因是tab对齐方式看上去象是常规的一样\.
+.
+.TP
+\fB\-l\fR
+产生通过pr编码的输出\.
+.
+.TP
+\fB\-L label, \-\-label=label\fR
+使用label给出的字符在文件头代替文件名输出\.
+.
+.TP
+\fB\-\-left\-column\fR
+以并列方式印出两公共行的左边
+.
+.TP
+\fB\-\-line\-format=format\fR
+使用format输出所有的行，在if\-then\-else格式中\.
+.
+.TP
+\fB\-\-minimal\fR
+改变算法也许发现变化的一个更小的集合\.这会使diff变慢\.
+.
+.TP
+\fB\-n\fR
+输出RC\-格式diffs;除了每条指令指定的行数受影响外象\-f一样。
+.
+.TP
+\fB\-N, \-\-new\-file\fR
+在目录比较中，如果那个文件只在其中的一个目录中找到，那么它被视为 在另一个目录中是一个空文件\.
+.
+.TP
+\fB\-\-new\-group\-format=format\fR
+使用format以if\-then\-else格式输出只在第二个文件中取出的一个行组
+.
+.TP
+\fB\-\-new\-line\-format=format\fR
+使用format以if\-then\-else格式输出只在第二个文件中取出的一行
+.
+.TP
+\fB\-\-old\-group\-format=format\fR
+使用format以if\-then\-else格式输出只在第一个文件中取出的一个行组
+.
+.TP
+\fB\-\-old\-line\-format=format\fR
+使用format使用format以if\-then\-else格式输出只在第一个文件中取出的 一行
+.
+.TP
+\fB\-p\fR
+显示带有c函数的改变\.
+.
+.TP
+\fB\-P\fR
+在目录比较中，如果那个文件只在其中的一个目录中找到，那么它被视为 在另一个目录中是一个空文件\.
+.
+.TP
+\fB\-\-paginate\fR
+产生通过pr编码的输出\.
+.
+.TP
+\fB\-q\fR
+仅报告文件是否相异,不报告详细的差异\.
+.
+.TP
+\fB\-r\fR
+当比较目录时，递归比较任何找到的子目录\.
+.
+.TP
+\fB\-\-rcs\fR
+输出RC\-格式diffs;除了每条指令指定的行数受影响外象\-f一样。
+.
+.TP
+\fB\-\-recursive\fR
+当比较目录时，递归比较任何找到的子目录\.
+.
+.TP
+\fB\-\-s, \-report\-identical\-files\fR
+报告两个文件相同\.
+.
+.TP
+\fB\-S file\fR
+当比较目录时，由file开始\.这用于继续中断了的比较\.
+.
+.TP
+\fB\-\-sdiff\-merge\-assist\fR
+打印附加的信息去帮助sdiff\.sdiff在运行diff时使用这些选项\.这些选项 不是特意为使用者直接使用而准备的。
+.
+.TP
+\fB\-\-show\-c\-function\fR
+显示带有c函数的改变\.
+.
+.TP
+\fB\-\-show\-function\-line=regexp\fR
+在上下文和统一的格式，对于每一大块的差别，显示出匹配regexp的一些 前面的行
+.
+.TP
+\fB\-\-side\-by\-side\fR
+使用并列的输出格式\.
+.
+.TP
+\fB\-\-speed\-large\-files\fR
+使用启发规则加速操作那些有许多离散的小差异的大文件\.
+.
+.TP
+\fB\-\-starting\-file=file\fR
+当比较目录时，由file开始\.这用于继续中断了的比较\.
+.
+.TP
+\fB\-\-suppress\-common\-lines\fR
+在并列格式中不印出公共行。
+.
+.TP
+\fB\-t\fR
+在输出时扩展tab为空格，保护输入文件的tab对齐方式
+.
+.TP
+\fB\-T\fR
+在文本行(无论是常规的或者格式化的前后文关系)前输出tab代替空格\.引 起的原因是tab对齐方式看上去象是常规的一样\.
+.
+.TP
+\fB\-\-text\fR
+所有的文件都视为文本文件来逐行比较，甚至他们似乎不是文本文件\.
+.
+.TP
+\fB\-u\fR
+使用统一的输出格式\.
+.
+.TP
+\fB\-\-unchanged\-group\-format=format\fR
+使用format输出两个文件的公共行组，其格式是if\-then\-else\.
+.
+.TP
+\fB\-\-unchanged\-line\-format=format\fR
+使用format输出两个文件的公共行，其格式是if\-then\-else\.
+.
+.TP
+\fB\-\-unidirectional\-new\-file\fR
+在目录比较中，如果那个文件只在其中的一个目录中找到，那么它被视为 在另一个目录中是一个空文件\.
+.
+.TP
+\fB\-U lines, \-\-unified[=lines]\fR
+使用前后关系格式输出，显示以指定行数(一个整数),或者是三行(当行数 没有给出时\.对于正确的操作,上下文至少要有两行\.
+.
+.TP
+\fB\-v, \-\-version\fR
+输出diff版本号\.
+.
+.TP
+\fB\-w\fR
+在比较行时忽略空格
+.
+.TP
+\fB\-W columns, \-\-width=columns\fR
+在并列格式输出时，使用指定的列宽\.
+.
+.TP
+\fB\-x pattern\fR
+比较目录的时候，忽略和目录中与pattern(样式)相配的\.
+.
+.TP
+\fB\-X file\fR
+比较目录的时候，忽略和目录中与任何包含在file(文件)的样式相配的文 件和目录\.
+.
+.TP
+\fB\-y\fR
+使用并列格式输出
+.
+.SH "参考"
+cmp(1),comm(1),diff3(1),ed(1),patch(1),pr(1),sdiff(1)\.
+.
+.SH "DIAGNOSTICS"
+退出状态为0意味着没有差别，1意味着有一些不同，2意味有许多差异。
