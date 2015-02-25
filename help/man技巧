@@ -1,0 +1,6 @@
+man中如果出现相同内容但不同名的文章，比如egrep和grep内容都是一样的，但是文件名不一样，man提供了链接的方式来完成此类内容。以egrep为例。
+
+	cat man/zh_CN/man1/egrep.1 
+	.so man1/grep.1
+
+egrep.1手册中只包含一个指向grep.1的信息，这时访问egrep就会自动链接到grep上。
