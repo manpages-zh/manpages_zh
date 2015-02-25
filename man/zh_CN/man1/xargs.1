@@ -1,0 +1,160 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "XARGS" "1" "February 2015" "" ""
+.
+.SH "NAME"
+\fBxargs\fR \- 从标准输入中读取并执行命令
+.
+.SH "描述"
+此手册页描述GNU版本的xargs。xargs从标准输入读入参数，参数(可以用双引号， 单引号或反斜杠转意)用空格或者回车隔开。然后一次或者多次执行命令(默认是 /bin/echo)，标准输入中的空格被忽略。
+.
+.P
+xargs退出可以有如下状态:
+.
+.IP "" 4
+.
+.nf
+
+0   如果成功
+123     如果任何一个被调用的命令command退出状态为1\-125
+124     如果命令command退出状态为255
+125     如果命令command被信号终止
+126     如果不能执行命令command
+127     如果命令command没有找到
+1   如果发生其它错误
+.
+.fi
+.
+.IP "" 0
+.
+.SH "格式"
+xargs [\-0prtx] [\-E eof\-str] [\-e[eof\-str]] [\-\-eof[=eof\-str]] [\-\-null] [\-d delimiter] [\-\-delimiter delimiter] [\-I replace\-str] [\-i[replace\- str]] [\-\-replace[=replace\-str]] [\-l[max\-lines]] [\-L max\-lines] [\-\-max\-lines[=max\-lines]] [\-n max\-args] [\-\-max\-args=max\-args] [\-s max\- chars] [\-\-max\-chars=max\-chars] [\-P max\-procs] [\-\-max\-procs=max\-procs] [\-\-interactive] [\-\-verbose] [\-\-exit] [\-\-no\-run\-if\-empty] [\-\-arg\-file=file] [\-\-show\-limits] [\-\-version] [\-\-help] [command [initial\-arguments]]
+.
+.SH "选项OPTIONS"
+.
+.TP
+\fB\-\-null,\-0\fR
+输入的文件名以null字符结尾
+.
+.P
+默认情况下文件名以空格结束，该选项下引号和反斜杠并不特殊处理(所有字符都 以字面意思解释)。禁止文件尾字符串,当另一个参数处理\.当参数含有空格,引号, 反斜杠时很方便。GNU find的\fB\-print0\fR选项产生适合这种模式的输出。
+.
+.TP
+\fB\-\-eof[=eof\-str],\-e[eof\-str]\fR
+把文件尾字符串设置成eof\-str。
+.
+.P
+如果文件尾字符串出现在输入中的某行，余下的行将被忽略。如果没有\fBeof\-str\fR, 就没有文件尾字符串。如果没有这个选项,文件尾字符串默认是"_"。
+.
+.TP
+\fB\-\-help\fR
+显示xargs的选项,然后退出\.
+.
+.TP
+\fB\-\-replace[=replace\-str],\-i[replace\-str]\fR
+把initial\-arguments里的所有replace\-str替换为从标准输入里读入的名 称\.同时,没有用引号括起来的空格不会结束参数\.如果没有replace\-str, 它默认为"{}"(同‘find\-exec’一样)\.此选项隐含有\-x和\-l1选项\.
+.
+.TP
+\fB\-\-max\-lines[=max\-lines],\-l[max\-lines]\fR
+每个命令行最多可以有max\-lines行非空格输入;max\-lines默认是1\.后面 跟着的空格会使后面一行逻辑上是一个输入行的继续\.此选项隐含有\-x选 项\.
+.
+.TP
+\fB\-\-max\-args=max\-args,\-nmax\-args\fR
+每个命令行最多可以有max\-args个参数\.如果大小超出了(见\-s选项)那么 参数个数将会用比max\-args小;除非用了\-x选项,那么xargs将退出\.
+.
+.TP
+\fB\-\-interactive,\-p\fR
+提示用户是否运行每个命令行,然后从终端读入一行\.只有当此行以’y’或’ Y’开头才会运行此命令行\.此选项隐含有\-t选项\.
+.
+.TP
+\fB\-\-no\-run\-if\-empty,\-r\fR
+如果标准输入不包含任何非空格,将不运行命令\.一般情况下,就算没有输 入,命令也会运行一次\.
+.
+.TP
+\fB\-\-max\-chars=max\-chars,\-smax\-chars\fR
+每个命令行最多可以有max\-chars个字符,包括命令和初始参数,还包括参 数后面结尾的null\.默认是尽可能的大,有20k个字符\.
+.
+.TP
+\fB\-\-verbose,\-t\fR
+在执行之前在标准错误输出显示命令行\.
+.
+.TP
+\fB\-\-version\fR
+显示xargs的版本号,然后退出\.
+.
+.TP
+\fB\-\-exit,\-x\fR
+如果大小超出(见\-s选项)就退出\.
+.
+.TP
+\fB\-\-max\-procs=max\-procs,\-P max\-procs\fR
+同时最多运行max\-procs个进程;默认是1\.如果max\-procs为0,xargs将同时 运行尽可能多的进程\.最好同时用\-n选项;不然很可能只会做一次exec\.
+.
+.SH "EXAMPLES"
+Find files named core in or below the directory /tmp and delete them\. Note that this will work incorrectly if there are any filenames containing newlines or spaces\.
+.
+.IP "" 4
+.
+.nf
+
+find /tmp −name core −type f −print | xargs /bin/rm −f
+.
+.fi
+.
+.IP "" 0
+.
+.P
+Find files named core in or below the directory /tmp and delete them, processing filenames in such a way that file or directory names containing spaces or newlines are correctly handled\.
+.
+.IP "" 4
+.
+.nf
+
+find /tmp −name core −type f −print0 | xargs −0 /bin/rm −f
+.
+.fi
+.
+.IP "" 0
+.
+.P
+Find files named core in or below the directory /tmp and delete them, but more efficiently than in the previous example (because we avoid the need to use fork(2) and exec(2) to launch rm and we don’t need the extra xargs process)\.
+.
+.IP "" 4
+.
+.nf
+
+find /tmp −depth −name core −type f −delete
+.
+.fi
+.
+.IP "" 0
+.
+.P
+Generates a compact listing of all the users on the system\.
+.
+.IP "" 4
+.
+.nf
+
+cut −d: −f1 < /etc/passwd | sort | xargs echo
+.
+.fi
+.
+.IP "" 0
+.
+.P
+Launches the minimum number of copies of Emacs needed, one after the other, to edit the files listed on xargs’ standard input\. This example achieves the same effect as BSD’s \-o option, but in a more flexible and portable way\.
+.
+.IP "" 4
+.
+.nf
+
+xargs sh \-c ’emacs "$@" < /dev/tty’ emacs
+.
+.fi
+.
+.IP "" 0
+.
+.SH "参见"
+find(1L), locate(1L), locatedb(5L), updatedb(1)

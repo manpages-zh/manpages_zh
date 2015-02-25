@@ -1,10 +1,10 @@
 xargs(1) -- 从标准输入中读取并执行命令
-===============================================
+========================================
 
 ##描述
 
-此手册页描述GNU版本的xargs。xargs从标准输入读入参数，参数(可以用双引号单
-引号或反斜杠转意)用空格或者回车隔开。然后一次或者多次执行命令(默认是
+此手册页描述GNU版本的xargs。xargs从标准输入读入参数，参数(可以用双引号，
+单引号或反斜杠转意)用空格或者回车隔开。然后一次或者多次执行命令(默认是
 /bin/echo)，标准输入中的空格被忽略。
 
 xargs退出可以有如下状态:
@@ -16,6 +16,17 @@ xargs退出可以有如下状态:
 	126 	如果不能执行命令command
 	127 	如果命令command没有找到
 	1 	如果发生其它错误
+
+##格式
+
+xargs  [-0prtx]  [-E  eof-str] [-e[eof-str]] [--eof[=eof-str]] [--null]
+[-d delimiter] [--delimiter delimiter]  [-I  replace-str]  [-i[replace-
+str]]    [--replace[=replace-str]]   [-l[max-lines]]   [-L   max-lines]
+[--max-lines[=max-lines]] [-n max-args] [--max-args=max-args] [-s  max-
+chars]  [--max-chars=max-chars]  [-P max-procs] [--max-procs=max-procs]
+[--interactive]      [--verbose]      [--exit]      [--no-run-if-empty]
+[--arg-file=file]   [--show-limits]   [--version]   [--help]   [command
+[initial-arguments]] 
 
 ##选项OPTIONS
 
@@ -35,44 +46,77 @@ xargs退出可以有如下状态:
 * `--help`:
 显示xargs的选项,然后退出.
 
---replace[=replace-str],-i[replace-str]
-把initial-arguments里的所有replace-str替换为从标准输入里读入的名称.同时,没有用引号括起来的空格不会结束参数.如果没有replace-str,它默认为"{}"(同‘find-exec’一样).此选项隐含有-x和-l1选项.
+* `--replace[=replace-str],-i[replace-str]`:
+把initial-arguments里的所有replace-str替换为从标准输入里读入的名
+称.同时,没有用引号括起来的空格不会结束参数.如果没有replace-str,
+它默认为"{}"(同‘find-exec’一样).此选项隐含有-x和-l1选项.
 
---max-lines[=max-lines],-l[max-lines]
+* `--max-lines[=max-lines],-l[max-lines]`:
+每个命令行最多可以有max-lines行非空格输入;max-lines默认是1.后面
+跟着的空格会使后面一行逻辑上是一个输入行的继续.此选项隐含有-x选
+项.
 
-每个命令行最多可以有max-lines行非空格输入;max-lines默认是1.后面跟着的空格会使后面一行逻辑上是一个输入行的继续.此选项隐含有-x选项.
+* `--max-args=max-args,-nmax-args`:
+每个命令行最多可以有max-args个参数.如果大小超出了(见-s选项)那么
+参数个数将会用比max-args小;除非用了-x选项,那么xargs将退出.
 
---max-args=max-args,-nmax-args
+* `--interactive,-p`:
+提示用户是否运行每个命令行,然后从终端读入一行.只有当此行以’y’或’
+Y’开头才会运行此命令行.此选项隐含有-t选项.
 
-每个命令行最多可以有max-args个参数.如果大小超出了(见-s选项)那么参数个数将会用比max-args小;除非用了-x选项,那么xargs将退出.
+* `--no-run-if-empty,-r`:
+如果标准输入不包含任何非空格,将不运行命令.一般情况下,就算没有输
+入,命令也会运行一次.
 
---interactive,-p
+* `--max-chars=max-chars,-smax-chars`:
+每个命令行最多可以有max-chars个字符,包括命令和初始参数,还包括参
+数后面结尾的null.默认是尽可能的大,有20k个字符.
 
-提示用户是否运行每个命令行,然后从终端读入一行.只有当此行以’y’或’Y’开头才会运行此命令行.此选项隐含有-t选项.
-
---no-run-if-empty,-r
-
-如果标准输入不包含任何非空格,将不运行命令.一般情况下,就算没有输入,命令也会运行一次.
-
---max-chars=max-chars,-smax-chars
-
-每个命令行最多可以有max-chars个字符,包括命令和初始参数,还包括参数后面结尾的null.默认是尽可能的大,有20k个字符.
-
---verbose,-t
-
+* `--verbose,-t`:
 在执行之前在标准错误输出显示命令行.
 
---version
-
+* `--version`:
 显示xargs的版本号,然后退出.
 
---exit,-x
-
+* `--exit,-x`:
 如果大小超出(见-s选项)就退出.
 
---max-procs=max-procs,-Pmax-procs
+* `--max-procs=max-procs,-P max-procs`: 
+同时最多运行max-procs个进程;默认是1.如果max-procs为0,xargs将同时
+运行尽可能多的进程.最好同时用-n选项;不然很可能只会做一次exec.
 
-同时最多运行max-procs个进程;默认是1.如果max-procs为0,xargs将同时运行尽可能多的进程.最好同时用-n选项;不然很可能只会做一次exec.
-参 见 (SEE ALSO)
+##EXAMPLES
 
-find(1L), locate(1L), locatedb(5L), updatedb(1) Finding Files (在 线 Info, 或 者 打 印 的 )
+Find files named core in or below the directory /tmp and delete them.
+Note that this will work incorrectly if there are any filenames
+containing newlines or spaces.
+
+	find /tmp −name core −type f −print | xargs /bin/rm −f
+
+Find files named core in or below the directory /tmp and delete them,
+processing filenames in such a way that file or directory names
+containing spaces or newlines are correctly handled.
+
+	find /tmp −name core −type f −print0 | xargs −0 /bin/rm −f
+
+Find files named core in or below the directory /tmp and delete them,
+but more efficiently than in the previous example (because we avoid the
+need to use fork(2) and exec(2) to launch rm and we don’t need the extra
+xargs process).
+
+	find /tmp −depth −name core −type f −delete
+
+Generates a compact listing of all the users on the system.
+
+	cut −d: −f1 < /etc/passwd | sort | xargs echo
+
+Launches the minimum number of copies of Emacs needed, one after the
+other, to edit the files listed on xargs’ standard input. This example
+achieves the same effect as BSD’s -o option, but in a more flexible and
+portable way.
+
+	xargs sh -c ’emacs "$@" < /dev/tty’ emacs
+
+##参见
+
+find(1L), locate(1L), locatedb(5L), updatedb(1)

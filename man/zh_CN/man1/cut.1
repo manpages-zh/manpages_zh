@@ -1,0 +1,137 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "CUT" "1" "February 2015" "" ""
+.
+.SH "NAME"
+\fBcut\fR \- 在文件的每一行中提取片断
+.
+.SH "总览(SYNOPSIS)"
+\fBcut \-b list [\-n] [file\.\.\.]\fR
+.
+.P
+\fBcut \-c list [file\.\.\.]\fR
+.
+.P
+\fBcut \-f list [\-d delim] [\-s] [file\.\.\.]\fR
+.
+.SH "描述(DESCRIPTION)"
+在文件file的各行中，把提取的片断list显示在标准输出，提取单位可以是比特 (byte,\-b选项)，字符(character,\-c选项)或者由分隔符分开的字段。(fields,\-f 选项)
+.
+.P
+片段list可以由逗号或空格分割的正整数组成，如"a,b"，它代表提取每行第a和b 个字符。可以由范围组成。范围有三种形式，第一种形式为"low\-high"，表示low 与high之间的字符。第二种形式为"\-high"，表示从第一个字符到第high个字符。 第三种形式为"low\-"，代表从第low个字符开始到该行的最后一个字符，不包括 \fB<newline>\fR。
+.
+.P
+片段也可以由上述两种方式组合而成，可以重复，可以覆盖，可以跳跃，可以是任 何顺序，但最终将以file的实际顺序输出到标准输出，并且重复的内容只会输出一 次。如果没有指定文件file,或file是"\-",就从标准输入读取数据。
+.
+.SH "选项"
+使用且只使用\-b,\-c或\-f中的一个选项
+.
+.TP
+\fB\-b,\-\-bytes=LIST\fR
+输出以字节为单位，注意在多字节文本的情况下，有可能会输出乱码。It shall not be an error to select bytes not present in the input line\.
+.
+.TP
+\fB\-c,\-\-characters=LIST\fR
+输出以字符为单位。It shall not be an error to select bytes not present in the input line\.
+.
+.TP
+\fB\-d,\-\-delimiter=DELIM\fR
+使用DELIM做字段(field)分隔符，默认为TAB
+.
+.TP
+\fBf,\-\-fields=LIST\fR
+输出以字段为单位。It shall not be an error to select bytes not present in the input line\.
+.
+.TP
+\fB\-n\fR
+不要分割字符，与\-b选项一起使用时如果low不是字符的第一个字节，则 low减小直至该字符的第一个字节。如果high不是字符的最后一个字节， 则high减小直至上一个字符的最后一个字节。
+.
+.TP
+\fB\-s,\-\-only\-delimited\fR
+不显示没有分隔符的行
+.
+.TP
+\fB\-\-output\-delimiter=STRING\fR
+使用STRING作为输出分隔符,缺省的输出分隔符为输入分隔符
+.
+.TP
+\fB\-\-help\fR
+显示帮助信息,然后结束
+.
+.TP
+\fB\-\-version\fR
+显示版本信息,然后结束
+.
+.SH "实例Examples"
+\fB片段list\fR
+.
+.IP "" 4
+.
+.nf
+
+1,4,7   选择第一个，第四个，第七个字节/字符/字段
+
+1\-3,8   等价于1,2,3,8\.
+
+\-5,10   等价于1,2,3,4,5,10\.
+
+3\-      等价于3到最后一个字符，包括第三个字符
+.
+.fi
+.
+.IP "" 0
+.
+.P
+\fB命令\fR
+.
+.IP "" 4
+.
+.nf
+
+cut \-d : \-f 1,6 /etc/passwd
+.
+.fi
+.
+.IP "" 0
+.
+.P
+读取"/etc/passwd"并以如下形式输出
+.
+.IP "" 4
+.
+.nf
+
+<user ID>:<home directory>
+.
+.fi
+.
+.IP "" 0
+.
+.P
+下面命令可以生成由file中1\-500个字符（包括\fB<newline>\fR)构成的file1,由第501 个字符到文末的file2。
+.
+.IP "" 4
+.
+.nf
+
+cut \-b 1\-500 \-n file > file1
+cut \-b 501\- \-n file > file2
+.
+.fi
+.
+.IP "" 0
+.
+.P
+file可以由file1和file2重建
+.
+.IP "" 4
+.
+.nf
+
+paste \-d "\e0" file1 file2 > file
+.
+.fi
+.
+.IP "" 0
+
