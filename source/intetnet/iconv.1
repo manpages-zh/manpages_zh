@@ -1,0 +1,113 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "ICONV" "1" "February 2015" "" ""
+.
+.SH "NAME"
+\fBiconv\fR \- 转换文件字符集
+.
+.SH "总览(SYNOPSIS)"
+\fBiconv [\-f encoding] [\-t encoding] [file\.\.\.]\fR
+.
+.P
+下面这个例子将从input文件读取内容，并将输出的output文件字符编码从ISO 8859\-15转换到UTF\-8。
+.
+.P
+$ iconv \-f ISO\-8859\-15 \-t UTF\-8 < input\.txt > output\.txt
+.
+.SH "描述(DESCRIPTION)"
+iconv程序把文本从一种编码转换为另一种编码。更准确一点，它把\fB\-f\fR指定的编 码转换为\fB\-t\fR指定的编码。这两种编码默认都是当前locale的编码，所有\fBfile\fR都 依次进行转换。如果没有指定\fBfile\fR则使用标准输入，转换后的内容会输出到标准 输出。
+.
+.P
+允许的编码与具体系统有关。\fB\-l\fR选项可以列出已知的字符集，具体实现可以查看 iconv_open(3)手册页。
+.
+.TP
+\fB\-f from\-encoding, \-\-from\-code=from\-encoding\fR
+Use from\-encoding for input characters\.
+.
+.TP
+\fB\-t to\-encoding, \-\-to\-code=to\-encoding\fR
+Use to\-encoding for output characters\.
+.
+.P
+If the string //IGNORE is appended to to\-encoding, characters that cannot be converted are discarded and an error is printed after conversion\.
+.
+.P
+If the string //TRANSLIT is appended to to\-encoding, characters being converted are transliterated when needed and possible\. This means that when a character cannot be represented in the target character set, it can be approximated through one or sev‐ eral similar looking characters\. Characters that are outside of the target character set and cannot be transliterated are replaced with a question mark (?) in the output\.
+.
+.TP
+\fB\-l, \-\-list\fR
+List all known character set encodings\.
+.
+.TP
+\fB\-c\fR
+Silently discard characters that cannot be converted instead of terminating when encountering such characters\.
+.
+.TP
+\fB\-o outputfile, \-\-output=outputfile\fR
+Use outputfile for output\.
+.
+.TP
+\fB\-s, \-\-silent\fR
+This option is ignored; it is provided only for compatibility\.
+.
+.TP
+\fB\-\-verbose\fR
+Print progress information on standard error when processing multiple files\.
+.
+.TP
+\fB\-?, \-\-help\fR
+Print a usage summary and exit\.
+.
+.TP
+\fB\-\-usage\fR
+Print a short usage summary and exit\.
+.
+.TP
+\fB\-V, \-\-version\fR
+Print the version number, license, and disclaimer of warranty for iconv\.
+.
+.SH "EXIT STATUS"
+Zero on success, non\-zero on errors\.
+.
+.SH "FILES"
+/usr/lib/gconv
+.
+.IP "" 4
+.
+.nf
+
+  Usual default gconv module path\.
+.
+.fi
+.
+.IP "" 0
+.
+.P
+/usr/lib/gconv/gconv\-modules
+.
+.IP "" 4
+.
+.nf
+
+  Usual system default gconv module configuration file\.
+.
+.fi
+.
+.IP "" 0
+.
+.P
+/usr/lib/gconv/gconv\-modules\.cache
+.
+.IP "" 4
+.
+.nf
+
+Usual system gconv module configuration cache\.
+.
+.fi
+.
+.IP "" 0
+.
+.SH "参见(SEEALSO)"
+iconv_open(3),locale(7)

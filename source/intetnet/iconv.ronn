@@ -1,0 +1,89 @@
+iconv(1) -- 转换文件字符集
+============================
+
+##总览(SYNOPSIS)
+
+`iconv [-f encoding] [-t encoding] [file...]`
+
+下面这个例子将从input文件读取内容，并将输出的output文件字符编码从ISO
+8859-15转换到UTF-8。 
+
+   $ iconv -f ISO-8859-15 -t UTF-8 < input.txt > output.txt
+
+##描述(DESCRIPTION)
+
+iconv程序把文本从一种编码转换为另一种编码。更准确一点，它把`-f`指定的编
+码转换为`-t`指定的编码。这两种编码默认都是当前locale的编码，所有`file`都
+依次进行转换。如果没有指定`file`则使用标准输入，转换后的内容会输出到标准
+输出。
+
+允许的编码与具体系统有关。`-l`选项可以列出已知的字符集，具体实现可以查看
+iconv_open(3)手册页。
+
+* `-f from-encoding, --from-code=from-encoding`:
+Use from-encoding for input characters.
+
+* `-t to-encoding, --to-code=to-encoding`:
+Use to-encoding for output characters.
+
+If the string //IGNORE is appended  to  to-encoding,  characters
+that cannot  be converted are discarded and an error is printed
+after conversion.
+
+If the string //TRANSLIT is appended to to-encoding,  characters
+being converted  are  transliterated  when needed and possible.
+This means that when a character cannot be  represented  in  the
+target character set, it can be approximated through one or sev‐
+eral similar looking characters.  Characters that are outside of
+the  target  character  set and  cannot  be  transliterated are
+replaced with a question mark (?) in the output.
+
+* `-l, --list`:
+List all known character set encodings.
+
+* `-c`:
+Silently discard characters that cannot be converted instead  of
+terminating when encountering such characters.
+
+* `-o outputfile, --output=outputfile`:
+Use outputfile for output.
+
+* `-s, --silent`:
+This option is ignored; it is provided only for compatibility.
+
+* `--verbose`:
+Print  progress  information  on  standard error when processing
+multiple files.
+
+* `-?, --help`:
+Print a usage summary and exit.
+
+* `--usage`:
+Print a short usage summary and exit.
+
+* `-V, --version`:
+Print the version number, license, and  disclaimer  of  warranty
+for iconv.
+
+##EXIT STATUS
+
+Zero on success, non-zero on errors.
+
+
+##FILES
+
+/usr/lib/gconv
+
+      Usual default gconv module path.
+
+/usr/lib/gconv/gconv-modules
+
+      Usual system default gconv module configuration file.
+
+/usr/lib/gconv/gconv-modules.cache 	
+	
+	Usual system gconv module configuration cache.
+
+##参见(SEEALSO)
+
+iconv_open(3),locale(7)

@@ -4,7 +4,7 @@
 
 ##文件夹结构
 
-`man/`下是中文manpages文档，`html/`下是中文manpages文档的网页文件，`ronn/`下是用来生成man文档和网页的原始文件，`help/`下是关于编写manpages和显示的一些资料，`source/`下是翻译前可供参考的文件，里面有LCTT计划和CMPP项目留下来的一些文件。
+`man/`下是中文manpages文档，`html/`下是中文manpages文档的网页文件，`ronn/`下是用来生成man文档和网页的原始文件，`help/`下是关于编写manpages和显示的一些资料，`source/`下是翻译前可供参考的文件，里面有LCTT计划和CMPP项目留下来的一些文件，您可以在此文件夹下设置自己的工作目录。
 
 在基本程序的中文手册整理完毕后，我会发布0.1版的文件，现在你可以把本项目clone到本地，项目在<https://www.github.com/intetnet/intetnet.github.io>。
 
@@ -31,4 +31,4 @@
 
 ##版权
 
-每篇文章下都应有版权信息，所载文章受到引用出处对文章要求的限制，除此之外，对于没有特定版权信息的文章，则暂时以Creative Commons (CC) 署名许可协议授权，你可以在声明来自`intetnet.github.io`后修改，分发和复制。但我希望能够以更轻松自由的版权来管理这个项目，如果你有更好的建议，可以跟我联系 <yanpenn@outlook.com>。
+请参考COPYRIGHT
