@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>vim(1) - Vi IMproved,一个程序员的文本编辑器</title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
+  </style>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
+
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
+
+  <div class='man-navigation' style='display:none'>
+    <a href="#NAME">NAME</a>
+    <a href="#-SYNOPSIS-">总览(SYNOPSIS)</a>
+    <a href="#-DESCRIPTION-">描述(DESCRIPTION)</a>
+    <a href="#-OPTIONS-">选项(OPTIONS)</a>
+    <a href="#-ON-LINEHELP-">在线帮助(ON-LINEHELP)</a>
+    <a href="#-FILES-">文件(FILES)</a>
+    <a href="#-">参见</a>
+    <a href="#-AUTHOR-">作者(AUTHOR)</a>
+    <a href="#-BUGS-">错误(BUGS)</a>
+  </div>
+
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>vim(1)</li>
+    <li class='tc'></li>
+    <li class='tr'>vim(1)</li>
+  </ol>
+
+  <h2 id="NAME">NAME</h2>
+<p class="man-name">
+  <code>vim</code> - <span class="man-whatis">Vi IMproved,一个程序员的文本编辑器</span>
+</p>
+
+<h2 id="-SYNOPSIS-">总览(SYNOPSIS)</h2>
+
+<pre><code>vim [options] [file..]
+vim [options] -
+vim [options] -t tag
+vim [options]-q [errorfile]
+
+ex
+view
+gvim gview
+rvim rview rgvim rgview
+</code></pre>
+
+<h2 id="-DESCRIPTION-">描述(DESCRIPTION)</h2>
+
+<p>Vim是一个同Vi向上兼容的文本编辑器,可以用来编辑任何ASCII文本,特别适合用来
+编辑程序。</p>
+
+<p>它对Vi作了许多增强:多层撤销,多窗口,多缓冲区(buffer),高亮度语法显示,命令
+行编辑,文件名匹配,在线帮助,可视选定,等等。用"<code>:help vi_diff.txt</code>"看Vim和
+Vi的差别的摘要。</p>
+
+<p>在运行Vim的时候可以用":help"命令获得很多帮助。参考下面的在线帮助一节。</p>
+
+<p>一般可用"<code>vim file</code>"命令打开Vim来编辑一个文件。概括的说,可以用</p>
+
+<pre><code>vim [options] [filelist]
+</code></pre>
+
+<p>命令来运行Vim。如果没有文件名,编辑器就会打开一个空的缓冲区。否则就会用下
+面四个中的一个来选择要编辑的文件。</p>
+
+<dl>
+<dt class="flush"><code>file..</code></dt><dd><p>文件名列表。第一个会作为当前文件读入缓冲区,光标会停在缓冲区的第
+一行。你可以用":next"命令转到其它的文件。如果要编辑一个以"-"开头
+的文件。在文件列表前面加上"--"。</p></dd>
+<dt class="flush"><code>-</code></dt><dd><p>从标准输入读取被编辑的文件。从标准错误输出读入命令。</p></dd>
+<dt><code>-t {tag}</code></dt><dd><p>被编辑的文件和光标的初始位置由标记(tag)决定，标记有点像goto标签
+(goto label)。在标记文件中找到标记,相应的文件成为当前文件,相应的
+命令被执行。这种方式常用于C程序,标记就是函数名,当前文件就是包含
+那个函数的文件,光标停留在函数的开始处。见"<code>:help tag-commands</code>"。</p></dd>
+<dt><code>-q [errorfile]</code></dt><dd><p>运行时进入快速修复模式。读取[errorfile]文件并显示第一个错误。如
+果没有[errorfile]文件,文件名由<code>errorfile</code>选项决定(在Amiga为
+"AztecC.Err",在其他系统中为"errors.vim")。可以用"<code>:cn</code>"命令跳到
+其它错误处。见"<code>:help quickfix</code>"。</p></dd>
+</dl>
+
+
+<p>Vim会根据不同命令有不同的表现,尽管它们可能是一个可执行文件。</p>
+
+<dl>
+<dt class="flush"><code>vim</code></dt><dd><p>正常模式,所有都是默认状态。</p></dd>
+<dt class="flush"><code>ex</code></dt><dd><p>以Ex模式运行。用":vi"命令进入正常模式。也可以加上"-e"选项进入此
+模式。</p></dd>
+<dt class="flush"><code>view</code></dt><dd><p>以只读模式运行。你被禁止写文件。也可以加上"-R"选项进入此模式。</p></dd>
+<dt><code>gvim gview</code></dt><dd><p>GUI版本。开启一个新的窗口。也可以加上"-g"选项进入此模式。</p></dd>
+<dt><code>rvim rview rgvim rgview</code></dt><dd><p>同上面的相同,只是加上了限制,不能运行shell程序,也不能暂停Vim。也
+可以加上"-Z"选项进入此模式。</p></dd>
+</dl>
+
+
+<h2 id="-OPTIONS-">选项(OPTIONS)</h2>
+
+<p>所有选项都可以以任何顺序出现,可以在文件名前,也可以在文件名后.没
+有参数的选项可以出现在一个"-"后面.</p>
+
+<dl>
+<dt class="flush"><code>+[num]</code></dt><dd><p>对于第一个文件,光标会停在第"num"行.如果没有"num",则光标会停在最
+后一行.</p></dd>
+<dt class="flush"><code>+/{pat}</code></dt><dd><p>对于第一个文件,光标会停在{pat}第一次出现的地方.搜寻模式见"<code>:help
+search-pattern</code>"。</p></dd>
+<dt><code>+{command}, -c{command}</code></dt><dd><p>读入第一个文件后会执行{command}命令.{command}应为Ex命令.如果
+{command}中包含有空格,必须用双引号括住(这个取决于所用的shell).例
+:"<code>vim "+set si" main.c</code>"。注意:你最多可以用10个"+"或者"-c"命令.</p></dd>
+<dt class="flush"><code>-b</code></dt><dd><p>二进制模式.设置一些选项,这样就可以用来编辑二进制和可执行文件了.</p></dd>
+<dt class="flush"><code>-C</code></dt><dd><p>设置’compatible’兼容选项.这样就算存在.vimrc文件Vim也会基本上象Vi
+一样了.</p></dd>
+<dt><code>-d {device}</code></dt><dd><p>打开{device}用作终端，只在Amiga下。例:"<code>-d con:20/30/600/150</code>".</p></dd>
+<dt class="flush"><code>-e</code></dt><dd><p>以Ex模式运行Vim，就像运行"ex"一样。</p></dd>
+<dt class="flush"><code>-f</code></dt><dd><p>前台运行。对于GUI版本，Vim不会同运行它的shell分离。在Amiga中，
+Vim不会重新启动来开启一个新窗口.这个选项会用在当Vim被另外一个程
+序执行,并且这个程序想等编辑动作结束后再运行的时候(如mail).在
+Amiga上"<code>:sh</code>"和"<code>:!</code>"不会起作用.</p></dd>
+<dt class="flush"><code>-F</code></dt><dd><p>如果Vim编译时加入了对从右到左书写的文件FKMAP以及Farsi键盘映射的
+支持,Vim会以Farsi模式运行,比如设置’fkmap’和’rightleft’选项.不然
+Vim会显示一条错误信息并终止.</p></dd>
+<dt class="flush"><code>-g</code></dt><dd><p>如果Vim编译时加入GUI支持,会开启GUI,不然Vim会显示一条错误信息并终
+止.</p></dd>
+<dt class="flush"><code>-h</code></dt><dd><p>Vim显示命令行参数和选项的帮助,然后终止.</p></dd>
+<dt class="flush"><code>-H</code></dt><dd><p>如果Vim编译时加入了对从右到左书写的文件RIGHTLEFT以及Hebrew键盘映
+射的支持，Vim会以Hebrew模式运行,比如设置’hkmap’和’rightleft’选项
+.不然Vim会显示一条错误信息并终止.</p></dd>
+<dt><code>-i {viminfo}</code></dt><dd><p>使用viminfo文件,这个选项设置使用的文件名,默认的是"<code>~/.viminfo</code>".
+用"NONE"文件名也可以跳过使用.viminfo文件.</p></dd>
+<dt class="flush"><code>-L</code></dt><dd><p>同-r一样.</p></dd>
+<dt class="flush"><code>-l</code></dt><dd><p>Lisp模式.打开’lisp’和’showmatch’选项.</p></dd>
+<dt class="flush"><code>-m</code></dt><dd><p>禁止修改文件.设置’write’选项,这样就不能写文件了.</p></dd>
+<dt class="flush"><code>-N</code></dt><dd><p>非兼容模式.设置’compatible’选项.这样Vim会表现得更好,就算.vimrc文
+件不存在也会同Vi不兼容.</p></dd>
+<dt class="flush"><code>-n</code></dt><dd><p>禁止交换文件,这样在崩溃后就不能恢复文件了.对于编辑在很慢的媒体中
+的文件很有好处(比如软盘),也可以用"<code>:set uc=0</code>"禁止交换,用"<code>:set
+uc=200</code>"开启交换.</p></dd>
+<dt class="flush"><code>-o[N]</code></dt><dd><p>打开N个窗口.如果没有N,为每个文件开一个窗口.</p></dd>
+<dt class="flush"><code>-R</code></dt><dd><p>只读模式.设置’readonly’选项.你仍然可以编辑缓冲区,但是不能重写文
+件.如果你要重写文件,必须在Ex命令中用惊叹号,比如"<code>:w!</code>".-R选项隐
+含了-n选项.readonly选项可以用"<code>:set noro</code>"设置.见"<code>:help readonly</code>".</p></dd>
+<dt class="flush"><code>-r</code></dt><dd><p>列出交换文件,显示关于恢复文件的信息.</p></dd>
+<dt><code>-r {file}</code></dt><dd><p>恢复模式.交换文件是用来恢复在编辑过程中崩溃了的文件.交换文件名是
+被编辑文件名后面加上".swp".见"<code>:help recovery</code>".</p></dd>
+<dt class="flush"><code>-s</code></dt><dd><p>安静模式.只在用"Ex"启动或者用了"-e"选项才有用.</p></dd>
+<dt><code>-s {script}</code></dt><dd><p>读入脚本文件{script}.文件里的字符就像你直接输入一样的,也可以用
+"<code>:source!{script}</code>"命令实现这个功能.如果在编辑器结束前就读到了
+文件尾,就接着从键盘读入.</p></dd>
+<dt><code>-T {terminal}</code></dt><dd><p>告诉Vim你用的终端的名字,只有当不能自动确定的时候才这样.它必须是
+Vim(builtin)能辨认的终端或者是在termcap或者terminfo文件中定义了
+的.</p></dd>
+<dt><code>-u {vimrc}</code></dt><dd><p>用{vimrc}文件里的命令来初始化,跳过所有其它的初始化,用这个来编辑
+特殊类型的文件.也可以用"NONE"来跳过所有初始化.在vim中用"<code>:help
+initialization</code>"查看更多信息.</p></dd>
+<dt><code>-U {gvimrc}</code></dt><dd><p>用{gvimrc}文件里的命令来初始化GUI,跳过所有其它的GUI初始化,也可以
+用"NONE"来跳过所有GUI初始化.在用"<code>:help gui-init</code>查看更多信息.</p></dd>
+<dt class="flush"><code>-V</code></dt><dd><p>冗长显示.显示执行初始化代码和读入的文件,并且写viminfo文件.</p></dd>
+<dt class="flush"><code>-v</code></dt><dd><p>以Vi模式运行Vim,就像运行"vi"一样,只有运行"ex"时才有用.</p></dd>
+<dt><code>-w {script}</code></dt><dd><p>所有在Vim退出前你键入的字符都会被存入{script}文件.这用来创建一个
+脚本文件,你可以用"<code>vim -s</code>"和"<code>:source!</code>"来使用.如果{script}存在,
+会把字符追加到后面.</p></dd>
+<dt><code>-W {script}</code></dt><dd><p>同-w一样，但是是覆盖原来的文件.</p></dd>
+<dt class="flush"><code>-x</code></dt><dd><p>写文件时加密.会提示你输入密码.</p></dd>
+<dt class="flush"><code>-Z</code></dt><dd><p>受限模式.同运行以"r"开头的程序同效.</p></dd>
+<dt class="flush"><code>--</code></dt><dd><p>表明选项结束.在此之后的参数都会被认为是文件名,可以用这个来编辑一
+个以’-’开头的文件.</p></dd>
+</dl>
+
+
+<h2 id="-ON-LINEHELP-">在线帮助(ON-LINEHELP)</h2>
+
+<p>在Vim中键入"<code>:help</code>"来获得帮助。用"<code>:help subject</code>"来获得关于一个特定主题
+的帮助.例如用"<code>:help ZZ</code>"来获得关于"ZZ"的帮助.用Tab和CTRL-D来完成帮助主题
+("<code>:help cmdline-completion</code>").可以用标记从一个地方跳到另一个地方(像超文
+连接,见"<code>:help</code>").所有的文档都可以这样来浏览,比如"<code>:help syntax.txt</code>".</p>
+
+<h2 id="-FILES-">文件(FILES)</h2>
+
+<dl>
+<dt><code>/usr/share/vim/vim56/doc/*.txt</code></dt><dd><p>Vim文档文件.用":helpdoc-file-list"获得完整的列表.</p></dd>
+<dt><code>/usr/share/vim/vim56/doc/tags</code></dt><dd><p>在文档文件中查找信息用的标签文件.</p></dd>
+<dt><code>/usr/share/vim/vim56/syntax/syntax.vim</code></dt><dd><p>系统语法初始化文件.</p></dd>
+<dt><code>/usr/share/vim/vim56/syntax/*.vim</code></dt><dd><p>各种语言的语法文件.</p></dd>
+<dt><code>/usr/share/vim/vimrc</code></dt><dd><p>系统Vim初始化文件.</p></dd>
+<dt><code>/usr/share/vim/gvimrc</code></dt><dd><p>系统gvim初始化文件.</p></dd>
+<dt><code>/usr/share/vim/vim56/optwin.vim</code></dt><dd><p>":options"命令所用的脚本文件,这是个查看和设置选项的很好的办法.</p></dd>
+<dt><code>/usr/share/vim/vim56/menu.vim</code></dt><dd><p>gvim的系统菜单初始化文件.</p></dd>
+<dt><code>/usr/share/vim/vim56/bugreport.vim</code></dt><dd><p>用来生成错误报告的脚本文件,见":helpbugs".</p></dd>
+<dt><code>/usr/share/vim/vim56/filetype.vim</code></dt><dd><p>根据文件名来判定文件类型的脚本文件,见":help’filetype’".</p></dd>
+<dt><code>/usr/share/vim/vim56/scripts.vim</code></dt><dd><p>根据文件内容来判定文件类型的脚本文件,见":help’filetype’".</p></dd>
+</dl>
+
+
+<p>最新信息参见VIM主页:<a href="http://www.vim.org/" data-bare-link="true">http://www.vim.org/</a></p>
+
+<h2 id="-">参见</h2>
+
+<p><span class="man-ref">vimtutor<span class="s">(1)</span></span></p>
+
+<h2 id="-AUTHOR-">作者(AUTHOR)</h2>
+
+<p>Vim的大部分都是BramMoolenaar在很多人的帮助下完成的.见"<code>:help credits</code>".</p>
+
+<p>Vim基于Stevie写的代码,之后被Tim Thompson，Tony Andrewsand和G .R. (Fred)
+Walter修改,然后才形成的.但早期的原始代码几乎都不存在了。</p>
+
+<h2 id="-BUGS-">错误(BUGS)</h2>
+
+<p>用"<code>:help todo</code>"看已知问题的列表.</p>
+
+<p>注意有些被报告为错误的事实上是应为太相信所有的行为都应该同Vi一样,如果你
+因为它和Vi不一样而认为它是个错误,你应该好好看看vi_diff.txt文件(或者在Vim
+中键入:helpvi_diff.txt),并且看看’compatible’和’cpoptions’选项.</p>
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'></li>
+    <li class='tc'>February 2015</li>
+    <li class='tr'>vim(1)</li>
+  </ol>
+
+  </div>
+</body>
+</html>

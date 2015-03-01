@@ -1,0 +1,293 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "VIM" "1" "February 2015" "" ""
+.
+.SH "NAME"
+\fBvim\fR \- Vi IMproved,一个程序员的文本编辑器
+.
+.SH "总览(SYNOPSIS)"
+.
+.nf
+
+vim [options] [file\.\.]
+vim [options] \-
+vim [options] \-t tag
+vim [options]\-q [errorfile]
+
+ex
+view
+gvim gview
+rvim rview rgvim rgview
+.
+.fi
+.
+.SH "描述(DESCRIPTION)"
+Vim是一个同Vi向上兼容的文本编辑器,可以用来编辑任何ASCII文本,特别适合用来 编辑程序。
+.
+.P
+它对Vi作了许多增强:多层撤销,多窗口,多缓冲区(buffer),高亮度语法显示,命令 行编辑,文件名匹配,在线帮助,可视选定,等等。用"\fB:help vi_diff\.txt\fR"看Vim和 Vi的差别的摘要。
+.
+.P
+在运行Vim的时候可以用":help"命令获得很多帮助。参考下面的在线帮助一节。
+.
+.P
+一般可用"\fBvim file\fR"命令打开Vim来编辑一个文件。概括的说,可以用
+.
+.IP "" 4
+.
+.nf
+
+vim [options] [filelist]
+.
+.fi
+.
+.IP "" 0
+.
+.P
+命令来运行Vim。如果没有文件名,编辑器就会打开一个空的缓冲区。否则就会用下 面四个中的一个来选择要编辑的文件。
+.
+.TP
+\fBfile\.\.\fR
+文件名列表。第一个会作为当前文件读入缓冲区,光标会停在缓冲区的第 一行。你可以用":next"命令转到其它的文件。如果要编辑一个以"\-"开头 的文件。在文件列表前面加上"\-\-"。
+.
+.TP
+\fB\-\fR
+从标准输入读取被编辑的文件。从标准错误输出读入命令。
+.
+.TP
+\fB\-t {tag}\fR
+被编辑的文件和光标的初始位置由标记(tag)决定，标记有点像goto标签 (goto label)。在标记文件中找到标记,相应的文件成为当前文件,相应的 命令被执行。这种方式常用于C程序,标记就是函数名,当前文件就是包含 那个函数的文件,光标停留在函数的开始处。见"\fB:help tag\-commands\fR"。
+.
+.TP
+\fB\-q [errorfile]\fR
+运行时进入快速修复模式。读取[errorfile]文件并显示第一个错误。如 果没有[errorfile]文件,文件名由\fBerrorfile\fR选项决定(在Amiga为 "AztecC\.Err",在其他系统中为"errors\.vim")。可以用"\fB:cn\fR"命令跳到 其它错误处。见"\fB:help quickfix\fR"。
+.
+.P
+Vim会根据不同命令有不同的表现,尽管它们可能是一个可执行文件。
+.
+.TP
+\fBvim\fR
+正常模式,所有都是默认状态。
+.
+.TP
+\fBex\fR
+以Ex模式运行。用":vi"命令进入正常模式。也可以加上"\-e"选项进入此 模式。
+.
+.TP
+\fBview\fR
+以只读模式运行。你被禁止写文件。也可以加上"\-R"选项进入此模式。
+.
+.TP
+\fBgvim gview\fR
+GUI版本。开启一个新的窗口。也可以加上"\-g"选项进入此模式。
+.
+.TP
+\fBrvim rview rgvim rgview\fR
+同上面的相同,只是加上了限制,不能运行shell程序,也不能暂停Vim。也 可以加上"\-Z"选项进入此模式。
+.
+.SH "选项(OPTIONS)"
+所有选项都可以以任何顺序出现,可以在文件名前,也可以在文件名后\.没 有参数的选项可以出现在一个"\-"后面\.
+.
+.TP
+\fB+[num]\fR
+对于第一个文件,光标会停在第"num"行\.如果没有"num",则光标会停在最 后一行\.
+.
+.TP
+\fB+/{pat}\fR
+对于第一个文件,光标会停在{pat}第一次出现的地方\.搜寻模式见"\fB:help search\-pattern\fR"。
+.
+.TP
+\fB+{command}, \-c{command}\fR
+读入第一个文件后会执行{command}命令\.{command}应为Ex命令\.如果 {command}中包含有空格,必须用双引号括住(这个取决于所用的shell)\.例 :"\fBvim "+set si" main\.c\fR"。注意:你最多可以用10个"+"或者"\-c"命令\.
+.
+.TP
+\fB\-b\fR
+二进制模式\.设置一些选项,这样就可以用来编辑二进制和可执行文件了\.
+.
+.TP
+\fB\-C\fR
+设置’compatible’兼容选项\.这样就算存在\.vimrc文件Vim也会基本上象Vi 一样了\.
+.
+.TP
+\fB\-d {device}\fR
+打开{device}用作终端，只在Amiga下。例:"\fB\-d con:20/30/600/150\fR"\.
+.
+.TP
+\fB\-e\fR
+以Ex模式运行Vim，就像运行"ex"一样。
+.
+.TP
+\fB\-f\fR
+前台运行。对于GUI版本，Vim不会同运行它的shell分离。在Amiga中， Vim不会重新启动来开启一个新窗口\.这个选项会用在当Vim被另外一个程 序执行,并且这个程序想等编辑动作结束后再运行的时候(如mail)\.在 Amiga上"\fB:sh\fR"和"\fB:!\fR"不会起作用\.
+.
+.TP
+\fB\-F\fR
+如果Vim编译时加入了对从右到左书写的文件FKMAP以及Farsi键盘映射的 支持,Vim会以Farsi模式运行,比如设置’fkmap’和’rightleft’选项\.不然 Vim会显示一条错误信息并终止\.
+.
+.TP
+\fB\-g\fR
+如果Vim编译时加入GUI支持,会开启GUI,不然Vim会显示一条错误信息并终 止\.
+.
+.TP
+\fB\-h\fR
+Vim显示命令行参数和选项的帮助,然后终止\.
+.
+.TP
+\fB\-H\fR
+如果Vim编译时加入了对从右到左书写的文件RIGHTLEFT以及Hebrew键盘映 射的支持，Vim会以Hebrew模式运行,比如设置’hkmap’和’rightleft’选项 \.不然Vim会显示一条错误信息并终止\.
+.
+.TP
+\fB\-i {viminfo}\fR
+使用viminfo文件,这个选项设置使用的文件名,默认的是"\fB~/\.viminfo\fR"\. 用"NONE"文件名也可以跳过使用\.viminfo文件\.
+.
+.TP
+\fB\-L\fR
+同\-r一样\.
+.
+.TP
+\fB\-l\fR
+Lisp模式\.打开’lisp’和’showmatch’选项\.
+.
+.TP
+\fB\-m\fR
+禁止修改文件\.设置’write’选项,这样就不能写文件了\.
+.
+.TP
+\fB\-N\fR
+非兼容模式\.设置’compatible’选项\.这样Vim会表现得更好,就算\.vimrc文 件不存在也会同Vi不兼容\.
+.
+.TP
+\fB\-n\fR
+禁止交换文件,这样在崩溃后就不能恢复文件了\.对于编辑在很慢的媒体中 的文件很有好处(比如软盘),也可以用"\fB:set uc=0\fR"禁止交换,用"\fB:set uc=200\fR"开启交换\.
+.
+.TP
+\fB\-o[N]\fR
+打开N个窗口\.如果没有N,为每个文件开一个窗口\.
+.
+.TP
+\fB\-R\fR
+只读模式\.设置’readonly’选项\.你仍然可以编辑缓冲区,但是不能重写文 件\.如果你要重写文件,必须在Ex命令中用惊叹号,比如"\fB:w!\fR"\.\-R选项隐 含了\-n选项\.readonly选项可以用"\fB:set noro\fR"设置\.见"\fB:help readonly\fR"\.
+.
+.TP
+\fB\-r\fR
+列出交换文件,显示关于恢复文件的信息\.
+.
+.TP
+\fB\-r {file}\fR
+恢复模式\.交换文件是用来恢复在编辑过程中崩溃了的文件\.交换文件名是 被编辑文件名后面加上"\.swp"\.见"\fB:help recovery\fR"\.
+.
+.TP
+\fB\-s\fR
+安静模式\.只在用"Ex"启动或者用了"\-e"选项才有用\.
+.
+.TP
+\fB\-s {script}\fR
+读入脚本文件{script}\.文件里的字符就像你直接输入一样的,也可以用 "\fB:source!{script}\fR"命令实现这个功能\.如果在编辑器结束前就读到了 文件尾,就接着从键盘读入\.
+.
+.TP
+\fB\-T {terminal}\fR
+告诉Vim你用的终端的名字,只有当不能自动确定的时候才这样\.它必须是 Vim(builtin)能辨认的终端或者是在termcap或者terminfo文件中定义了 的\.
+.
+.TP
+\fB\-u {vimrc}\fR
+用{vimrc}文件里的命令来初始化,跳过所有其它的初始化,用这个来编辑 特殊类型的文件\.也可以用"NONE"来跳过所有初始化\.在vim中用"\fB:help initialization\fR"查看更多信息\.
+.
+.TP
+\fB\-U {gvimrc}\fR
+用{gvimrc}文件里的命令来初始化GUI,跳过所有其它的GUI初始化,也可以 用"NONE"来跳过所有GUI初始化\.在用"\fB:help gui\-init\fR查看更多信息\.
+.
+.TP
+\fB\-V\fR
+冗长显示\.显示执行初始化代码和读入的文件,并且写viminfo文件\.
+.
+.TP
+\fB\-v\fR
+以Vi模式运行Vim,就像运行"vi"一样,只有运行"ex"时才有用\.
+.
+.TP
+\fB\-w {script}\fR
+所有在Vim退出前你键入的字符都会被存入{script}文件\.这用来创建一个 脚本文件,你可以用"\fBvim \-s\fR"和"\fB:source!\fR"来使用\.如果{script}存在, 会把字符追加到后面\.
+.
+.TP
+\fB\-W {script}\fR
+同\-w一样，但是是覆盖原来的文件\.
+.
+.TP
+\fB\-x\fR
+写文件时加密\.会提示你输入密码\.
+.
+.TP
+\fB\-Z\fR
+受限模式\.同运行以"r"开头的程序同效\.
+.
+.TP
+\fB\-\-\fR
+表明选项结束\.在此之后的参数都会被认为是文件名,可以用这个来编辑一 个以’\-’开头的文件\.
+.
+.SH "在线帮助(ON\-LINEHELP)"
+在Vim中键入"\fB:help\fR"来获得帮助。用"\fB:help subject\fR"来获得关于一个特定主题 的帮助\.例如用"\fB:help ZZ\fR"来获得关于"ZZ"的帮助\.用Tab和CTRL\-D来完成帮助主题 ("\fB:help cmdline\-completion\fR")\.可以用标记从一个地方跳到另一个地方(像超文 连接,见"\fB:help\fR")\.所有的文档都可以这样来浏览,比如"\fB:help syntax\.txt\fR"\.
+.
+.SH "文件(FILES)"
+.
+.TP
+\fB/usr/share/vim/vim56/doc/*\.txt\fR
+Vim文档文件\.用":helpdoc\-file\-list"获得完整的列表\.
+.
+.TP
+\fB/usr/share/vim/vim56/doc/tags\fR
+在文档文件中查找信息用的标签文件\.
+.
+.TP
+\fB/usr/share/vim/vim56/syntax/syntax\.vim\fR
+系统语法初始化文件\.
+.
+.TP
+\fB/usr/share/vim/vim56/syntax/*\.vim\fR
+各种语言的语法文件\.
+.
+.TP
+\fB/usr/share/vim/vimrc\fR
+系统Vim初始化文件\.
+.
+.TP
+\fB/usr/share/vim/gvimrc\fR
+系统gvim初始化文件\.
+.
+.TP
+\fB/usr/share/vim/vim56/optwin\.vim\fR
+":options"命令所用的脚本文件,这是个查看和设置选项的很好的办法\.
+.
+.TP
+\fB/usr/share/vim/vim56/menu\.vim\fR
+gvim的系统菜单初始化文件\.
+.
+.TP
+\fB/usr/share/vim/vim56/bugreport\.vim\fR
+用来生成错误报告的脚本文件,见":helpbugs"\.
+.
+.TP
+\fB/usr/share/vim/vim56/filetype\.vim\fR
+根据文件名来判定文件类型的脚本文件,见":help’filetype’"\.
+.
+.TP
+\fB/usr/share/vim/vim56/scripts\.vim\fR
+根据文件内容来判定文件类型的脚本文件,见":help’filetype’"\.
+.
+.P
+最新信息参见VIM主页:\fIhttp://www\.vim\.org/\fR
+.
+.SH "参见"
+vimtutor(1)
+.
+.SH "作者(AUTHOR)"
+Vim的大部分都是BramMoolenaar在很多人的帮助下完成的\.见"\fB:help credits\fR"\.
+.
+.P
+Vim基于Stevie写的代码,之后被Tim Thompson，Tony Andrewsand和G \.R\. (Fred) Walter修改,然后才形成的\.但早期的原始代码几乎都不存在了。
+.
+.SH "错误(BUGS)"
+用"\fB:help todo\fR"看已知问题的列表\.
+.
+.P
+注意有些被报告为错误的事实上是应为太相信所有的行为都应该同Vi一样,如果你 因为它和Vi不一样而认为它是个错误,你应该好好看看vi_diff\.txt文件(或者在Vim 中键入:helpvi_diff\.txt),并且看看’compatible’和’cpoptions’选项\.
