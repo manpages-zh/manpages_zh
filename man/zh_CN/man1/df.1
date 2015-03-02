@@ -1,0 +1,85 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "DF" "1" "March 2015" "" ""
+.
+.SH "NAME"
+\fBdf\fR \- 报告文件系统磁盘空间的使用情况
+.
+.SH "总览"
+\fBdf [OPTION]\.\.\. [FILE]\.\.\.\fR
+.
+.SH "描述"
+此手册页文档是df的GNU版本\.df命令列出指定的每一个文件名所在的文件系统上可 用磁盘空间的数量。如果没有指定文件名,则显示当前所有使用中的文件系统\.缺省 设置时,磁盘空间以1K为一块显示,如果环境变量"\fBPOSIXLY_CORRECT\fR"已设置,则采 用512字节为一块显示\.如果参数是一个包含已使用文件系统的磁盘设备名,df命令 显示出的是该文件系统的可用空间,而非包含设备结点的文件系统(只能是根文件系 统)\.此版本的df不能显示未使用文件系统的可用空间,这是由于大多数系统在响应 这样的请求时必须很清楚该文件系统的结构\.
+.
+.P
+[文件或设备] 指定磁盘设备。
+.
+.SH "GNU参数说明"
+.
+.TP
+\fB\-a 或 \-\-all\fR
+包含全部的文件系统。
+.
+.TP
+\fB\-\-block\-size=<区块大小>\fR
+以指定的区块大小来显示区块数目。
+.
+.TP
+\fB\-h 或 \-\-human\-readable\fR
+以可读性较高的方式来显示信息。
+.
+.TP
+\fB\-H 或 \-\-si\fR
+与\-h参数相同，但在计算时是以1000 Bytes为换算单位而非1024 Bytes。
+.
+.TP
+\fB\-i 或 \-\-inodes\fR
+显示inode的信息。
+.
+.TP
+\fB\-k 或 \-\-kilobytes\fR
+指定区块大小为1024字节。
+.
+.TP
+\fB\-l 或 \-\-local\fR
+仅显示本地端的文件系统。
+.
+.TP
+\fB\-m 或 \-\-megabytes\fR
+指定区块大小为1048576字节。
+.
+.TP
+\fB\-\-no\-sync\fR
+在取得磁盘使用信息前，不要执行sync指令，此为预设值。
+.
+.TP
+\fB\-P 或 \-\-portability\fR
+使用POSIX的输出格式。
+.
+.TP
+\fB\-\-sync\fR
+在取得磁盘使用信息前，先执行sync指令。
+.
+.TP
+\fB\-t <文件系统类型> 或 \-\-type=<文件系统类型>\fR
+仅显示指定文件系统类型的磁盘信息。
+.
+.TP
+\fB\-T 或 \-\-print\-type\fR
+显示文件系统的类型。
+.
+.TP
+\fB\-x <文件系统类型> 或 \-\-exclude\-type=<文件系统类型>\fR
+不要显示指定文件系统类型的磁盘信息。
+.
+.TP
+\fB\-\-help\fR
+显示帮助。
+.
+.TP
+\fB\-\-version\fR
+显示版本信息。
+.
+.SH "版权"
+由 \fIhttp://linux\.sheup\.com/linux/4/31053\.html\fR 改编而来。

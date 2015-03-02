@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>df(1) - 报告文件系统磁盘空间的使用情况</title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
+  </style>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
+
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
+
+  <div class='man-navigation' style='display:none'>
+    <a href="#NAME">NAME</a>
+    <a href="#-">总览</a>
+    <a href="#-">描述</a>
+    <a href="#GNU-">GNU参数说明</a>
+    <a href="#-">版权</a>
+  </div>
+
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>df(1)</li>
+    <li class='tc'></li>
+    <li class='tr'>df(1)</li>
+  </ol>
+
+  <h2 id="NAME">NAME</h2>
+<p class="man-name">
+  <code>df</code> - <span class="man-whatis">报告文件系统磁盘空间的使用情况</span>
+</p>
+
+<h2 id="-">总览</h2>
+
+<p><code>df [OPTION]... [FILE]...</code></p>
+
+<h2 id="-">描述</h2>
+
+<p>此手册页文档是df的GNU版本.df命令列出指定的每一个文件名所在的文件系统上可
+用磁盘空间的数量。如果没有指定文件名,则显示当前所有使用中的文件系统.缺省
+设置时,磁盘空间以1K为一块显示,如果环境变量"<code>POSIXLY_CORRECT</code>"已设置,则采
+用512字节为一块显示.如果参数是一个包含已使用文件系统的磁盘设备名,df命令
+显示出的是该文件系统的可用空间,而非包含设备结点的文件系统(只能是根文件系
+统).此版本的df不能显示未使用文件系统的可用空间,这是由于大多数系统在响应
+这样的请求时必须很清楚该文件系统的结构.</p>
+
+<p>[文件或设备]   指定磁盘设备。</p>
+
+<h2 id="GNU-">GNU参数说明</h2>
+
+<dl>
+<dt><code>-a 或 --all</code></dt><dd><p>包含全部的文件系统。</p></dd>
+<dt><code>--block-size=&lt;区块大小></code></dt><dd><p>以指定的区块大小来显示区块数目。</p></dd>
+<dt><code>-h 或 --human-readable</code></dt><dd><p>以可读性较高的方式来显示信息。</p></dd>
+<dt><code>-H 或 --si</code></dt><dd><p>与-h参数相同，但在计算时是以1000 Bytes为换算单位而非1024 Bytes。</p></dd>
+<dt><code>-i 或 --inodes</code></dt><dd><p>显示inode的信息。</p></dd>
+<dt><code>-k 或 --kilobytes</code></dt><dd><p>指定区块大小为1024字节。</p></dd>
+<dt><code>-l 或 --local</code></dt><dd><p>仅显示本地端的文件系统。</p></dd>
+<dt><code>-m 或 --megabytes</code></dt><dd><p>指定区块大小为1048576字节。</p></dd>
+<dt><code>--no-sync</code></dt><dd><p>在取得磁盘使用信息前，不要执行sync指令，此为预设值。</p></dd>
+<dt><code>-P 或 --portability</code></dt><dd><p>使用POSIX的输出格式。</p></dd>
+<dt class="flush"><code>--sync</code></dt><dd><p>在取得磁盘使用信息前，先执行sync指令。</p></dd>
+<dt><code>-t &lt;文件系统类型> 或 --type=&lt;文件系统类型></code></dt><dd><p>仅显示指定文件系统类型的磁盘信息。</p></dd>
+<dt><code>-T 或 --print-type</code></dt><dd><p>显示文件系统的类型。</p></dd>
+<dt><code>-x &lt;文件系统类型> 或 --exclude-type=&lt;文件系统类型></code></dt><dd><p>不要显示指定文件系统类型的磁盘信息。</p></dd>
+<dt class="flush"><code>--help</code></dt><dd><p>显示帮助。</p></dd>
+<dt><code>--version</code></dt><dd><p>显示版本信息。</p></dd>
+</dl>
+
+
+<h2 id="-">版权</h2>
+
+<p>由 <a href="http://linux.sheup.com/linux/4/31053.html" data-bare-link="true">http://linux.sheup.com/linux/4/31053.html</a> 改编而来。</p>
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'></li>
+    <li class='tc'>March 2015</li>
+    <li class='tr'>df(1)</li>
+  </ol>
+
+  </div>
+</body>
+</html>

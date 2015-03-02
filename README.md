@@ -6,7 +6,7 @@
 
 `man/`下是中文manpages文档，`html/`下是中文manpages文档的网页文件，`ronn/`下是用来生成man文档和网页的原始文件，`help/`下是关于编写manpages和显示的一些资料，`source/`下是翻译前可供参考的文件，里面有LCTT计划和CMPP项目留下来的一些文件，您可以在此文件夹下设置自己的工作目录。
 
-在基本程序的中文手册整理完毕后，我会发布0.1版的文件，现在你可以把本项目clone到本地，项目在<https://www.github.com/intetnet/intetnet.github.io>。
+我计划在三月份发布0.1版。现在你可以把本项目clone到本地，项目在<https://www.github.com/intetnet/intetnet.github.io>。
 
 项目主页为<http://intetnet.github.io>。
 

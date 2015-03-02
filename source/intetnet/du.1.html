@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>du(1) - 报告磁盘空间使用情况</title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
+  </style>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
+
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
+
+  <div class='man-navigation' style='display:none'>
+    <a href="#NAME">NAME</a>
+    <a href="#-">描述</a>
+    <a href="#-">语法</a>
+    <a href="#-">参数</a>
+    <a href="#-">版权</a>
+  </div>
+
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>du(1)</li>
+    <li class='tc'></li>
+    <li class='tr'>du(1)</li>
+  </ol>
+
+  <h2 id="NAME">NAME</h2>
+<p class="man-name">
+  <code>du</code> - <span class="man-whatis">报告磁盘空间使用情况</span>
+</p>
+
+<h2 id="-">描述</h2>
+
+<p>du报告指定的文件已使用的磁盘空间的总量，包括在层次结构中以这些以指定文件
+为根的目录在内。这里的“已使用的磁盘空间”意思为指定的文件下的整个文件层次
+结构所使用的空间。</p>
+
+<p>在没给定参数的情况下，du报告当前目录所使用的磁盘空间。</p>
+
+<h2 id="-">语法</h2>
+
+<p><code>du [OPTION]... [FILE]...</code></p>
+
+<p><code>du [OPTION]... --files0-from=F</code></p>
+
+<h2 id="-">参数</h2>
+
+<dl>
+<dt class="flush"><code>-a或-all</code></dt><dd><p>显示目录中个别文件的大小。</p></dd>
+<dt><code>-b或-bytes</code></dt><dd><p>显示目录或文件大小时，以byte为单位。</p></dd>
+<dt><code>-c或--total</code></dt><dd><p>除了显示个别目录或文件的大小外，同时也显示所有目录或文件的总和。</p></dd>
+<dt><code>-D或--dereference-args</code></dt><dd><p>显示指定符号连接的源文件大小。</p></dd>
+<dt><code>-h或--human-readable</code></dt><dd><p>以K，M，G为单位，提高信息的可读性。</p></dd>
+<dt class="flush"><code>-H或--si</code></dt><dd><p>与-h参数相同，但是K，M，G是以1000为换算单位。</p></dd>
+<dt><code>-k或--kilobytes</code></dt><dd><p>以1024 bytes为单位。</p></dd>
+<dt><code>-l或--count-links</code></dt><dd><p>重复计算硬件连接的文件。</p></dd>
+<dt><code>-L&lt;符号连接>或--dereference&lt;符号连接></code></dt><dd><p>显示选项中所指定符号连接的源文件大小。</p></dd>
+<dt><code>-m或--megabytes</code></dt><dd><p>以1MB为单位。</p></dd>
+<dt><code>-s或--summarize</code></dt><dd><p>仅显示总计。</p></dd>
+<dt><code>-S或--separate-dirs</code></dt><dd><p>显示个别目录的大小时，并不含其子目录的大小。</p></dd>
+<dt><code>-x或--one-file-xystem</code></dt><dd><p>以一开始处理时的文件系统为准，若遇上其它不同的文件系统目录则略过
+。</p></dd>
+<dt><code>-X&lt;文件>或--exclude-from=&lt;文件></code></dt><dd><p>在<var>文件</var>指定目录或文件。</p></dd>
+<dt><code>--exclude=&lt;目录或文件></code></dt><dd><p>略过指定的目录或文件。</p></dd>
+<dt><code>--max-depth=&lt;目录层数></code></dt><dd><p>超过指定层数的目录后，予以忽略。</p></dd>
+<dt class="flush"><code>--help</code></dt><dd><p>显示帮助。</p></dd>
+<dt><code>--version</code></dt><dd><p>显示版本信息。</p></dd>
+</dl>
+
+
+<h2 id="-">版权</h2>
+
+<p>由<a href="http://linux.sheup.com/linux/4/31055.html" data-bare-link="true">http://linux.sheup.com/linux/4/31055.html</a>整理而来。</p>
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'></li>
+    <li class='tc'>March 2015</li>
+    <li class='tr'>du(1)</li>
+  </ol>
+
+  </div>
+</body>
+</html>
