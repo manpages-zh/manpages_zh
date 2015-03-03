@@ -4,11 +4,11 @@
 
 ##文件夹结构
 
-`man/`下是中文manpages文档，`html/`下是中文manpages文档的网页文件，`ronn/`下是用来生成man文档和网页的原始文件，`help/`下是关于编写manpages和显示的一些资料，`source/`下是翻译前可供参考的文件，里面有LCTT计划和CMPP项目留下来的一些文件，您可以在此文件夹下设置自己的工作目录。
+`man/`下是中文manpages文档，其中包括繁体中文和简体中文等，`html/`下是中文manpages文档的网页文件，`ronn/`下是用来生成man文档和网页的原始文件，`help/`下是关于编写manpages和显示的一些资料，`source/`下是翻译前可供参考的文件，里面有LCTT计划和CMPP项目留下来的一些文件，您可以在此文件夹下设置自己的工作目录。
 
-我计划在三月份发布0.1版。现在你可以把本项目clone到本地，项目在<https://www.github.com/intetnet/intetnet.github.io>。
+我计划在三月份发布0.1版。现在你可以把本项目clone到本地，项目在:<https://www.github.com/intetnet/manpages_zh>。
 
-项目主页为<http://intetnet.github.io>。
+项目主页为:<http://intetnet.github.io>。
 
 在线manpages文件可以在<http://intetnet.github.io/html/list.html>上查看。
 
@@ -16,6 +16,7 @@
 
 * git手册
 * 发布0.1版，并打包为程序
+* 将简体转换繁体，开始繁体文档的整理。
     
 如果你希望贡献本项目，你可以任意选择已有或者未有的manpages来翻译提交，也可以帮助我完成上面的todo。
 
