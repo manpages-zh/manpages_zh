@@ -443,7 +443,7 @@ fontconfig文档类型定义在外部实体"fonts\.dtd"中，该文件通常位�
 .IP "" 0
 .
 .P
-\fB\fB<alias*binding="绑定">\fR\fR
+\fB\fB<alias binding="绑定">\fR\fR
 .
 .P
 \fB<alias>\fR单元为修改字族名称提供了一种专门的速记法。"绑定"默认值是"weak" ，表示弱绑定；若设为"strong"，则表示强绑定；而设为"same"，则表示不改变当 前的绑定。\fB<alias>\fR必须首先包含一个单独的\fB<family>\fR单元，然后再依次包含 ：0或1个\fB<prefer>\fR单元、0或1个\fB<accept>\fR单元、0或1个\fB<default>\fR单元。这 种标记法等价于如下结构：
@@ -517,7 +517,7 @@ fontconfig文档类型定义在外部实体"fonts\.dtd"中，该文件通常位�
 \fB<langset>\fR必须包含至少一个\fB<string>\fR单元，而每个\fB<string>\fR单元必须包含 一个符合RFC\-3066规范的语言标记(语言[\-国家])。
 .
 .P
-\fB\fB<name*target="目标">\fR\fR
+\fB\fB<name target="目标">\fR\fR
 .
 .P
 \fB<name>\fR必须包含一个字体属性的名称，而单元的值则等于"目标"的该属性值列表 中的第一个值。"目标"的默认值是"default"，表示继承外层\fB<match>\fR单元的值。 唯一的例外是：当外层是\fB<match target="font">\fR时，可将"目标"设为"pattern" ，以强迫此\fB<name>\fR作用于原始的字体模板，而不是选中的字体。

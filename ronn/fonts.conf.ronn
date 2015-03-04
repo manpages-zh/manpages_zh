@@ -384,7 +384,7 @@ ignore-blanks="false">`**
 	"delete"                删除第一个匹配的值        删除全部值
 	"delete_all"            删除全部值                删除全部值
 
-**`<alias*binding="绑定">`**
+**`<alias binding="绑定">`**
 
 `<alias>`单元为修改字族名称提供了一种专门的速记法。"绑定"默认值是"weak"
 ，表示弱绑定；若设为"strong"，则表示强绑定；而设为"same"，则表示不改变当
@@ -445,7 +445,7 @@ ignore-blanks="false">`**
 `<langset>`必须包含至少一个`<string>`单元，而每个`<string>`单元必须包含
 一个符合RFC-3066规范的语言标记(语言[-国家])。
 
-**`<name*target="目标">`**
+**`<name target="目标">`**
 
 `<name>`必须包含一个字体属性的名称，而单元的值则等于"目标"的该属性值列表
 中的第一个值。"目标"的默认值是"default"，表示继承外层`<match>`单元的值。
