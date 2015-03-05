@@ -1,0 +1,128 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "LN" "1" "March 2015" "" ""
+.
+.SH "NAME"
+\fBln\fR \- 在文件之间建立连接
+.
+.SH "描述"
+ln命令在两个文件之间创建链接。默认创建硬链接(hard link)；在使用\fB\-s\fR选项 时创建软链接(soft link)。
+.
+.SH "总览"
+\fBln [OPTION]… [\-T] TARGET LINKNAME\fR
+.
+.P
+\fBln [OPTION]… TARGET\fR
+.
+.P
+\fBln [OPTION]… TARGET… DIRECTORY\fR
+.
+.P
+\fBln [OPTION]… \-t DIRECTORY TARGET…\fR
+.
+.P
+如果指定TARGET(目标文件)和LINKNAME(链接文件)，ln创建TARGET到LINKNAME的 链接。
+.
+.P
+如果只指定TARGET，ln在当前目录以目标文件名创建目标文件的链接。
+.
+.P
+如果指定"\fB\-t\fR"选项，或者最后一个参数是一个目录并且没有指定"\fB\-T\fR"选项，ln 将使用TARGET文件名在指定的每个目录中创建一个链接\.第三、四种语法实际上是 为多个TARGET创建链接的方法。
+.
+.P
+通常ln并不移除任何已存在的文件。但使用"\fB\-f\fR"选项将无条件的移除现存文件； 使用"\fB\-i\fR"选项将在移除他们时询问；"\fB\-b\fR"选项对现存文件重命名。
+.
+.P
+ln命令创建的链接有以下两种：
+.
+.TP
+\fBHard link\fR
+硬链接是指现存文件的其他名字；link的文件和原始文件其实是完全相 同的。他们实际上共享相同的inode(inode包含所有和文件相关的信息， 从某种意义上说inode就相当于一个文件)。你不能创建到一个目录的 hard链接，并且hard链接不能跨越文件系统边界(也就是硬盘分区)。
+.
+.TP
+\fBSymbolic link\fR
+\'Symbolic link\'又叫\'soft link\'，实际上它是一种特殊的文件类型(不 是所有的内核都支持)。通过symlinks文件进行的大部分操作(opening, writing, reading)都将直接将操作应用至链接的目标文件上。但是有些 操作，比如removing将只作用于链接文件本身，对目标文件没有影响。
+.
+.SH "选项"
+.
+.TP
+\fB\-b,–backup[=METHOD]\fR
+备份选项，指定备份文件如何命名。
+.
+.P
+参数"METHOD"如下。如果不使用该参数，则使用环境变量\fBVERSION_CONTROL\fR， 如果该环境变量没有设置，则缺省地使用’existing’。
+.
+.IP "" 4
+.
+.nf
+
+none, off
+    不备份
+t, numbered
+    产生数字标记形式的备份文件
+nil, existiong
+    对已有数字标记备份的文件进行数字备份，而简单备份其他类型文件
+never,simple
+    总是进行简单备份
+.
+.fi
+.
+.IP "" 0
+.
+.P
+正确有效的METHOD参数对应于Emacs变量’version−control’
+.
+.TP
+\fB\-d, \-F, –directory\fR
+允许拥有适当权限的用户尝试在创建到目录的hard链接。不过这可能由于 系统限制(即使是超级用户)而失败(注：很多系统是不支持创建目录的 硬链接的)。
+.
+.TP
+\fB\-f, –force\fR
+移除已存在的目标文件。
+.
+.TP
+\fB\-i, –interactive\fR
+提示是否移除已存在的目标文件。
+.
+.TP
+\fB\-n, \-no\-dereference\fR
+当最后一个操作数是链接到目录的symlink时将其作为普通的文件对待。 当指定\fB\-no\-target\-directory(\-T)\fR时这个选项无效。
+.
+.TP
+\fB\-s, \-symoblic\fR
+创建symbolic链接。这个选项在不支持symbolic链接的系统上仅仅提示一 个错误信息。
+.
+.TP
+\fB\-S SUFFIX, \-suffix=SUFFIX\fR
+在使用\-b选项是指定为每个备份的文件添加的后缀。
+.
+.P
+在备份文件后添加"SUFFIX"(后缀)。如果不使用该参数，则使用环境变量 \fBSIM_PLE_BACHUP_SUFFIX\fR，如果该环境变量没有设置，则缺省地使用’～’。
+.
+.TP
+\fB\-t DIRECTORY, \-target\-directory=DIRECTORY\fR
+指定目标目录。
+.
+.TP
+\fB\-T, \-no\-target\-directory\fR
+当最后一个参数是目录或者链接到目录的symlink时将其作为普通文件。
+.
+.TP
+\fB\-v, \-verbose\fR
+用于在成功创建link后打印每个文件的名字。
+.
+.TP
+\fB−help\fR
+在标准输出上显示使用信息并顺利退出。
+.
+.TP
+\fB−version\fR
+在标准输出上显示版本信息并顺利退出
+.
+.TP
+\fB−−\fR
+终端参数列表。
+.
+.SH "另见"
+ls(1), rm(1), link(2), lstat(2), open(2), readlink(2), stat(2), unlink(2)

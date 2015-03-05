@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>ln(1) - 在文件之间建立连接</title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
+  </style>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
+
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
+
+  <div class='man-navigation' style='display:none'>
+    <a href="#NAME">NAME</a>
+    <a href="#-">描述</a>
+    <a href="#-">总览</a>
+    <a href="#-">选项</a>
+    <a href="#-">另见</a>
+  </div>
+
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>ln(1)</li>
+    <li class='tc'></li>
+    <li class='tr'>ln(1)</li>
+  </ol>
+
+  <h2 id="NAME">NAME</h2>
+<p class="man-name">
+  <code>ln</code> - <span class="man-whatis">在文件之间建立连接</span>
+</p>
+
+<h2 id="-">描述</h2>
+
+<p>ln命令在两个文件之间创建链接。默认创建硬链接(hard link)；在使用<code>-s</code>选项
+时创建软链接(soft link)。</p>
+
+<h2 id="-">总览</h2>
+
+<p><code>ln [OPTION]… [-T] TARGET LINKNAME</code></p>
+
+<p><code>ln [OPTION]… TARGET</code></p>
+
+<p><code>ln [OPTION]… TARGET… DIRECTORY</code></p>
+
+<p><code>ln [OPTION]… -t DIRECTORY TARGET…</code></p>
+
+<p>如果指定TARGET(目标文件)和LINKNAME(链接文件)，ln创建TARGET到LINKNAME的
+链接。</p>
+
+<p>如果只指定TARGET，ln在当前目录以目标文件名创建目标文件的链接。</p>
+
+<p>如果指定"<code>-t</code>"选项，或者最后一个参数是一个目录并且没有指定"<code>-T</code>"选项，ln
+将使用TARGET文件名在指定的每个目录中创建一个链接.第三、四种语法实际上是
+为多个TARGET创建链接的方法。</p>
+
+<p>通常ln并不移除任何已存在的文件。但使用"<code>-f</code>"选项将无条件的移除现存文件；
+使用"<code>-i</code>"选项将在移除他们时询问；"<code>-b</code>"选项对现存文件重命名。</p>
+
+<p>ln命令创建的链接有以下两种：</p>
+
+<dl>
+<dt><code>Hard link</code></dt><dd><p>硬链接是指现存文件的其他名字；link的文件和原始文件其实是完全相
+同的。他们实际上共享相同的inode(inode包含所有和文件相关的信息，
+从某种意义上说inode就相当于一个文件)。你不能创建到一个目录的
+hard链接，并且hard链接不能跨越文件系统边界(也就是硬盘分区)。</p></dd>
+<dt><code>Symbolic link</code></dt><dd><p>'Symbolic link'又叫'soft link'，实际上它是一种特殊的文件类型(不
+是所有的内核都支持)。通过symlinks文件进行的大部分操作(opening,
+writing, reading)都将直接将操作应用至链接的目标文件上。但是有些
+操作，比如removing将只作用于链接文件本身，对目标文件没有影响。</p></dd>
+</dl>
+
+
+<h2 id="-">选项</h2>
+
+<dl>
+<dt><code>-b,–backup[=METHOD]</code></dt><dd>备份选项，指定备份文件如何命名。</dd>
+</dl>
+
+
+<p>参数"METHOD"如下。如果不使用该参数，则使用环境变量<code>VERSION_CONTROL</code>，
+如果该环境变量没有设置，则缺省地使用’existing’。</p>
+
+<pre><code>none, off
+    不备份
+t, numbered
+    产生数字标记形式的备份文件
+nil, existiong
+    对已有数字标记备份的文件进行数字备份，而简单备份其他类型文件
+never,simple
+    总是进行简单备份
+</code></pre>
+
+<p>正确有效的METHOD参数对应于Emacs变量’version−control’</p>
+
+<dl>
+<dt><code>-d, -F, –directory</code></dt><dd><p>允许拥有适当权限的用户尝试在创建到目录的hard链接。不过这可能由于
+系统限制(即使是超级用户)而失败(注：很多系统是不支持创建目录的
+硬链接的)。</p></dd>
+<dt><code>-f, –force</code></dt><dd><p>移除已存在的目标文件。</p></dd>
+<dt><code>-i, –interactive</code></dt><dd><p>提示是否移除已存在的目标文件。</p></dd>
+<dt><code>-n, -no-dereference</code></dt><dd><p>当最后一个操作数是链接到目录的symlink时将其作为普通的文件对待。
+当指定<code>-no-target-directory(-T)</code>时这个选项无效。</p></dd>
+<dt><code>-s, -symoblic</code></dt><dd><p>创建symbolic链接。这个选项在不支持symbolic链接的系统上仅仅提示一
+个错误信息。</p></dd>
+<dt><code>-S SUFFIX, -suffix=SUFFIX</code></dt><dd><p>在使用-b选项是指定为每个备份的文件添加的后缀。</p></dd>
+</dl>
+
+
+<p>在备份文件后添加"SUFFIX"(后缀)。如果不使用该参数，则使用环境变量
+<code>SIM_PLE_BACHUP_SUFFIX</code>，如果该环境变量没有设置，则缺省地使用’～’。</p>
+
+<dl>
+<dt><code>-t DIRECTORY, -target-directory=DIRECTORY</code></dt><dd><p>指定目标目录。</p></dd>
+<dt><code>-T, -no-target-directory</code></dt><dd><p>当最后一个参数是目录或者链接到目录的symlink时将其作为普通文件。</p></dd>
+<dt><code>-v, -verbose</code></dt><dd><p>用于在成功创建link后打印每个文件的名字。</p></dd>
+<dt class="flush"><code>−help</code></dt><dd><p>在标准输出上显示使用信息并顺利退出。</p></dd>
+<dt><code>−version</code></dt><dd><p>在标准输出上显示版本信息并顺利退出</p></dd>
+<dt class="flush"><code>−−</code></dt><dd><p>终端参数列表。</p></dd>
+</dl>
+
+
+<h2 id="-">另见</h2>
+
+<p><span class="man-ref">ls<span class="s">(1)</span></span>, <span class="man-ref">rm<span class="s">(1)</span></span>, <span class="man-ref">link<span class="s">(2)</span></span>, <span class="man-ref">lstat<span class="s">(2)</span></span>, <span class="man-ref">open<span class="s">(2)</span></span>, <span class="man-ref">readlink<span class="s">(2)</span></span>, <span class="man-ref">stat<span class="s">(2)</span></span>, <span class="man-ref">unlink<span class="s">(2)</span></span></p>
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'></li>
+    <li class='tc'>March 2015</li>
+    <li class='tr'>ln(1)</li>
+  </ol>
+
+  </div>
+</body>
+</html>
