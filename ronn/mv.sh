@@ -8,6 +8,3 @@ echo "move done"
 
 ronn ~/manpages/html/list.ronn
 echo "update list done" 
-
-ronn ~/manpages/index.ronn
-echo "update index done"
