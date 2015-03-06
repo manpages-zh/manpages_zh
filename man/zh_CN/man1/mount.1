@@ -1,0 +1,517 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "MOUNT" "1" "March 2015" "" ""
+.
+.SH "NAME"
+\fBmount\fR \- 挂载文件系统
+.
+.SH "总览"
+\fBmount [\-hV]\fR
+.
+.P
+\fBmount \-a [\-fFnrsvw] [\-t vfstype]\fR
+.
+.P
+\fBmount [\-fnrsvw] [\-o options [,\.\.\.]] device | dir\fR
+.
+.P
+\fBmount [\-fnrsvw] [\-t vfstype] [\-o options] device dir\fR
+.
+.SH "描述"
+将某个档案的内容解读成档案系统,然后将其挂在目录的某个位置之上,执行成功后 ,直到我们使用umnount将这个档案系统移除为止,这个命令之下的所有档案将暂时 无法被调用\.这个命令可以被用来挂上任何的档案系统,也可以用\fB\-o loop\fR选项将 某个一般的档案当成硬盘机分割挂上系统\.这个功能对于ramdisk ,romdisk或是ISO 9660的影像档之解读非常实用\.
+.
+.P
+mount的使用权限是系统管理者或\fB/etc/fstab\fR中允许的使用者\.
+.
+.P
+device:要挂载(mount)的设备\.
+.
+.P
+dir:设备在系统上的挂载点(mount point)\.
+.
+.SH "选项"
+.
+.TP
+\fB\-V\fR
+显示程序版本
+.
+.TP
+\fB\-h\fR
+显示辅助讯息
+.
+.TP
+\fB\-v\fR
+显示较讯息,通常和\fB\-f\fR用来除错\.
+.
+.TP
+\fB\-a\fR
+将\fB/etc/fstab\fR中定义的所有档案系统挂上\.
+.
+.TP
+\fB\-F\fR
+这个命令通常和\fB\-a\fR一起使用,它会为每一个mount的动作产生一个行程负 责执行\.在系统需要挂上大量NFS档案系统时可以加快挂上的动作\.
+.
+.TP
+\fB\-f\fR
+通常用在除错的用途\.它会使mount并不执行实际挂上的动作,而是模拟整 个挂上的过程\.通常会和\fB\-v\fR一起使用\.
+.
+.TP
+\fB\-n\fR
+一般而言,mount在挂上后会在\fB/etc/mtab\fR中写入一笔资料\.但在系统中没 有可写入档案系统存在的情况下可以用这个选项取消这个动作\.
+.
+.TP
+\fB\-s\-r\fR
+等价于\fB\-o ro\fR
+.
+.TP
+\fB\-w\fR
+等价于\fB\-o rw\fR
+.
+.TP
+\fB\-L\fR
+将含有特定标签的硬盘分割挂上\.
+.
+.TP
+\fB\-U\fR
+将档案分割序号为的档案系统挂下\.\fB\-L\fR和\fB\-U\fR必须在\fB/proc/partition\fR 这种档案存在时才有意义\.
+.
+.TP
+\fB\-t vfstype\fR
+指定档案系统的型态,通常不必指定\.mount会自动选择正确的型态\.
+.
+.TP
+\fB\-o 参数\fR
+主要用来描述设备或档案的挂载方式\.
+.
+.SH "vfstype"
+The argument following the \-t is used to indicate the filesystem type\. The filesystem types which are currently supported include: adfs, affs, autofs, btrfs, cifs, coda, coherent, cramfs, debugfs, devpts, efs, ext, ext2, ext3, ext4, hfs, hfs‐plus, hpfs, iso9660, jfs, minix, msdos, ncpfs, nfs, nfs4, ntfs, proc, qnx4, ramfs, reiserfs, romfs, squashfs, smbfs, sysv, tmpfs, ubifs, udf, ufs, umsdos, usbfs, vfat, xenix, xfs, xiafs\. Note that coherent, sysv and xenix are equivalent and that xenix and coherent will be removed at some point in the future \- use sysv instead\. Since kernel version 2\.1\.21 the types ext and xiafs do not exist anymore\. Earlier, usbfs was known as usbde‐vfs\. Note, the real list of all supported filesystems depends on your kernel\.
+.
+.P
+常用类型有:
+.
+.IP "" 4
+.
+.nf
+
+光盘或光盘镜像:iso9660
+
+DOS fat16文件系统:msdos
+
+Windows 9x fat32文件系统:vfat
+
+Windows NT ntfs文件系统:ntfs
+
+Mount Windows文件网络共享:smbfs
+
+UNIX(LINUX) 文件网络共享:nfs
+.
+.fi
+.
+.IP "" 0
+.
+.SH "options"
+下面的选项需作为\fB\-o\fR的参数和\fB\-o\fR一起使用
+.
+.TP
+\fBloop\fR
+用来把一个文件当成硬盘分区挂载上系统
+.
+.TP
+\fBro\fR
+采用只读方式挂载设备
+.
+.TP
+\fBrw\fR
+采用读写方式挂载设备
+.
+.TP
+\fBiocharset\fR
+指定访问文件系统所用字符集
+.
+.TP
+\fBasync\fR
+打开非同步模式,所有的档案读写动作都会用非同步模式执行\.
+.
+.TP
+\fBsync\fR
+在同步模式下执行\.
+.
+.TP
+\fBatime/noatime\fR
+当atime打开时,系统会在每次读取档案时更新档案的"上一次调用时间"\. 当我们使用flash档案系统时可能会选项把这个选项关闭以减少写入的次 数\.
+.
+.TP
+\fBauto/noauto\fR
+打开/关闭自动挂上模式\.
+.
+.TP
+\fBdefaults\fR
+使用预设的选项\fBrw,suid,dev,exec,auto,nouser,async\fR\.
+.
+.TP
+\fBexec/noexec\fR
+允许/禁止执行档被执行\.
+.
+.TP
+\fBsuid/nosuid\fR
+允许/禁止执行档在root权限下执行\.
+.
+.TP
+\fBuser/nouser\fR
+使用者可以/不可以执行mount/umount的动作\.
+.
+.TP
+\fBremount\fR
+将一个已经挂下的档案系统重新用不同的方式挂上\.例如原先是只读的系 统,现在用可读写的模式重新挂上\.
+.
+.SH "范例"
+\fB挂载光盘镜像文件\fR
+.
+.P
+1、从光盘制作光盘镜像文件\.将光盘放入光驱,执行下面的命令\.
+.
+.IP "" 4
+.
+.nf
+
+#cp /dev/cdrom /home/user/mydisk\.iso
+或
+#dd if=/dev/cdrom of=/home/user/mydisk\.iso
+.
+.fi
+.
+.IP "" 0
+.
+.P
+注:执行上面的任何一条命令都可将当前光驱里的光盘制作成光盘镜像文件 "/home/user/mydisk\.iso"
+.
+.P
+2、将文件和目录制作成光盘镜像文件,执行下面的命令\.
+.
+.IP "" 4
+.
+.nf
+
+#mkisofs \-r \-J \-V mydisk \-o /home/user/mydisk\.iso /home/user/ mydir
+.
+.fi
+.
+.IP "" 0
+.
+.P
+注:这条命令将/home/user/mydir目录下所有的目录和文件制作成光盘镜像文件 "/home/user/mydisk\.iso",光盘卷标为mydisk\.
+.
+.P
+3、光盘镜像文件的挂载(mount)
+.
+.IP "" 4
+.
+.nf
+
+#mkdir /mnt/vcdrom
+.
+.fi
+.
+.IP "" 0
+.
+.P
+注:建立一个目录用来作挂载点(mount point)
+.
+.IP "" 4
+.
+.nf
+
+#mount \-o loop \-t iso9660 /home/user/mydisk\.iso /mnt/vcdrom
+.
+.fi
+.
+.IP "" 0
+.
+.P
+注:使用/mnt/vcdrom就可以访问盘镜像文件mydisk\.iso里的所有文件了\.
+.
+.P
+\fB挂载移动硬盘\fR
+.
+.P
+对linux系统而言,USB接口的移动硬盘是当作SCSI设备对待的\.插入移动硬盘之前, 应先用\fBfdisk \-l\fR或\fBmore /proc/partitions\fR查看系统的硬盘和硬盘分区情况\.
+.
+.IP "" 4
+.
+.nf
+
+# fdisk \-l
+.
+.fi
+.
+.IP "" 0
+.
+.P
+接好移动硬盘后,再用\fBfdisk \-l\fR或\fBmore /proc/partitions\fR查看系统的硬盘和硬 盘分区情况
+.
+.IP "" 4
+.
+.nf
+
+# fdisk \-l
+.
+.fi
+.
+.IP "" 0
+.
+.P
+假设你发现多了一个SCSI硬盘"/dev/sdc"和它的两个磁盘分区"/dev/sdc1"、 "/dev/sdc2",其中"/dev/sdc5"是"/dev/sdc2"分区的逻辑分区\.我们可以使用下面 的命令挂载"/dev/sdc1"和"/dev/sdc5"\.
+.
+.IP "" 4
+.
+.nf
+
+#mkdir \-p /mnt/usbhd1
+
+#mkdir \-p /mnt/usbhd2
+.
+.fi
+.
+.IP "" 0
+.
+.P
+注:建立目录用来作挂载点(mount point)
+.
+.IP "" 4
+.
+.nf
+
+#mount \-t ntfs /dev/sdc1 /mnt/usbhd1
+
+#mount \-t vfat /dev/sdc5 /mnt/usbhd2
+.
+.fi
+.
+.IP "" 0
+.
+.P
+注:对ntfs格式的磁盘分区应使用\fB\-t ntfs\fR参数,对fat32格式的磁盘分区应使用 \fB\-t vfat\fR参数\.若汉字文件名显示为乱码或不显示,可以使用下面的命令格式\.
+.
+.IP "" 4
+.
+.nf
+
+#mount \-t ntfs \-o iocharset=cp936 /dev/sdc1 /mnt/usbhd1
+
+#mount \-t vfat \-o iocharset=cp936 /dev/sdc5 /mnt/usbhd2
+.
+.fi
+.
+.IP "" 0
+.
+.P
+linux系统下使用fdisk分区命令和mkfs文件系统创建命令可以将移动硬盘的分区制 作成linux系统所特有的ext2、ext3格式\.这样,在linux下使用就更方便了\.使用下 面的命令直接挂载即可\.
+.
+.IP "" 4
+.
+.nf
+
+#mount /dev/sdc1 /mnt/usbhd1
+.
+.fi
+.
+.IP "" 0
+.
+.P
+\fB挂载U盘\fR
+.
+.P
+和USB接口的移动硬盘一样对linux系统而言U盘也是当作SCSI设备对待的\.使用方法 和移动硬盘完全一样\.
+.
+.P
+\fB挂载Windows文件共享\fR
+.
+.P
+Windows网络共享的核心是SMB/CIFS,在linux下要挂载windows的磁盘共享,就必须 安装和使用samba软件包\.现在流行的linux发行版绝大多数已经包含了samba软件包 ,如果安装linux系统时未安装samba请首先安装samba\.
+.
+.P
+当windows系统共享设置好以后,就可以在linux客户端挂载了,具体操作如下:
+.
+.IP "" 4
+.
+.nf
+
+# mkdir \-p /mnt/samba/etc/rc\.d/init\.d/portmap start (默认启动)
+
+/etc/rc\.d/init\.d/nfs start 启动NFS服务
+
+/etc/rc\.d/init\.d/nfs stop 停止NFS服务
+.
+.fi
+.
+.IP "" 0
+.
+.P
+注:建立一个目录用来作挂载点(mount point)
+.
+.IP "" 4
+.
+.nf
+
+# mount \-o username=user,password=pass //10\.140\.133\.23/c$ /mnt/samba
+.
+.fi
+.
+.IP "" 0
+.
+.P
+注:user和pass是ip地址为10\.140\.133\.23的Windows计算机的一个用户名和密码, c$
+.
+.P
+如此就可以在linux系统上通过/mnt/samba来访问windows系统磁盘上的文件了\.以 上操作在redhat as server 3、redflag server 4\.1、suse server 9以及windows NT 4\.0、windows 2000、windows xp、windows 2003环境下测试通过\.
+.
+.P
+\fB挂载UNIX系统NFS文件共享\fR
+.
+.P
+类似于Windows的网络共享,UNIX(Linux)系统也有自己的网络共享,那就是NFS(网 络文件系统),下面我们就以SUN Solaris2\.8和REDHAT as server 3 为例简单介绍 一下在linux下如何mount nfs网络共享\.
+.
+.P
+在linux客户端挂载(mount)NFS磁盘共享之前,必须先配置好NFS服务端\.
+.
+.P
+1、Solaris系统NFS服务端配置方法如下:
+.
+.P
+(1)修改 /etc/dfs/dfstab, 增加共享目录
+.
+.IP "" 4
+.
+.nf
+
+share \-F nfs \-o rw /export/home/user
+.
+.fi
+.
+.IP "" 0
+.
+.P
+(2)启动nfs服务
+.
+.IP "" 4
+.
+.nf
+
+# /etc/init\.d/nfs\.server start
+.
+.fi
+.
+.IP "" 0
+.
+.P
+(3)NFS服务启动以后,也可以使用下面的命令增加新的共享
+.
+.IP "" 4
+.
+.nf
+
+# share /export/home/user1
+
+# share /export/home/user2
+.
+.fi
+.
+.IP "" 0
+.
+.P
+注:/export/home/user和/export/home/user1是准备共享的目录
+.
+.P
+2、linux系统NFS服务端配置方法如下:
+.
+.P
+(1)修改 /etc/exports,增加共享目录
+.
+.IP "" 4
+.
+.nf
+
+/export/home/user 10\.140\.133\.23(rw)
+
+/export/home/user1 *(rw)
+
+/export/home/user2 linux\-client(rw)
+.
+.fi
+.
+.IP "" 0
+.
+.P
+注:/export/home/目录下的user、user1、user2是准备共享的目录,10\.140\.133\.23 、*、linux\-client是被允许挂载此共享linux客户机的IP地址或主机名\.如果要 使用主机名linux\-client必须在服务端主机/etc/hosts文件里增加linux\-client 主机ip定义\.格式如下:
+.
+.IP "" 4
+.
+.nf
+
+10\.140\.133\.23 linux\-client
+.
+.fi
+.
+.IP "" 0
+.
+.P
+(2)启动与停止NFS服务
+.
+.IP "" 4
+.
+.nf
+
+/etc/rc\.d/init\.d/portmap start (在REDHAT中PORTMAP是默认启动的)
+
+/etc/rc\.d/init\.d/nfs start 启动NFS服务
+
+/etc/rc\.d/init\.d/nfs stop 停止NFS服务
+.
+.fi
+.
+.IP "" 0
+.
+.P
+注:若修改/etc/export文件增加新的共享,应先停止NFS服务,再启动NFS服务方能使 新增加的共享起作用\.使用命令exportfs \-rv也可以达到同样的效果\.
+.
+.P
+3、linux客户端挂载(mount)其他linux系统或UNIX系统的NFS共享
+.
+.IP "" 4
+.
+.nf
+
+# mkdir \-p /mnt/nfs
+.
+.fi
+.
+.IP "" 0
+.
+.P
+注:建立一个目录用来作挂载点(mount point)
+.
+.IP "" 4
+.
+.nf
+
+#mount \-t nfs \-o rw 10\.140\.133\.9:/export/home/user /mnt/nfs
+.
+.fi
+.
+.IP "" 0
+.
+.P
+注:这里我们假设10\.140\.133\.9是NFS服务端的主机IP地址,当然这里也可以使用主 机名,但必须在本机/etc/hosts文件里增加服务端ip定义\./export/home/user为服 务端共享的目录\.
+.
+.SH "相关命令"
+umount(1)
+.
+.SH "版权"
+本手册由以下文档整理而来
+.
+.P
+\fIhttp://www\.cnblogs\.com/lovemo1314/archive/2011/09/30/2196703\.html\fR
+.
+.P
+\fIhttp://www\.jb51\.net/linux/mount\.htm\fR
