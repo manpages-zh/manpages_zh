@@ -1,0 +1,45 @@
+convmv(1) -- 文件名编码转换
+============================
+
+##总览
+
+`convmv -f 源编码 -t 新编码 [选项] 文件名`
+
+##选项
+
+* `-f`:
+指出当前要被转换的文件的文件名编码
+
+* `-r`:
+递归处理目录文件
+
+* `-t`:
+指定需要被转换的文件的文件名编码
+
+* `--list`:
+列出所有可用的文件名编码
+
+* `--unescap`:
+转义，比如把%20变成空格
+
+* `--nosmart`:
+by default convmv will detect if a filename is already UTF8
+encoded and will skip this file if conversion from some charset
+to UTF8 should be performed.  "--nosmart" will also force
+conversion to UTF-8 for such files, which might result in
+"double encoded UTF-8".
+
+* `--notest`: 
+Needed to actually rename the files. By default convmv will just
+print what it wants to do.
+
+##范例
+
+下面的例子会将所有mp3文档的文件名从GBK转换到UTF-8
+
+	convmv -f GBK -t UTF-8 *.mp3
+
+不过这个命令不会直正的转换，你可以看到转换前后的对比。如果要直正的转换要
+加上参数"--notest"
+
+	convmv -f GBK -t UTF-8 --notest *.mp3

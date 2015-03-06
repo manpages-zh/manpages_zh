@@ -1,0 +1,67 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "CONVMV" "1" "March 2015" "" ""
+.
+.SH "NAME"
+\fBconvmv\fR \- 文件名编码转换
+.
+.SH "总览"
+\fBconvmv \-f 源编码 \-t 新编码 [选项] 文件名\fR
+.
+.SH "选项"
+.
+.TP
+\fB\-f\fR
+指出当前要被转换的文件的文件名编码
+.
+.TP
+\fB\-r\fR
+递归处理目录文件
+.
+.TP
+\fB\-t\fR
+指定需要被转换的文件的文件名编码
+.
+.TP
+\fB\-\-list\fR
+列出所有可用的文件名编码
+.
+.TP
+\fB\-\-unescap\fR
+转义，比如把%20变成空格
+.
+.TP
+\fB\-\-nosmart\fR
+by default convmv will detect if a filename is already UTF8 encoded and will skip this file if conversion from some charset to UTF8 should be performed\. "\-\-nosmart" will also force conversion to UTF\-8 for such files, which might result in "double encoded UTF\-8"\.
+.
+.TP
+\fB\-\-notest\fR
+Needed to actually rename the files\. By default convmv will just print what it wants to do\.
+.
+.SH "范例"
+下面的例子会将所有mp3文档的文件名从GBK转换到UTF\-8
+.
+.IP "" 4
+.
+.nf
+
+convmv \-f GBK \-t UTF\-8 *\.mp3
+.
+.fi
+.
+.IP "" 0
+.
+.P
+不过这个命令不会直正的转换，你可以看到转换前后的对比。如果要直正的转换要 加上参数"\-\-notest"
+.
+.IP "" 4
+.
+.nf
+
+convmv \-f GBK \-t UTF\-8 \-\-notest *\.mp3
+.
+.fi
+.
+.IP "" 0
+
