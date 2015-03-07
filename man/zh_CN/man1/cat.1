@@ -1,0 +1,91 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "CAT" "1" "March 2015" "" ""
+.
+.SH "NAME"
+\fBcat\fR \- 连接文件并输出到标准输出
+.
+.SH "摘要"
+\fBcat [选项]\.\.\. [文件]\.\.\.\fR
+.
+.SH "描述"
+连接文件或标准输入,输出到标准输出\.没有指定文件或当文件是"−"时,读取标准输 入\.
+.
+.SH "选项"
+.
+.TP
+\fB−A, −−show−all\fR
+相当于"−vET"
+.
+.TP
+\fB−b, −−number−nonblank\fR
+空行不输出编号,即便设置了"−n"选项
+.
+.TP
+\fB−e\fR
+相当于"−vE"
+.
+.TP
+\fB−E, −−show−ends\fR
+在每一行结尾显示"$"
+.
+.TP
+\fB−n, −−number\fR
+在所有的行前输出行号
+.
+.TP
+\fB−s, −−squeeze−blank\fR
+忽略重复的多个空行
+.
+.TP
+\fB−t\fR
+相当于"−vT"
+.
+.TP
+\fB−T, −−show−tabs\fR
+显示制表符TAB为"^I"
+.
+.TP
+\fB−v, −−show−nonprinting\fR
+使用"^"和"M−"记号来显示不可显示的字符,除换行符LFD和制表符TAB外
+.
+.TP
+\fB−−help\fR
+显示帮助并退出
+.
+.TP
+\fB−−version\fR
+输出版本信息并退出
+.
+.SH "范例"
+输出文件f的内容,然后是标准输入的内容,再然后是文件g的内容\.
+.
+.IP "" 4
+.
+.nf
+
+cat f − g
+.
+.fi
+.
+.IP "" 0
+.
+.P
+复制标准输入到标准输出\.
+.
+.IP "" 4
+.
+.nf
+
+cat
+.
+.fi
+.
+.IP "" 0
+.
+.SH "参阅"
+tac(1)
+.
+.SH "版权"
+本文档由LCTT项目cat整理而来
