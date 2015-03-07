@@ -7,10 +7,7 @@
 \fBdu\fR \- 报告磁盘空间使用情况
 .
 .SH "描述"
-du报告指定的文件已使用的磁盘空间的总量，包括在层次结构中以这些以指定文件 为根的目录在内。这里的“已使用的磁盘空间”意思为指定的文件下的整个文件层次 结构所使用的空间。
-.
-.P
-在没给定参数的情况下，du报告当前目录所使用的磁盘空间。
+du会显示指定的目录或文件所占用的磁盘空间\.在没给定参数的情况下,du报告当前 目录所使用的磁盘空间\.
 .
 .SH "语法"
 \fBdu [OPTION]\.\.\. [FILE]\.\.\.\fR
@@ -21,76 +18,76 @@ du报告指定的文件已使用的磁盘空间的总量，包括在层次结构
 .SH "参数"
 .
 .TP
-\fB\-a或\-all\fR
-显示目录中个别文件的大小。
+\fB\-a 或 \-all\fR
+显示目录中个别文件的大小\.
 .
 .TP
-\fB\-b或\-bytes\fR
-显示目录或文件大小时，以byte为单位。
+\fB\-b 或 \-bytes\fR
+显示目录或文件大小时,以byte为单位\.
 .
 .TP
-\fB\-c或\-\-total\fR
-除了显示个别目录或文件的大小外，同时也显示所有目录或文件的总和。
+\fB\-c 或 \-\-total\fR
+除了显示个别目录或文件的大小外,同时也显示所有目录或文件的总和\.
 .
 .TP
-\fB\-D或\-\-dereference\-args\fR
-显示指定符号连接的源文件大小。
+\fB\-D 或 \-\-dereference\-args\fR
+显示指定符号连接的源文件大小\.
 .
 .TP
-\fB\-h或\-\-human\-readable\fR
-以K，M，G为单位，提高信息的可读性。
+\fB\-h 或 \-\-human\-readable\fR
+以K,M,G为单位,提高信息的可读性\.
 .
 .TP
-\fB\-H或\-\-si\fR
-与\-h参数相同，但是K，M，G是以1000为换算单位。
+\fB\-H 或 \-\-si\fR
+与\-h参数相同,但是K,M,G是以1000为换算单位\.
 .
 .TP
-\fB\-k或\-\-kilobytes\fR
-以1024 bytes为单位。
+\fB\-k 或 \-\-kilobytes\fR
+以1024 bytes为单位\.
 .
 .TP
-\fB\-l或\-\-count\-links\fR
-重复计算硬件连接的文件。
+\fB\-l 或 \-\-count\-links\fR
+重复计算硬件连接的文件\.
 .
 .TP
-\fB\-L<符号连接>或\-\-dereference<符号连接>\fR
-显示选项中所指定符号连接的源文件大小。
+\fB\-L 或 \-\-dereference\fR
+显示指定符号连接的源文件大小\.
 .
 .TP
-\fB\-m或\-\-megabytes\fR
-以1MB为单位。
+\fB\-m\fR
+以1MB为单位\.
 .
 .TP
-\fB\-s或\-\-summarize\fR
-仅显示总计。
+\fB\-s 或 \-\-summarize\fR
+仅显示总计\.
 .
 .TP
-\fB\-S或\-\-separate\-dirs\fR
-显示个别目录的大小时，并不含其子目录的大小。
+\fB\-S 或 \-\-separate\-dirs\fR
+显示个别目录的大小时,并不含其子目录的大小\.
 .
 .TP
-\fB\-x或\-\-one\-file\-xystem\fR
-以一开始处理时的文件系统为准，若遇上其它不同的文件系统目录则略过 。
+\fB\-x 或 \-\-one\-file\-xystem\fR
+以开始处理时的文件系统为准,若遇上其它不同的文件系统目录则略过\.
 .
 .TP
-\fB\-X<文件>或\-\-exclude\-from=<文件>\fR
-在\fI文件\fR指定目录或文件。
+\fB\-X 或 \-\-exclude\-from=file\fR
+在file指定目录或文件\.
 .
 .TP
-\fB\-\-exclude=<目录或文件>\fR
-略过指定的目录或文件。
+\fB\-\-exclude=file\fR
+略过指定的目录或文件\.
 .
 .TP
-\fB\-\-max\-depth=<目录层数>\fR
-超过指定层数的目录后，予以忽略。
+\fB\-\-max\-depth=N\fR
+超过指定层数的目录后,予以忽略\.
 .
 .TP
 \fB\-\-help\fR
-显示帮助。
+显示帮助\.
 .
 .TP
 \fB\-\-version\fR
-显示版本信息。
+显示版本信息\.
 .
 .SH "版权"
-由\fIhttp://linux\.sheup\.com/linux/4/31055\.html\fR整理而来。
+由\fIhttp://linux\.sheup\.com/linux/4/31055\.html\fR整理而来\.
