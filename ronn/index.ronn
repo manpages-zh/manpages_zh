@@ -1,0 +1,23 @@
+#另一个中文手册计划（AMP计划）
+
+#项目主页
+
+项目在:<https://www.github.com/intetnet/manpages_zh>。
+
+项目主页为:<http://intetnet.github.io>。
+
+在线manpages文件可以在<http://intetnet.github.io/html/list.html>上查看。
+
+#联系我
+
+你可以发送电子邮件到<yanpenn@outlook.com>。
+
+[lctt]: https://github.com/LCTT/man-pages "LCTT/man-pages"
+
+[cmpp]:  https://github.com/lidaobing/manpages-zh "lidaobing/manpages-zh"
+
+[AMP]: http://intetnet.github.io/ "intetnet/intetnet.github.io"
+
+[man]: https://github.com/intetnet/intetnet.github.io
+
+[arch]: https://github.com/archlinuxcn/man-pages

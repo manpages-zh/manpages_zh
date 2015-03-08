@@ -54,11 +54,11 @@
 
   <div class='man-navigation' style='display:none'>
     <a href="#NAME">NAME</a>
-    <a href="#-SYNOPSIS">语法SYNOPSIS</a>
-    <a href="#-DESCRIPTION">描述DESCRIPTION</a>
-    <a href="#-MOUSE-BEHAVIOR">鼠标操作MOUSE BEHAVIOR</a>
-    <a href="#-KEY-BINDINGS">快捷键KEY BINDINGS</a>
-    <a href="#-SEE-ALSO">参考SEE ALSO</a>
+    <a href="#-">语法</a>
+    <a href="#-">描述</a>
+    <a href="#-">鼠标操作</a>
+    <a href="#-">快捷键</a>
+    <a href="#-">参考</a>
     <a href="#AUTHOR">AUTHOR</a>
   </div>
 
@@ -73,40 +73,39 @@
   <code>mupdf</code> - <span class="man-whatis">portable c 编写的轻量级PDF阅读器</span>
 </p>
 
-<h2 id="-SYNOPSIS">语法SYNOPSIS</h2>
+<h2 id="-">语法</h2>
 
-<p>mupdf [选项] PDF文件</p>
+<p><code>mupdf [选项] PDF文件</code></p>
 
-<h2 id="-DESCRIPTION">描述DESCRIPTION</h2>
+<h2 id="-">描述</h2>
 
 <dl>
 <dt class="flush"><code>−p 123</code></dt><dd><p>以用户或所有者身份使用密码123打开加密PDF文件</p></dd>
-<dt class="flush"><code>−r 72</code></dt><dd><p>更改初始分辨率,以 dpi 为单位，默认分辨率为72dpi。</p></dd>
-<dt class="flush"><code>−b 8</code></dt><dd><p>修改默认抗锯齿等级，从0开始为关闭抗锯齿到8为最佳，默认值为8</p></dd>
-<dt><code>−C RRGGBB</code></dt><dd><p>设置整页使用十六进制颜色语法着色，默认值为FFFAF0</p></dd>
+<dt class="flush"><code>−r 72</code></dt><dd><p>更改初始分辨率,以 dpi 为单位,默认分辨率为72dpi.</p></dd>
+<dt class="flush"><code>−b 8</code></dt><dd><p>修改默认抗锯齿等级,从0开始为关闭抗锯齿到8为最佳,默认值为8</p></dd>
+<dt><code>−C RRGGBB</code></dt><dd><p>设置整页使用十六进制颜色语法着色,默认值为FFFAF0</p></dd>
 </dl>
 
 
-<h2 id="-MOUSE-BEHAVIOR">鼠标操作MOUSE BEHAVIOR</h2>
+<h2 id="-">鼠标操作</h2>
 
 <dl>
 <dt class="flush"><code>左键点击</code></dt><dd><p>打开链接</p></dd>
-<dt class="flush"><code>左键拖拽</code></dt><dd><p>移动页面，如果到达底部或顶部则跳转到下一面或上一面。</p></dd>
-<dt class="flush"><code>右键拖拽</code></dt><dd><p>选择该区域的文本，在X11中，选择的文本可以使用鼠标中间键粘帖
-，或者按下CTRL+C复制到剪贴板，在Windows下，选择的区域自动保
-存到剪贴板中。</p></dd>
-<dt class="flush"><code>滚动滚轮</code></dt><dd><p>上下移动页面,但到顶或到底后不跳转页面。</p></dd>
-<dt><code>Shift+滚动滚轮</code></dt><dd><p>左右移动页面。</p></dd>
-<dt><code>Ctrl+滚动滚轮</code></dt><dd><p>放大/缩小显示区域。</p></dd>
+<dt class="flush"><code>左键拖拽</code></dt><dd><p>移动页面,如果到达底部或顶部则跳转到下一面或上一面.</p></dd>
+<dt class="flush"><code>右键拖拽</code></dt><dd><p>选择该区域的文本,在X11中,选择的文本可以使用鼠标中间键粘帖,或者按
+下CTRL+C复制到剪贴板,在Windows下,选择的区域自动保存到剪贴板中.</p></dd>
+<dt class="flush"><code>滚动滚轮</code></dt><dd><p>上下移动页面,但到顶或到底后不跳转页面.</p></dd>
+<dt><code>Shift+滚动滚轮</code></dt><dd><p>左右移动页面.</p></dd>
+<dt><code>Ctrl+滚动滚轮</code></dt><dd><p>放大/缩小显示区域.</p></dd>
 </dl>
 
 
-<h2 id="-KEY-BINDINGS">快捷键KEY BINDINGS</h2>
+<h2 id="-">快捷键</h2>
 
 <dl>
 <dt class="flush"><code>L, R</code></dt><dd><p>顺时针/逆时针旋转页面</p></dd>
 <dt><code>h, j, k, l</code></dt><dd><p>向左,下,上,右移动页面</p></dd>
-<dt class="flush"><code>+, −</code></dt><dd><p>放大，缩小显示区域</p></dd>
+<dt class="flush"><code>+, −</code></dt><dd><p>放大,缩小显示区域</p></dd>
 <dt class="flush"><code>W, H</code></dt><dd><p>使窗口以适合页面的宽度或高度展示</p></dd>
 <dt class="flush"><code>w</code></dt><dd><p>在窗口显示文件一页</p></dd>
 <dt class="flush"><code>r</code></dt><dd><p>刷新文件</p></dd>
@@ -115,13 +114,13 @@
 <dt class="flush"><code>空格键</code></dt><dd><p>向下翻页,但页面位置不变</p></dd>
 <dt class="flush"><code>,</code></dt><dd><p>翻到上页页尾</p></dd>
 <dt class="flush"><code>&lt;, ></code></dt><dd><p>一次回退/前进10页</p></dd>
-<dt class="flush"><code>m</code></dt><dd><p>在该页面作标记，最多可以对256页作标记。</p></dd>
+<dt class="flush"><code>m</code></dt><dd><p>在该页面作标记,最多可以对256页作标记.</p></dd>
 <dt class="flush"><code>t</code></dt><dd><p>回到前一个的标记上</p></dd>
 <dt class="flush"><code>[0-9]m</code></dt><dd><p>保存当前页面到[0-9]寄存器中</p></dd>
 <dt class="flush"><code>[0-9]t</code></dt><dd><p>回到[0-9]寄存器所在的页面</p></dd>
 <dt class="flush"><code>123g</code></dt><dd><p>跳转到123面</p></dd>
 <dt class="flush"><code>g, G</code></dt><dd><p>跳转到第一面/最后一面</p></dd>
-<dt class="flush"><code>/, ?</code></dt><dd><p>向前/后搜索关键词（暂不支持搜索汉字）</p></dd>
+<dt class="flush"><code>/, ?</code></dt><dd><p>向前/后搜索关键词</p></dd>
 <dt class="flush"><code>n, N</code></dt><dd><p>向后/前到下一个搜索结果</p></dd>
 <dt class="flush"><code>f</code></dt><dd><p>全屏模式</p></dd>
 <dt class="flush"><code>p</code></dt><dd><p>演示模式</p></dd>
@@ -132,7 +131,7 @@
 </dl>
 
 
-<h2 id="-SEE-ALSO">参考SEE ALSO</h2>
+<h2 id="-">参考</h2>
 
 <p><span class="man-ref">mudraw<span class="s">(1)</span></span>, <span class="man-ref">mutool<span class="s">(1)</span></span>.</p>
 
@@ -143,7 +142,7 @@
 
   <ol class='man-decor man-foot man foot'>
     <li class='tl'></li>
-    <li class='tc'>February 2015</li>
+    <li class='tc'>March 2015</li>
     <li class='tr'>mupdf(1)</li>
   </ol>
 
