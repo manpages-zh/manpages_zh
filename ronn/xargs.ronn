@@ -3,45 +3,40 @@ xargs(1) -- 从标准输入中读取并执行命令
 
 ##描述
 
-此手册页描述GNU版本的xargs。xargs从标准输入读入参数，参数(可以用双引号，
-单引号或反斜杠转意)用空格或者回车隔开。然后一次或者多次执行命令(默认是
-/bin/echo)，标准输入中的空格被忽略。
+此手册页描述GNU版本的xargs.
+
+xargs是给命令传递参数的一个过滤器,也是组合多个命令的一个工具.它把一个数
+据流分割为一些小块,以方便过滤器和命令一次或者多次进行处理.由此,这个命令
+也是后置引用的一个强有力的替换.通常情况下,xargs从管道或者标准输入读取数
+据,但是它也能够从文件的输出中读取数据. 
+
+xargs的默认命令是echo.这意味着通过管道传递给xargs的输入将会包含换行和空
+白,不过通过xargs的处理,换行和空白将被空格取代.
 
 xargs退出可以有如下状态:
 
-	0 	如果成功
+	  0 	如果成功
 	123 	如果任何一个被调用的命令command退出状态为1-125
 	124 	如果命令command退出状态为255
 	125 	如果命令command被信号终止
 	126 	如果不能执行命令command
 	127 	如果命令command没有找到
-	1 	如果发生其它错误
-
-##格式
-
-xargs  [-0prtx]  [-E  eof-str] [-e[eof-str]] [--eof[=eof-str]] [--null]
-[-d delimiter] [--delimiter delimiter]  [-I  replace-str]  [-i[replace-
-str]]    [--replace[=replace-str]]   [-l[max-lines]]   [-L   max-lines]
-[--max-lines[=max-lines]] [-n max-args] [--max-args=max-args] [-s  max-
-chars]  [--max-chars=max-chars]  [-P max-procs] [--max-procs=max-procs]
-[--interactive]      [--verbose]      [--exit]      [--no-run-if-empty]
-[--arg-file=file]   [--show-limits]   [--version]   [--help]   [command
-[initial-arguments]] 
+	  1 	如果发生其它错误
 
 ##选项OPTIONS
 
 * `--null,-0`:
 输入的文件名以null字符结尾
 
-默认情况下文件名以空格结束，该选项下引号和反斜杠并不特殊处理(所有字符都
-以字面意思解释)。禁止文件尾字符串,当另一个参数处理.当参数含有空格,引号,
-反斜杠时很方便。GNU find的`-print0`选项产生适合这种模式的输出。
+默认情况下文件名以空格结束,该选项下引号和反斜杠并不特殊处理(所有字符都
+以字面意思解释).禁止文件尾字符串,当另一个参数处理.当参数含有空格,引号,
+反斜杠时很方便.GNU find的`-print0`选项产生适合这种模式的输出.
 
 * `--eof[=eof-str],-e[eof-str]`:
-把文件尾字符串设置成eof-str。
+把文件尾字符串设置成eof-str.
 
-如果文件尾字符串出现在输入中的某行，余下的行将被忽略。如果没有`eof-str`,
-就没有文件尾字符串。如果没有这个选项,文件尾字符串默认是"_"。
+如果文件尾字符串出现在输入中的某行,余下的行将被忽略.如果没有`eof-str`,
+就没有文件尾字符串.如果没有这个选项,文件尾字符串默认是"_".
 
 * `--help`:
 显示xargs的选项,然后退出.
