@@ -1,0 +1,60 @@
+stdin(5) -- 标准I/O流
+============================
+
+##格式
+
+	#include <stdio.h>
+
+	extern FILE *stdin; 
+	extern FILE *stdout; 
+	extern FILE *stderr;
+
+##描述
+
+通常,每个Unix程序在启动时都会打开三个流,一个用于输入,称为"standard
+input";一个用于输出,称为"standard output";一个用于打印诊断或错误消息,称
+为"standard error".一般它们被连接到用户的终端(参见tty(4)),但也有可能指
+向文件或是其他设备,这取决于父进程的设置(参见sh(1)Redirection章节).这些
+名词通常简写为符号,用于引用这些文件,它们是stdin, stdout,和stderr.
+
+这些符号中,每一个都是stdio(3)中的一个宏,类型是指向FILE的指针,可以用于类
+似fprintf(3)或fread(3)等函数中.
+
+由于FILE是一个对Unix文件描述符加以缓冲的包装,下层的文件也可以使用原始的
+Unix文件接口来存取.也就是,类似read(2)和lseek(2)的函数.与流stdin,stdout,
+和stderr关联的整数形式的文件描述符分别是0,1,2.预处理器符号"STDIN\_FILENO"
+,"STDOUT\_FILENO"和"STDERR\_FILENO"分别以它们为值,定义在<unistd.h>中.
+
+注意混合使用FILE和原始的文件描述符可能带来不可预料的结果,一般应当避免.一
+个简单的规则是,文件描述符由内核控制,而stdio仅仅是一个库.它的意思是,例如
+当调用exec之后,子进程可以继承所有打开的文件描述符,但是任何原有的流都不可
+再存取了.
+
+由于符号stdin,stdout,和stderr被指定为宏,为它们赋值将导致不可移植.利用库
+函数freopen(3),标准流可以用来指向不同的文件.引进这个函数专门用来为stdin
+,stdout,和stderr重新赋值.标准流在调用exit(3)和程序正常中止时被关闭.
+
+错误流stderr是非缓冲的.输出流stdout是行缓冲的,如果它指向一个终端.不完全
+的行只有在调用fflush(3)或exit(3),或者打印了新行符之后才会显示.这样可能带
+来无法预料的结果,尤其是调试输出时.标准流的缓冲模式可以用函数setbuf(3)或
+setvbuf(3)来切换.注意当stdin与一个终端关联时,也许终端驱动中存在输入缓冲,
+与stdio缓冲完全无关.(确实如此,一般的终端输入在内核中是行缓冲的.)内核对输
+入的控制可以通过对tcsetattr(3)的调用来修改,参见stty(1),termios(3).
+
+##范例
+
+禁止标准输出和标准错误的输出.
+
+   cat $filename 2>/dev/null >/dev/null
+
+   # 如果"$filename"不存在，将不会有任何错误信息提示.
+
+   # 如果"$filename"存在, 文件的内容不会打印到标准输出.
+
+##参见
+
+sh(1),csh(1),open(2),fopen(3),stdio(3)
+
+##版权
+
+整理自CMPP项目stdin(3).
