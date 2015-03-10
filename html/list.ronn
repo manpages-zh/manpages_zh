@@ -75,6 +75,8 @@
 
 ##man5
 
+[vmstat](./vmstat.5.html) -− 报告虚拟内存的统计信息
+
 [fonts.conf](./fonts.conf.5.html) -- 字体配置文件
 
 [stdin,stdout,stderr](./stdin.5.html) -- 标准I/O流

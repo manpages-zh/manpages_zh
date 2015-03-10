@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>vmstat(8) - − 报告虚拟内存的统计信息</title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
+  </style>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
+
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
+
+  <div class='man-navigation' style='display:none'>
+    <a href="#NAME">NAME</a>
+    <a href="#-">总览</a>
+    <a href="#-">描述</a>
+    <a href="#-">选项</a>
+    <a href="#-">输出信息</a>
+    <a href="#-">注意</a>
+    <a href="#-">范例</a>
+    <a href="#-">文件</a>
+    <a href="#-">参见</a>
+  </div>
+
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>vmstat(8)</li>
+    <li class='tc'></li>
+    <li class='tr'>vmstat(8)</li>
+  </ol>
+
+  <h2 id="NAME">NAME</h2>
+<p class="man-name">
+  <code>vmstat</code> - <span class="man-whatis">− 报告虚拟内存的统计信息</span>
+</p>
+
+<h2 id="-">总览</h2>
+
+<p><code>vmstat [options] [延时 [次数]]</code></p>
+
+<h2 id="-">描述</h2>
+
+<p>vmstat对系统的进程情况、内存使用情况、交换页和I/O块使用情况、中断以及CPU
+使用情况进行统计并报告相应的信息.</p>
+
+<p>vmstat输出的第一个显示内容指出了计算机自上次重启至今的平均使用情况.后面
+的每一行信息是按延时定期地显示系统的各部分信息.进程信息和内存信息都是即
+时产生的.</p>
+
+<h2 id="-">选项</h2>
+
+<dl>
+<dt class="flush"><code>-V</code></dt><dd><p>显示版本</p></dd>
+<dt class="flush"><code>-n</code></dt><dd><p>只在开始时显示一次各字段名称</p></dd>
+<dt class="flush"><code>-a</code></dt><dd><p>显示活跃和非活跃内存</p></dd>
+<dt class="flush"><code>-d</code></dt><dd><p>显示磁盘相关统计信息</p></dd>
+<dt class="flush"><code>-D</code></dt><dd><p>以表格的形式显示磁盘信息</p></dd>
+<dt class="flush"><code>-p</code></dt><dd><p>显示指定磁盘分区相关信息</p></dd>
+<dt class="flush"><code>-s</code></dt><dd><p>显示内存相关统计信息及多种活动数量</p></dd>
+<dt class="flush"><code>-m</code></dt><dd><p>显示slabinfo</p></dd>
+<dt class="flush"><code>-t</code></dt><dd><p>显示统计信息的同时打印出时间,该参数和上面的参数同时使用</p></dd>
+<dt class="flush"><code>-S</code></dt><dd><p>指定单位显示,如,k,K,m,M</p></dd>
+<dt class="flush"><code>-n</code></dt><dd><p>令第一次的信息只显示一次而不是周期地产生.</p></dd>
+</dl>
+
+
+<p>延时是以秒为单位的刷新时间间隔.如果没有给出此延时时间,则仅显示系统启动至
+今的平均值.</p>
+
+<p>次数指的是更新的次数.如果没有指定此数而又定义了延时时间,则次数的默认值是
+无穷次.</p>
+
+<h2 id="-">输出信息</h2>
+
+<p><strong>Procs</strong></p>
+
+<p>procs有r列和b列.r列代表等待访问CPU进程的数量.而b列意味着睡眠进程的数量.
+在这些列的下面,是它们的值.</p>
+
+<pre><code>Procs
+r:等待运行的进程数
+b:处在非中断睡眠状态的进程数
+w:被交换出去的可运行的进程数.
+</code></pre>
+
+<p><strong>Memory</strong></p>
+
+<p>memory有swpd,free,buff和cache列等.这些信息和命令"free -m"相同.swpd列显
+示了有多少内存已经被交换到了交换文件或者磁盘.free列显示了未分配的可用内
+存.buff列显示了使用中的内存.cache列显示了有多少内存可以被交换到交换文件
+或者磁盘上如果一些应用需要他们.</p>
+
+<pre><code>Memory
+swpd:虚拟内存使用情况,单位：KB
+free:空闲的内存,单位KB
+buff:被用来做为缓存的内存数,单位：KB
+cache: the amount of memory used as cache.
+inact: the amount of inactive memory.  (-a option)
+active: the amount of active memory.  (-a option)
+</code></pre>
+
+<p><strong>Swap</strong></p>
+
+<p>swap显示了从交换系统上发送或取回了多少内存.si列告诉我们每秒有多少内存被
+从swap移到真实内存中(In).so列告诉我们每秒有多少内存被从真实内存移到swap
+中(Out).</p>
+
+<pre><code>Swap
+si:从磁盘交换到内存的交换页数量,单位：KB/秒
+so:从内存交换到磁盘的交换页数量,单位：KB/秒
+</code></pre>
+
+<p><strong>I/O</strong></p>
+
+<p>io依据块的读写显示了每秒输入输出的活动.bi列告诉我们收到的块数量,bo列告诉
+我们发送的块数量.</p>
+
+<pre><code>IO
+bi:发送到块设备的块数,单位：块/秒
+bo:从块设备接收到的块数,单位：块/秒
+</code></pre>
+
+<p><strong>System</strong></p>
+
+<p>system显示了每秒的系统操作数量.in列显示了系统每秒被中断的数量.cs列显示
+了系统为了处理所以任务而上下文切换的数量.</p>
+
+<pre><code>System
+in:每秒的中断数,包括时钟中断
+cs:每秒的环境(上下文)切换次数
+</code></pre>
+
+<p><strong>CPU</strong></p>
+
+<p>CPU告诉了我们CPU资源的使用情况.us列显示了处理器在非内核程序消耗的时间.sy
+列显示了处理器在内核相关任务上消耗的时间.id列显示了处理器的空闲时间.wa列
+显示了处理器在等待IO操作完成以继续处理任务上的时间.</p>
+
+<pre><code>CPU
+按CPU的总使用百分比来显示
+us:CPU使用时间
+sy:CPU系统使用时间
+id:闲置时间
+</code></pre>
+
+<h2 id="-">注意</h2>
+
+<p>运行vmstat不须要特别的使用权限.</p>
+
+<p>这些系统信息是用来向用户提供分析系统瓶颈问题信息的.linux在计算进程情况时
+不将正在运行的vmstat自己计算进去.</p>
+
+<p>当前所在的linux块的大小都是1K,而CD-ROM文件系统的块大小为2K.</p>
+
+<h2 id="-">范例</h2>
+
+<p>5秒时间内进行5次采样</p>
+
+<pre><code>vmstat 5 5
+</code></pre>
+
+<h2 id="-">文件</h2>
+
+<p>/proc/meninfo, /proc/stat, /proc/*/stat</p>
+
+<h2 id="-">参见</h2>
+
+<p><span class="man-ref">ps<span class="s">(1)</span></span>, <span class="man-ref">top<span class="s">(1)</span></span>, <span class="man-ref">free<span class="s">(1)</span></span></p>
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'></li>
+    <li class='tc'>March 2015</li>
+    <li class='tr'>vmstat(8)</li>
+  </ol>
+
+  </div>
+</body>
+</html>
