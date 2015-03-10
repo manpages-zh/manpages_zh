@@ -3,9 +3,11 @@
 
 ##man1
 
+[free](./free.1.html) -− 显示系统中已用和未用的内存空间总和
+
 [dd](./dd.1.html) -− 转换并复制一个文件
 
-[ps](./ps.1.html) --  显示某个时间点的进程状态 
+[ps](./ps.1.html) -- 显示某个时间点的进程状态 
 
 [less](./less.1.html) -- opposite to more
 

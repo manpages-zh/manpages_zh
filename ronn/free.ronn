@@ -1,0 +1,68 @@
+free(1) -− 显示系统中已用和未用的内存空间总和
+==============================================
+
+##总览
+
+`free [−b | −k | −m] [−o] [−s delay] [−t] [−V]`
+
+##描述
+
+free是一个用来获得内存使用概况的快速简单的方法,信息从"/proc/meminfo"中
+获取.它提供了一个快照,用于展示总计/闲置的物理内存和系统交换区,以及已使
+用/闲置的内核缓冲区.free输出的列表如下:
+
+	total:物理内存总量(= used + free, =MemTotal + SwapTotal)
+	used:已分配的内存(= total - free - buffers - cache)
+	free:未被分配的内存(= MemFree + SwapFree) 
+	shared:共享内存,主要被tmpfs使用(= Shmem)
+	buffers:块设备缓存区(= Buffers)
+	cached:文件缓存(= Cached + Slab)
+	available:可用于启动新程序的内存总量,不包括swap
+
+##选项
+
+* `-b, --bytes`:
+以字节为单位显示内存总和,"`-k, --kilo`"以KB为单位显示,"`-m, --mega`"
+以MB为单位显示,"`-g, --giga`"选项以GB为单位显示,"`--tera`"选项以TB为
+单位显示.默认为KB.
+
+* `-h, --human`:
+以适于人类可读方式显示内存信息
+
+* `-t, --total`:
+显示全部内存
+
+* `-s, --seconds N`:
+使free以N秒为间隔,连续抽样显示.N可以设置成浮点数,它用usleep(3)做
+微秒级延迟.
+
+* `-c, --count N`:
+Display the result count times. Requires the -s option.
+
+* `-w, --wide`:
+Switch to the wide mode. The wide mode produces lines longer
+than 80 characters. In this mode buffers and cache are reported
+in two separate columns. 
+
+* `-l, --lohi`:
+显示高低内存利用率
+
+* `--si`:
+Use power of 1000 not 1024.
+
+* `−V`:
+显示版本信息
+
+##范例
+
+每3秒统计一次内存利用率人类可读，并且一共显示两次
+
+	$ free -hs 3 -c 2
+
+##文件
+
+/proc/meminfo -- 内存信息
+
+##参考
+
+ps(1), top(1)
