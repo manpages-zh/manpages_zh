@@ -3,6 +3,8 @@
 
 ##man1
 
+[dd](./dd.1.html) -− 转换并复制一个文件
+
 [ps](./ps.1.html) --  显示某个时间点的进程状态 
 
 [less](./less.1.html) -- opposite to more
@@ -72,6 +74,8 @@
 ##man5
 
 [fonts.conf](./fonts.conf.5.html) -- 字体配置文件
+
+[stdin,stdout,stderr](./stdin.5.html) -- 标准I/O流
 
 ##man7
 

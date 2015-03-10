@@ -1,0 +1,242 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "DD" "1" "March 2015" "" ""
+.
+.SH "NAME"
+\fBdd\fR \- − 转换并复制一个文件
+.
+.SH "摘要"
+\fBdd 选项\.\.\.\fR
+.
+.SH "描述"
+用指定大小的块拷贝一个文件,并在拷贝的同时进行指定的转换\.
+.
+.P
+当进行强制的转换的时候,使用指定的输入和输出块大小拷贝文件(默认是从标准输 入到标准输出,默认块大小是512字节)\."bs=bytes"选项可以改变一次读取和输出的 块大小,dd把全部读到的数据(可以比请求读的少)写到输出块去\.此时输入每次读一 个块,然后处理,并将输出结果收集起来,最后写到指定大小的数据块中去\.最终的输 出块可能会比指定的大小短一些\.
+.
+.P
+当指定sync,noerror,或notrunc进行非强制的转换的时候,输出块的长度和读到的 数据完全一样,使用sync会在数据结尾处将追加NUL字符(或空格)\.
+.
+.SH "选项"
+.
+.TP
+\fBbs=BYTES\fR
+每次读/写指定的BYTES
+.
+.TP
+\fBcbs=BYTES\fR
+每次转换的BYTES
+.
+.TP
+\fBconv=转换方式\fR
+转换方式,用逗号分隔
+.
+.TP
+\fBcount=N\fR
+只复制指定块数的输入数据
+.
+.TP
+\fBibs=BYTES\fR
+每次读取的BYTES(默认:512字节)
+.
+.TP
+\fBif=文件\fR
+读取文件而不是读取标准输入
+.
+.TP
+\fBiflag=读写标志\fR
+按照逗号分隔的读写标志列表进行读取
+.
+.TP
+\fBobs=BYTES\fR
+每次写入的BYTES(默认:512字节)
+.
+.TP
+\fBof=文件\fR
+写到文件而不是写入到标准输出
+.
+.TP
+\fBoflag=读写标志\fR
+按照逗号分隔的读写标志列表进行写入
+.
+.TP
+\fBseek=N\fR
+输出时跳过指定数量的前几块数据(每块大小由obs指定)
+.
+.TP
+\fBskip=N\fR
+输入时,跳过指定数量的前几块数据(每块大小由ibs指定)
+.
+.TP
+\fBstatus=屏蔽信息\fR
+屏蔽哪种stderr的输出；’noxfer’屏蔽传输统计数据,’none’则全部屏蔽
+.
+.TP
+\fB−−help\fR
+显示帮助并退出
+.
+.TP
+\fB−−version\fR
+输出版本信息并退出
+.
+.P
+数量和字节数可以使用下列的多个后缀:c=1,w=2,b=512,kB=1000,K=1024, MB=1000*1000,M=1024*1024,xM=M,GB=1000*1000*1000,G=1024*1024*1024,以及更 多的T,P,E,Z,Y等\.(译注:除了“b”以外,其它后缀大小写均可；“B”表示1000的倍率, 而没有该后缀则表示1024的倍率\.“x”用于表示相乘,所以不能用0x这种16进制表示; “x”可以用于多个数字或后缀相乘,如2x4x1000,2xKxMB等)
+.
+.SH "转换方式"
+.
+.TP
+\fBascii\fR
+从EBCDIC转换为ASCII
+.
+.TP
+\fBebcdic\fR
+从ASCII转换为EBCDIC
+.
+.TP
+\fBibm\fR
+从ASCII转换到另一种EBCDIC
+.
+.TP
+\fBblock\fR
+用空格填充满不足指定的转换字节数的行(以换行符作为一行的结束)
+.
+.TP
+\fBunblock\fR
+替换指定转换字节数的行的尾部填充的空格为换行符
+.
+.TP
+\fBlcase\fR
+将大写转换为小写
+.
+.TP
+\fBucase\fR
+将小写转换为大写
+.
+.TP
+\fBsparse\fR
+试着搜索而不是将NUL输入块输出
+.
+.TP
+\fBswab\fR
+交换每对输入字节
+.
+.TP
+\fBsync\fR
+按照输入字节数使用NUL填充输入块；当配合block和unblock使用时,使用 空格填充
+.
+.TP
+\fBexcl\fR
+如果输出文件已经存在时放弃
+.
+.TP
+\fBnocreat\fR
+不创建输出文件
+.
+.TP
+\fBnotrunc\fR
+不截断输出文件
+.
+.TP
+\fBnoerror\fR
+当读取错误时继续进行
+.
+.TP
+\fBfdatasync\fR
+在结束前真实的写入输出文件的数据
+.
+.TP
+\fBfsync\fR
+类似上面的选项,但是不写入元数据
+.
+.SH "读写标志"
+.
+.TP
+\fBappend\fR
+附加模式(注意仅用于输出；建议配合conv=notrunc使用)
+.
+.TP
+\fBdirect\fR
+直接读写文件(译注:不借助缓存机制,直接物理操作磁盘数据)
+.
+.TP
+\fBdirectory\fR
+除非是一个目录,否则放弃
+.
+.TP
+\fBdsync\fR
+使用同步方式读写数据
+.
+.TP
+\fBsync\fR
+同上,但是也包括元数据
+.
+.TP
+\fBfullblock\fR
+累积全部的输入数据后处理(仅用于iflag)
+.
+.TP
+\fBnonblock\fR
+使用非阻塞IO
+.
+.TP
+\fBnoatime\fR
+不更新访问时间
+.
+.TP
+\fBnocache\fR
+丢弃缓存的数据
+.
+.TP
+\fBnoctty\fR
+不指定文件的控制终端
+.
+.TP
+\fBnofollow\fR
+不解析符号链接
+.
+.TP
+\fBcount_bytes\fR
+用’count=数量’指定输入字节数(仅用于iflag)
+.
+.TP
+\fBskip_bytes\fR
+用’skip=数量’指定跳过的输入字节数(仅用于iflag)
+.
+.TP
+\fBseek_bytes\fR
+用’seek=数量’指定跳过的输出字节数(仅用于oflag)
+.
+.SH "范例"
+发送USR1信号到一个正在运行的’dd’进程,可以在标准错误输出上显示读写的统计 数据,并继续复制操作。
+.
+.IP "" 4
+.
+.nf
+
+$ dd if=/dev/zero of=/dev/null& pid=$!
+$ kill −USR1 $pid; sleep 1; kill $pid
+
+18335302+0 records in
+18335302+0 records out
+9387674624 bytes (9\.4 GB) copied, 34\.6279 seconds, 271 MB/s
+.
+.fi
+.
+.IP "" 0
+.
+.SH "请 参 阅"
+本程序的完整文档使用Texinfo手册进行维护\.如果info和本程序已经正确地安装 在了你的电脑上,通过下述命令
+.
+.IP "" 4
+.
+.nf
+
+info coreutils \'dd invocation\'
+.
+.fi
+.
+.IP "" 0
+.
+.P
+可以访问完整的使用手册\.
