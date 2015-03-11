@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>whereis(1) - 定位可执行文件,源代码,帮助文件的位置</title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
+  </style>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
+
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
+
+  <div class='man-navigation' style='display:none'>
+    <a href="#NAME">NAME</a>
+    <a href="#-">综述</a>
+    <a href="#-">描述</a>
+    <a href="#-">选项</a>
+  </div>
+
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>whereis(1)</li>
+    <li class='tc'></li>
+    <li class='tr'>whereis(1)</li>
+  </ol>
+
+  <h2 id="NAME">NAME</h2>
+<p class="man-name">
+  <code>whereis</code> - <span class="man-whatis">定位可执行文件,源代码,帮助文件的位置</span>
+</p>
+
+<h2 id="-">综述</h2>
+
+<p><code>whereis [-bfmsu] [-BMS 目录...][文件...]</code></p>
+
+<h2 id="-">描述</h2>
+
+<p>whereis指令会在特定目录中查找符合条件的文件,这些文件应属于原始代码,二进
+制文件,或是帮助文件,whereis then attempts to locate the desired program
+in the standard Linux places, and in the places specified by $PATH and
+$MANPATH.</p>
+
+<h2 id="-">选项</h2>
+
+<dl>
+<dt class="flush"><code>-b</code></dt><dd><p>只查找二进制文件.</p></dd>
+<dt class="flush"><code>-B 目录</code></dt><dd><p>只在设置的目录下查找二进制文件.</p></dd>
+<dt class="flush"><code>-f</code></dt><dd><p>不显示文件名前的路径名称.</p></dd>
+<dt class="flush"><code>-m</code></dt><dd><p>只查找说明文件.</p></dd>
+<dt class="flush"><code>-M 目录</code></dt><dd><p>只在设置的目录下查找说明文件.</p></dd>
+<dt class="flush"><code>-s</code></dt><dd><p>只查找原始代码文件.</p></dd>
+<dt class="flush"><code>-S 目录</code></dt><dd><p>只在设置的目录下查找原始代码文件.</p></dd>
+<dt class="flush"><code>-u</code></dt><dd><p>查找不包含指定类型的文件.</p></dd>
+</dl>
+
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'></li>
+    <li class='tc'>March 2015</li>
+    <li class='tr'>whereis(1)</li>
+  </ol>
+
+  </div>
+</body>
+</html>

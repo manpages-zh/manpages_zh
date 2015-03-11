@@ -1,0 +1,64 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "WHICH" "1" "March 2015" "" ""
+.
+.SH "NAME"
+\fBwhich\fR \- 显示shell命令的完整路径
+.
+.SH "综述"
+\fBwhich [options] [−−] programname\.\.\.\fR
+.
+.SH "描述"
+which命令的作用是在当前用户环境变量PATH指定的路径中搜索一个或多个系统命 令的位置并为每个命令返回第一个搜索结果\.
+.
+.SH "选项"
+.
+.TP
+\fB\-\-all, \-a\fR
+打印所有匹配该命令的路径\.
+.
+.TP
+\fB\-\-read\-alias, \-i\fR
+Read aliases from stdin, reporting matching ones on stdout\.
+.
+.TP
+\fB\-\-skip\-alias\fR
+Ignore option \fB\-\-read\-alias´, if any\. This is useful to explicity search for normal binaries, while using the\fR\-\-read\-alias´ option in an alias or function for which\.
+.
+.TP
+\fB\-\-read\-functions\fR
+Read shell function definitions from stdin, reporting matching ones on stdout\.
+.
+.TP
+\fB\-\-skip\-functions\fR
+Ignore option `\-\-read\-functions´, if any\.
+.
+.TP
+\fB\-\-skip\-dot\fR
+Skip directories in PATH that start with a dot\.
+.
+.TP
+\fB\-\-skip\-tilde\fR
+Skip directories in PATH that start with a tilde and executables which reside in the HOME directory\.
+.
+.TP
+\fB\-\-show\-dot\fR
+If a directory in PATH starts with a dot and a matching executable was found for that path, then print "\./programname" rather than the full path\.
+.
+.TP
+\fB\-\-show\-tilde\fR
+Output a tilde when a directory matches the HOME directory\. This option is ignored when which is invoked as root\.
+.
+.TP
+\fB\-\-tty\-only\fR
+Stop processing options on the right if not on tty\.
+.
+.TP
+\fB\-\-version,\-v,\-V\fR
+Print version information on standard output then exit successfully\.
+.
+.TP
+\fB\-\-help\fR
+Print usage information on standard output then exit successfully\.
+
