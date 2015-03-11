@@ -1,0 +1,86 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "W" "1" "March 2015" "" ""
+.
+.SH "NAME"
+\fBw\fR \- − 显示已经登录的用户以及他们在做什么
+.
+.SH "总览"
+\fBw [options] user [\.\.\.]\fR
+.
+.SH "描述"
+w显示系统中当前用户的信息,以及他们的进程\.第一行中依次显示当前时间,系统的 持续运行时间,登录的用户数,和最近1,5,15分钟的系统平均负载\.
+.
+.P
+接下来的条目显示每位用户的:登录名,tty名,远程主机,登录时间,空闲时间,JCPU ,PCPU,以及他们当前进程的命令行\.
+.
+.P
+JCPU时间指某个tty上所有进程用掉的时间,不包括过去的后台任务,但是包括正在 运行的后台任务\.
+.
+.P
+PCPU时间指当前进程用掉的时间,可以在"what"域看到当前进程\.
+.
+.SH "选项"
+.
+.TP
+\fB−h, \-\-no\-header\fR
+不显示首行\.
+.
+.TP
+\fB−u, \-\-no\-current\fR
+确定当前进程和CPU时间的时候忽略用户名\.要展示这个效果,执行"su",然 后执行"w"和"w\-u"\.
+.
+.TP
+\fB−s, \-\-short\fR
+使用简短格式\.不显示登录时间,JCPU或PCPU时间\.
+.
+.TP
+\fB−f, \-\-from\fR
+切换显示from(远程主机)域\.缺省的发行方式是不显示from域,但是系统管 理员或者发行包维护者有可能编译了一个缺省行为是显示from域的版本\.
+.
+.TP
+\fB\-\-help\fR
+Display help text and exit\.
+.
+.TP
+\fB\-i, \-\-ip\-addr\fR
+Display IP address instead of hostname for from field\.
+.
+.TP
+\fB\-V, \-\-version\fR
+Display version information\.
+.
+.TP
+\fB\-o, \-\-old\-style\fR
+Old style output\. Prints blank space for idle times less than one minute\.
+.
+.TP
+\fBuser\fR
+仅显示指定用户的信息\.
+.
+.SH "环境变量"
+.
+.nf
+
+PROCPS_USERLEN
+Override the default width of the username column\. Defaults to 8\.
+
+PROCPS_FROMLEN
+Override the default width of the from column\. Defaults to 16\.
+.
+.fi
+.
+.SH "文件"
+.
+.nf
+
+/var/run/utmp
+    已登录用户的信息
+/proc
+    进程信息
+.
+.fi
+.
+.SH "参见"
+free(1), ps(1), top(1), uptime(1), utmp(5), who(1)
