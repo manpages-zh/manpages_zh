@@ -54,8 +54,8 @@
 
   <div class='man-navigation' style='display:none'>
     <a href="#NAME">NAME</a>
-    <a href="#-DESCRIPTION">描述DESCRIPTION</a>
-    <a href="#-SYNOPSIS">格式SYNOPSIS</a>
+    <a href="#-">描述</a>
+    <a href="#-">格式</a>
     <a href="#-">选项</a>
     <a href="#-">实例</a>
     <a href="#-">说明</a>
@@ -73,13 +73,13 @@
   <code>grep</code> - <span class="man-whatis">打印匹配行</span>
 </p>
 
-<h2 id="-DESCRIPTION">描述DESCRIPTION</h2>
+<h2 id="-">描述</h2>
 
 <p>grep命令是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的
 行打印出来。grep全称是<code>Global Regular Expression Print</code>，表示全局正则表达
 式版本，它的使用权限是所有用户。</p>
 
-<h2 id="-SYNOPSIS">格式SYNOPSIS</h2>
+<h2 id="-">格式</h2>
 
 <p><code>grep [OPTIONS] PATTERN [FILE...]</code></p>
 
@@ -100,9 +100,9 @@
 <dt class="flush"><code>-l</code></dt><dd><p>只列出匹配的文件名</p></dd>
 <dt class="flush"><code>-L</code></dt><dd><p>列出不匹配的文件名</p></dd>
 <dt class="flush"><code>-w</code></dt><dd><p>只匹配整个单词，而不是字符串的一部分</p></dd>
-<dt><code>-A 数字</code> 或 <code>--after-context=数字</code></dt><dd><p>除了列出符合行之外，并且列出后[数字]行</p></dd>
-<dt><code>-B 数字</code> 或 <code>--before-context=数字</code></dt><dd><p>除了列出符合行之外，并且列出前[数字]行</p></dd>
-<dt><code>-C 数字</code> 或 <code>--context[=数字]</code></dt><dd><p>列出符合行之外并列出上下各[数字]行，默认值是两行</p></dd>
+<dt><code>-A N</code> 或 <code>--after-context=N</code></dt><dd><p>除了列出符合行之外，并且列出后N行</p></dd>
+<dt><code>-B N</code> 或 <code>--before-context=N</code></dt><dd><p>除了列出符合行之外，并且列出前N行</p></dd>
+<dt><code>-C N</code> 或 <code>--context[=N]</code></dt><dd><p>列出符合行之外并列出上下各N行，默认值是两行</p></dd>
 </dl>
 
 
@@ -195,7 +195,7 @@ x|y     匹配 x 或 y
 
   <ol class='man-decor man-foot man foot'>
     <li class='tl'></li>
-    <li class='tc'>February 2015</li>
+    <li class='tc'>March 2015</li>
     <li class='tr'>grep(1)</li>
   </ol>
 
