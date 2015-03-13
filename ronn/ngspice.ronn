@@ -1,0 +1,122 @@
+ngspice(1) -- 基于SPICE3f5的电路仿真程序
+===========================================================
+
+##综述
+
+`ngspice [options] [file ...]`
+
+##描述
+
+本手册页是只是一个小的概述,NGSPICE User's Manual以pdf格式文件发布.
+
+##选项
+
+* `−n, −−no−spiceinit`:
+Don’t try to source the file ".spiceinit" upon startup. Normally
+NGSPICE tries to find the file in the current directory, and if
+it is not found then in the user’s home directory.
+
+* `−q, −−completion`:
+开启命令补全
+
+* `−t term, −−term=term`:
+The program is being run on a terminal with mfb name term.
+
+* `−b, −−batch`:
+在批处理模式下运行,在此模式下,NGSPICE从标准输入或文件中读取命令,
+然后运行仿真,注意如果标准输入不是终端,除非指定"-i"选项,否则将默
+认在此模式下运行.
+
+* `−s, −−server`:
+Run in server mode. This is like batch mode, except that a
+temporary rawfile is used and then written to the standard
+output, preceded by a line with a single "@", after the
+simulation is done. This mode is used by the ngspice daemon.
+
+* `−i, −−interactive`:
+在交互模式下运行,注意除非运行在终端,否则命令补全是不可用的.
+
+* `−r rawfile, −−rawfile=file`:
+将仿真输出保存在文件rawfile中.
+
+* `−c circuitfile, −−circuitfile=circuitfile`:
+Use circuitfile as the default input deck.
+
+* `−h, −−help`:
+显示本程序可用的参数
+
+* `−v, −−version`:
+显示本程序的版本和版权信息.
+
+* `−a, −−autorun`:
+FIXME
+
+* `−o outfile, −−output=outfile`:
+把批处理模式下生成的日志保存在outfile中.
+
+* `−p, −−pipe`:
+允许其他程序(比如xcircuit)通过管道作为ngspice的图形界面前端,此时
+ngspice假定管道是一个虚拟控制台(tty),并运行于交互模式下.
+
+Further arguments are taken to be SPICE input decks, which are read and
+saved. (If batch mode is requested then they are run immediately.)
+
+##环境变量
+
+	SPICE_LIB_DIR 
+	SPICE_EXEC_DIR 
+	SPICE_HOST 
+	SPICE_BUGADDR 
+	SPICE_EDITOR 
+	SPICE_ASCIIRAWFILE 
+			default 0
+			Format of the rawfile. 0 for binary, and 1 for ascii.
+	SPICE_NEWS 
+			default $SPICE_LIB_DIR/news
+			A file which is copied verbatim to stdout when ngspice starts in
+			interactive mode.
+	SPICE_MFBCAP 
+			default $SPICE_LIB_DIR/mfbcap 
+	SPICE_HELP_DIR 
+			default $SPICE_LIB_DIR/helpdir 
+	SPICE_SCRIPTS 
+			default $SPICE_LIB_DIR/scripts
+			In this directory the spinit file will be searched.
+	SPICE_PATH 
+			default $SPICE_EXEC_DIR/ngspice
+
+	various undocumented ngspice centric environment variables : 
+
+	NGSPICE_MEAS_PRECISION 
+	SPICE_NO_DATASEG_CHECK
+
+	Common environment variables : 
+
+	TERM LINES COLS DISPLAY HOME PATH EDITOR SHELL 
+	POSIXLY_CORRECT
+
+##文件
+
+* `$SPICE_LIB_DIR/scripts/spinit`:
+系统的初始化文件
+
+* `.spiceinit, $HOME/.spiceinit`:
+用户的初始化文件
+
+##参见
+
+sconvert(1), ngnutmeg(1), mfb(3), writedata(3), and 
+NGSPICE User’s Manual at http://ngspice.sourceforge.net/docs.html
+
+##BUGS
+
+Please report bugs to the ngspice project via 
+http://ngspice.sourceforge.net/bugrep.html
+
+##AUTHORS
+
+spice3: Tom Quarles (quarles@cad.berkeley.edu) 
+
+nutmeg: User interface: Wayne Christopher (faustus@cad.berkeley.edu) 
+
+ngspice: various authors (see http://sourceforge.net/projects/ngspice/)

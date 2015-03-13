@@ -1,0 +1,133 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "NGSPICE" "1" "March 2015" "" ""
+.
+.SH "NAME"
+\fBngspice\fR \- 基于SPICE3f5的电路仿真程序
+.
+.SH "综述"
+\fBngspice [options] [file \.\.\.]\fR
+.
+.SH "描述"
+本手册页是只是一个小的概述,NGSPICE User\'s Manual以pdf格式文件发布\.
+.
+.SH "选项"
+.
+.TP
+\fB−n, −−no−spiceinit\fR
+Don’t try to source the file "\.spiceinit" upon startup\. Normally NGSPICE tries to find the file in the current directory, and if it is not found then in the user’s home directory\.
+.
+.TP
+\fB−q, −−completion\fR
+开启命令补全
+.
+.TP
+\fB−t term, −−term=term\fR
+The program is being run on a terminal with mfb name term\.
+.
+.TP
+\fB−b, −−batch\fR
+在批处理模式下运行,在此模式下,NGSPICE从标准输入或文件中读取命令, 然后运行仿真,注意如果标准输入不是终端,除非指定"\-i"选项,否则将默 认在此模式下运行\.
+.
+.TP
+\fB−s, −−server\fR
+Run in server mode\. This is like batch mode, except that a temporary rawfile is used and then written to the standard output, preceded by a line with a single "@", after the simulation is done\. This mode is used by the ngspice daemon\.
+.
+.TP
+\fB−i, −−interactive\fR
+在交互模式下运行,注意除非运行在终端,否则命令补全是不可用的\.
+.
+.TP
+\fB−r rawfile, −−rawfile=file\fR
+将仿真输出保存在文件rawfile中\.
+.
+.TP
+\fB−c circuitfile, −−circuitfile=circuitfile\fR
+Use circuitfile as the default input deck\.
+.
+.TP
+\fB−h, −−help\fR
+显示本程序可用的参数
+.
+.TP
+\fB−v, −−version\fR
+显示本程序的版本和版权信息\.
+.
+.TP
+\fB−a, −−autorun\fR
+FIXME
+.
+.TP
+\fB−o outfile, −−output=outfile\fR
+把批处理模式下生成的日志保存在outfile中\.
+.
+.TP
+\fB−p, −−pipe\fR
+允许其他程序(比如xcircuit)通过管道作为ngspice的图形界面前端,此时 ngspice假定管道是一个虚拟控制台(tty),并运行于交互模式下\.
+.
+.P
+Further arguments are taken to be SPICE input decks, which are read and saved\. (If batch mode is requested then they are run immediately\.)
+.
+.SH "环境变量"
+.
+.nf
+
+SPICE_LIB_DIR
+SPICE_EXEC_DIR
+SPICE_HOST
+SPICE_BUGADDR
+SPICE_EDITOR
+SPICE_ASCIIRAWFILE
+        default 0
+        Format of the rawfile\. 0 for binary, and 1 for ascii\.
+SPICE_NEWS
+        default $SPICE_LIB_DIR/news
+        A file which is copied verbatim to stdout when ngspice starts in
+        interactive mode\.
+SPICE_MFBCAP
+        default $SPICE_LIB_DIR/mfbcap
+SPICE_HELP_DIR
+        default $SPICE_LIB_DIR/helpdir
+SPICE_SCRIPTS
+        default $SPICE_LIB_DIR/scripts
+        In this directory the spinit file will be searched\.
+SPICE_PATH
+        default $SPICE_EXEC_DIR/ngspice
+
+various undocumented ngspice centric environment variables :
+
+NGSPICE_MEAS_PRECISION
+SPICE_NO_DATASEG_CHECK
+
+Common environment variables :
+
+TERM LINES COLS DISPLAY HOME PATH EDITOR SHELL
+POSIXLY_CORRECT
+.
+.fi
+.
+.SH "文件"
+.
+.TP
+\fB$SPICE_LIB_DIR/scripts/spinit\fR
+系统的初始化文件
+.
+.TP
+\fB\.spiceinit, $HOME/\.spiceinit\fR
+用户的初始化文件
+.
+.SH "参见"
+sconvert(1), ngnutmeg(1), mfb(3), writedata(3), and NGSPICE User’s Manual at http://ngspice\.sourceforge\.net/docs\.html
+.
+.SH "BUGS"
+Please report bugs to the ngspice project via http://ngspice\.sourceforge\.net/bugrep\.html
+.
+.SH "AUTHORS"
+spice3: Tom Quarles (quarles@cad\.berkeley\.edu)
+.
+.P
+nutmeg: User interface: Wayne Christopher (faustus@cad\.berkeley\.edu)
+.
+.P
+ngspice: various authors (see http://sourceforge\.net/projects/ngspice/)

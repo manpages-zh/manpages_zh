@@ -57,8 +57,8 @@
     <a href="#-">提要</a>
     <a href="#-">描述</a>
     <a href="#-">选项</a>
-    <a href="#GNU-">GNU标准选项</a>
-    <a href="#-">链接</a>
+    <a href="#-">退出状态</a>
+    <a href="#-">版权</a>
   </div>
 
   <ol class='man-decor man-head man head'>
@@ -74,160 +74,93 @@
 
 <h2 id="-">提要</h2>
 
-<p>ls [−ikqrs] [−glno] [−A|−a] [−C|−m|−x|−1] [−F|−p] [−H|−L] [−R|−d]
-[−S|−f|−t] [−c|−u] [文件名...]</p>
+<p><code>ls [选项...] [目录名...]</code></p>
 
 <h2 id="-">描述</h2>
 
-<p>ls先列出非目录的文件项，然后是每一个目录中的<code>可显示</code>文件。如果文件名部分
-为空，缺省为<code>.</code>（当前目录）。选项<code>-d</code>使得目录与非目录项同样对待。除非选
-项<code>-</code>出现，文件名以<code>.</code>开始的文件不属<code>可显示</code>文件。以当前目录为准，每一组
-文件（包括文件和内含文件的目录）分别按文件名排序。如果选项“-l”存在，每组
-文件前显示一摘要行:给出该组文件长度之和（以512字节为单位）。输出是到标准
-输出。除非以“-C”选项要求按多列输出，输出将是一行一个。然而，输出到终端时
-，单列输出或多列输出是不确定的。可以分别用选项“-1”或“-C”来强制按单列或多
-列输出。</p>
+<p>缺省ls打印出当前目录的文件及文件夹清单.默认不显示文件名以"."开始的文件.
+除非指定"−cftuvSUX"或"--sort",否则显示将按文件名的字母顺序排序.</p>
 
-<p>dir(也被安装为命令d)等同于<code>ls-C</code>，即文件缺省是多列输出，纵向排序。</p>
+<p>dir(也被安装为命令d)等同于"<code>ls -C</code>",即文件缺省是多列输出,纵向排序.</p>
 
-<p>vdir(也被安装为命令v)等同于<code>ls-l</code>，即文件缺省是按长格式输出。</p>
+<p>vdir(也被安装为命令v)等同于"<code>ls -l</code>",即文件缺省是按长格式输出.</p>
 
 <h2 id="-">选项</h2>
 
 <dl>
-<dt><code>-1,--format=single-column</code></dt><dd><p>一行输出一个文件。</p></dd>
-<dt><code>-a,--all</code></dt><dd><p>列出目录中所有文件，包括以“.”开头的文件。</p></dd>
-<dt><code>-b,--escape</code></dt><dd><p>把文件名中不可输出的字符用反斜杠加字符编号的形式列出。</p></dd>
-<dt><code>-c,--time=ctime,--time=status</code></dt><dd><p>按状态改变时间排序并输出</p></dd>
+<dt><code>-1,--format=single-column</code></dt><dd><p>一行输出一个文件.</p></dd>
+<dt><code>-a,--all</code></dt><dd><p>列出目录中所有文件,包括以"."开头的文件.</p></dd>
+<dt><code>-b,--escape</code></dt><dd><p>把文件名中不可输出的字符用反斜杠加字符编号的形式列出.</p></dd>
+<dt><code>-c,--time=ctime,--time=status</code></dt><dd><p>按状态改变时间排序并输出,文件状态改变,包括文件的修改,和文件属性
+的变化.</p></dd>
+<dt><code>-d, --directory</code></dt><dd><p>列出指定文件夹的目录名,当前目录名为".".</p></dd>
+<dt class="flush"><code>-f</code></dt><dd><p>不排序目录内容,按它们在磁盘上存储的顺序列出.同时启动"-aU"选项,禁
+用"-ls"或"--color"选项.</p></dd>
+<dt><code>-i,--inode</code></dt><dd><p>输出i节点号(也叫文件序列号和索引号).</p></dd>
+<dt><code>-l,--format=long,--format=verbose</code></dt><dd><p>长格式输出.除每个文件名外,增加显示文件类型、权限、硬链接数、所有
+者名、组名、大小、及时间信息(如未指明是其它时间即指修改时间).对
+于6个月以上的文件或超出未来1小时的文件,时间信息中的时分将被年代
+取代.每个目录列出前,有一行"总块数"显示目录下全部文件所占的磁盘空
+间.块默认是1024字节.每一个硬链接都计入总块数,因此可能重复计数.</p></dd>
+<dt><code>-m,--format=commas</code></dt><dd><p>水平列出文件,用逗号和一个空格分隔.</p></dd>
+<dt><code>-n,--numeric-uid-gid</code></dt><dd><p>列出数字化的UID和GID而不是用户名和组名.</p></dd>
+<dt class="flush"><code>-o</code></dt><dd><p>以长格式列出目录内容,但是不显示组信息.</p></dd>
+<dt class="flush"><code>-p</code></dt><dd><p>在每个文件名后附上一个字符以说明该文件的类型.类似"-F"选项但是不
+标示可执行文件.</p></dd>
+<dt><code>-q,--hide-control-chars</code></dt><dd><p>用问号代替文件名中非打印的字符.缺省选项.</p></dd>
+<dt><code>-r,--reverse</code></dt><dd><p>逆序排列目录内容.</p></dd>
+<dt><code>-s,--size</code></dt><dd><p>在每个文件名左侧输出该文件占用的空间大小.</p></dd>
+<dt><code>-t,--sort=time</code></dt><dd><p>按文件最近修改时间排序,新文件靠前.</p></dd>
+<dt><code>-u,--time=atime,--time=access,--time=use</code></dt><dd><p>按文件最近修改时间排序,新文件靠前.类似选项"-t",但是用文件最近访
+问时间取代文件修改时间.如果使用长格式列出,打印的时间是最近访问时
+间.</p></dd>
+<dt><code>-w,--widthcols</code></dt><dd><p>设置屏幕宽度列数.默认情况下缺省值先尝试取自终端驱动,否则尝试取自
+环境变量COLUMNS,都没有则取80.</p></dd>
+<dt><code>-x,--format=across,--format=horizontal</code></dt><dd><p>多列输出,横向排序.</p></dd>
+<dt><code>-A,--almost-all</code></dt><dd><p>显示除<code>.</code>和<code>..</code>外的所有文件.</p></dd>
+<dt><code>-B,--ignore-backups</code></dt><dd><p>不输出以"~"结尾的备份文件.</p></dd>
+<dt><code>-C,--format=vertical</code></dt><dd><p>多列输出,纵向排序.为标准输出是终端时的缺省项.使用命令dir和d时,则
+总是缺省的.</p></dd>
+<dt><code>-F,--classify,--file-type</code></dt><dd><p>在每个文件名后附上一个字符以说明该文件的类型.<code>*</code>表示普通的可执行
+文件,"/"表示目录,"@"表示符号链接,"|"表示FIFOs,"="表示套接字,什么
+也没有则表示普通文件.</p></dd>
+<dt><code>-G,--no-group</code></dt><dd><p>以长格式列目录时不显示组信息.</p></dd>
+<dt><code>I, --ignorepattern</code></dt><dd><p>忽略shell表达式.</p></dd>
+<dt><code>-L,--dereference</code></dt><dd><p>列出符号链接指向的文件的信息,而不是符号链接本身.</p></dd>
+<dt><code>-Q,--quote-name</code></dt><dd><p>用双引号引起文件名,非打印字符以C语言的方法表示.</p></dd>
+<dt><code>-R,--recursive</code></dt><dd><p>递归列出全部目录的内容.</p></dd>
+<dt><code>-S,--sort=size</code></dt><dd><p>按文件大小排序,大文件靠前.</p></dd>
+<dt><code>-T,--tabsizecols</code></dt><dd><p>设置制表符宽度,缺省为8.为0,则不使用制表符.</p></dd>
+<dt><code>-U,--sort=none</code></dt><dd><p>不排序目录内容,按它们在磁盘上存储的顺序列出.选项"-U"和"-f"的不同
+是前者不启动或禁止相关的选项,这在列很大的目录时特别有用,因为不加
+排序能显著的加快速度.</p></dd>
+<dt><code>-X,--sort=extension</code></dt><dd><p>按文件扩展名的字典序排序.没有扩展名的先列出.</p></dd>
+<dt><code>--color[=when]</code></dt><dd><p>是否使用颜色区别文件类别.when可以被省略,或是以下几项之一:"none"
+不使用颜色,这是缺省项."auto"仅当标准输出是终端时使用."always"总
+是使用颜色.指定"--color"且省略when时等同于"--color=always".</p></dd>
+<dt><code>--full-time</code></dt><dd><p>列出完整的时间,而不是使用标准的缩写.格式同<span class="man-ref">date<span class="s">(1)</span></span>的缺省格式.</p></dd>
+<dt class="flush"><code>--help</code></dt><dd><p>打印用法信息到标准输出并顺利退出.</p></dd>
+<dt><code>--version</code></dt><dd><p>打印版本信息到标准输出并顺利退出.</p></dd>
 </dl>
 
 
-<p>长格式输出下，按状态改变时间排序并输出目录内容，取代文件修改时间。文件状
-态改变，既包括文件被修改，又包括文件属性的变化。</p>
+<h2 id="-">退出状态</h2>
 
 <dl>
-<dt><code>-d,--directory</code></dt><dd><p>将目录名象文件一样列出，而不是列出它们的内容。</p></dd>
-<dt class="flush"><code>-f</code></dt><dd><p>不排序目录内容，按它们在磁盘上存储的顺序列出。同时启动“-a”选项，
-如果在“-f”之前存在“-l”、“--color”或“-s”，则禁止它们。</p></dd>
-<dt><code>-i,--inode</code></dt><dd><p>在每个文件左边打印i节点号（也叫文件序列号和索引号）。i节
-点号在每个特定的文件系统中是唯一的。</p></dd>
-<dt><code>-l,--format=long,--format=verbose</code></dt><dd><p>长格式输出。</p></dd>
+<dt class="flush"><code>0</code></dt><dd><p>正常运行</p></dd>
+<dt class="flush"><code>1</code></dt><dd><p>发生小错误,比如不能访问子目录</p></dd>
+<dt class="flush"><code>2</code></dt><dd><p>发生严重错误,比如不能访问命令参数</p></dd>
 </dl>
 
 
-<p>除每个文件名外，增加显示文件类型、权限、硬链接数、所有者名、组名、大小、
-及时间信息（如未指明是其它时间即指修改时间）。对于6个月以上的文件或超出
-未来1小时的文件，时间信息中的时分将被年代取代。每个目录列出前，有一行“总
-块数”显示目录下全部文件所占的磁盘空间。块默认是1024字节。每一个硬链接都
-计入总块数，因此可能重复计数。</p>
+<h2 id="-">版权</h2>
 
-<dl>
-<dt><code>-m,--format=commas</code></dt><dd><p>水平列出文件，用逗号和一个空格分隔。</p></dd>
-<dt><code>-n,--numeric-uid-gid</code></dt><dd><p>列出数字化的UID和GID而不是用户名和组名。</p></dd>
-<dt class="flush"><code>-o</code></dt><dd><p>以长格式列出目录内容，但是不显示组信息。</p></dd>
-<dt class="flush"><code>-p</code></dt><dd><p>在每个文件名后附上一个字符以说明该文件的类型。</p></dd>
-</dl>
-
-
-<p>类似“-F”选项但是不标示可执行文件。</p>
-
-<dl>
-<dt><code>-q,--hide-control-chars</code></dt><dd><p>用问号代替文件名中非打印的字符。缺省选项。</p></dd>
-<dt><code>-r,--reverse</code></dt><dd><p>逆序排列目录内容。</p></dd>
-<dt><code>-s,--size</code></dt><dd><p>在每个文件名左侧输出该文件占用的空间大小。</p></dd>
-<dt><code>-t,--sort=time</code></dt><dd><p>按文件最近修改时间排序，新文件靠前。</p></dd>
-<dt><code>-u,--time=atime,--time=access,--time=use</code></dt><dd><p>按文件最近修改时间排序，新文件靠前。</p></dd>
-</dl>
-
-
-<p>类似选项“-t”，但是用文件最近访问时间取代文件修改时间。如果使用长格式列出
-，打印的时间是最近访问时间。</p>
-
-<dl>
-<dt><code>-w,--widthcols</code></dt><dd>设置屏幕宽度列数。</dd>
-</dl>
-
-
-<p>默认情况下缺省值先尝试取自终端驱动，否则尝试取自环境变量COLUMNS，都没有
-则取80。</p>
-
-<dl>
-<dt><code>-x,--format=across,--format=horizontal</code></dt><dd><p>多列输出，横向排序。</p></dd>
-<dt><code>-A,--almost-all</code></dt><dd><p>显示除<code>.</code>和<code>..</code>外的所有文件。</p></dd>
-<dt><code>-B,--ignore-backups</code></dt><dd><p>不输出以“~”结尾的备份文件，除非已经在命令行中给出。</p></dd>
-<dt><code>-C,--format=vertical</code></dt><dd><p>多列输出，纵向排序。</p></dd>
-</dl>
-
-
-<p>当标准输出是终端时这是缺省项。使用命令名dir和d时，则总是缺省的。</p>
-
-<dl>
-<dt><code>-F,--classify,--file-type</code>:</dt><dd></dd>
-</dl>
-
-
-<p>在每个文件名后附上一个字符以说明该文件的类型。<code>*</code>表示普通的可执行文件，
-<code>/</code>表示目录，<code>@</code>表示符号链接，<code>|</code>表示FIFOs，<code>=</code>表示套接字，什么也没有则
-表示普通文件。</p>
-
-<dl>
-<dt><code>-G,--no-group</code></dt><dd><p>以长格式列目录时不显示组信息。</p></dd>
-<dt><code>I,--ignorepattern</code>:</dt><dd><p></p></dd>
-</dl>
-
-
-<p>除非在命令行中给定，不要列出匹配shell文件名匹配式的文件。在shell中，文件
-名以<code>.</code>起始的不与在文件名匹配式开头的通配符匹配。</p>
-
-<dl>
-<dt><code>-L,--dereference</code></dt><dd><p>列出符号链接指向的文件的信息，而不是符号链接本身。</p></dd>
-<dt><code>-Q,--quote-name</code></dt><dd><p>用双引号引起文件名，非打印字符以C语言的方法表示。</p></dd>
-<dt><code>-R,--recursive</code></dt><dd><p>递归列出全部目录的内容。</p></dd>
-<dt><code>-S,--sort=size</code></dt><dd><p>按文件大小排序，大文件靠前。</p></dd>
-<dt><code>-T,--tabsizecols</code></dt><dd><p>设置制表符宽度，缺省为8。为0，则不使用制表符。</p></dd>
-<dt><code>-U,--sort=none</code>:</dt><dd><p></p></dd>
-</dl>
-
-
-<p>不排序目录内容，按它们在磁盘上存储的顺序列出。选项<code>-U</code>和<code>-f</code>的不同是前
-者不启动或禁止相关的选项，这在列很大的目录时特别有用，因为不加排序能显著
-的加快速度。</p>
-
-<dl>
-<dt><code>-X,--sort=extension</code></dt><dd><p>按文件扩展名的字典序排序。没有扩展名的先列出。</p></dd>
-<dt><code>--color[=when]</code></dt><dd><p>指定是否使用颜色区别文件类别。</p></dd>
-</dl>
-
-
-<p>由环境变量LS_COLORS指定，见<span class="man-ref">dircolors<span class="s">(1)</span></span>。when可以被省略，或是以下几项之
-一：<code>none</code>不使用颜色，这是缺省项。<code>auto</code>仅当标准输出是终端时使用。
-<code>always</code>总是使用颜色。指定<code>--color</code>且省略when时等同于<code>--color=always</code>。</p>
-
-<dl>
-<dt><code>--full-time</code>:</dt><dd></dd>
-</dl>
-
-
-<p>列出完整的时间，而不是使用标准的缩写。格式同<span class="man-ref">date<span class="s">(1)</span></span>的缺省格式。</p>
-
-<h2 id="GNU-">GNU标准选项</h2>
-
-<p>--help</p>
-
-<p>打印用法信息到标准输出并顺利退出。</p>
-
-<p>--version</p>
-
-<p>打印版本信息到标准输出并顺利退出。</p>
-
-<h2 id="-">链接</h2>
-
-<p>由CMPP计划的<a class="man-ref" href="ls.html">ls<span class="s">(1)</span></a>整理而来。</p>
+<p>由CMPP计划的<a class="man-ref" href="ls.html">ls<span class="s">(1)</span></a>整理而来.</p>
 
 
   <ol class='man-decor man-foot man foot'>
     <li class='tl'></li>
-    <li class='tc'>February 2015</li>
+    <li class='tc'>March 2015</li>
     <li class='tr'>ls(1)</li>
   </ol>
 
