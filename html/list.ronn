@@ -3,6 +3,16 @@
 
 ##man1
 
+[zip](./zip.1.html) -- 压缩文件 
+
+[ngspice](./ngspice.1.html) -- 基于SPICE3f5的电路仿真程序
+
+[top](./top.1.html) -- 显示系统当前的进程和其他状况
+
+[which](./which.1.html) -- 显示shell命令的完整路径
+
+[whereis](./whereis.1.html) -- 定位可执行文件,源代码,帮助文件的位置
+
 [w](./w.1.html) -− 显示已经登录的用户以及他们在做什么
 
 [free](./free.1.html) -− 显示系统中已用和未用的内存空间总和
