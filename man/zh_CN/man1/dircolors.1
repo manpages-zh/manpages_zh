@@ -1,0 +1,38 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "DIRCOLORS" "1" "March 2015" "" ""
+.
+.SH "NAME"
+\fBdircolors\fR \- 设置 ls 指令在显示目录或文件时所用的色彩
+.
+.SH "语法"
+\fBdircolors 选项\.\.\. 色彩配置文件\fR
+.
+.SH "描述"
+dircolors可根据色彩配置文件来设置LS_COLORS环境变量或是显示设置LS_COLORS 环境变量的shell指令\.
+.
+.SH "选项"
+.
+.TP
+\fB−b, −−sh, −−bourne−shell\fR
+将当前色彩配置文件输出为Bourne shell的环境变量"LC_COLORS"\.
+.
+.TP
+\fB−c, −−csh, −−c−shell\fR
+将当前色彩配置文件输出为C shell的环境变量"LC_COLORS"\.
+.
+.TP
+\fB−p, −−print−database\fR
+显示默认的颜色配置数据库\.
+.
+.TP
+\fB−−help\fR
+显示使用信息在标准输出并退出\.
+.
+.TP
+\fB−−version\fR
+显示版本信息在标准输出并退出\.
+.
+.SH "参考"
+dir_colors(5), ls(1)

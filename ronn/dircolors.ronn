@@ -1,0 +1,32 @@
+dircolors(1) -- 设置 ls 指令在显示目录或文件时所用的色彩
+=======================================================
+
+##语法
+
+`dircolors 选项... 色彩配置文件`
+
+##描述
+
+dircolors可根据色彩配置文件来设置LS_COLORS环境变量或是显示设置LS_COLORS
+环境变量的shell指令.
+
+##选项
+
+* `−b, −−sh, −−bourne−shell`:
+将当前色彩配置文件输出为Bourne shell的环境变量"LC_COLORS".
+
+* `−c, −−csh, −−c−shell`:
+将当前色彩配置文件输出为C shell的环境变量"LC_COLORS".
+
+* `−p, −−print−database`:
+显示默认的颜色配置数据库.
+
+* `−−help`:
+显示使用信息在标准输出并退出.
+
+* `−−version`:
+显示版本信息在标准输出并退出.
+
+##参考
+
+dir_colors(5), ls(1)
