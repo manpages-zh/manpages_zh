@@ -25,7 +25,7 @@
 `man/`下是中文manpages文档，`html/`下是中文manpages文档的网页文件，
 `ronn/`下是用来生成man文档和网页的原始文件，`source/`下是翻译前可供参考
 的文件，里面有LCTT计划和CMPP项目留下来的一些文件，您可以在此文件夹下设置
-自己的工作目录。编辑显示和帮助请参考`help/`。
+自己的工作目录。编辑显示和帮助请参考`wiki/`。
 
 本项目在:<https://www.github.com/intetnet/manpages_zh>。
 
