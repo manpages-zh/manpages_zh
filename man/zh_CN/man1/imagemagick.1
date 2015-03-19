@@ -1,0 +1,112 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "IMAGEMAGICK" "1" "March 2015" "" ""
+.
+.SH "NAME"
+\fBImageMagick\fR \- 用于创建,查看,编辑位图文件的开放源代码软件套装
+.
+.SH "语法"
+\fBconvert input\-file [options] output\-file\fR
+.
+.SH "描述"
+ImageMagick是一套功能强大,稳定而且开源的工具集和开发包,它可以读取,编辑 超过100种图象格式,包括流行的TIFF,JPEG,GIF,PNG,PDF以及PhotoCD等格式\.利用 ImageMagick,你可以对一个(或一组)图片进行切割,旋转,组合,锐化,减色,增加特 效,或者增加文本,画直线,多边形,椭圆,曲线等操作,并将操作的结果以相同格式或 其它格式保存\.ImageMagick的大多数功能的使用都来源于命令行工具,也可以配合 C/C++,Perl,Java,PHP,Python或Ruby编程来完成\.ImageMagick是免费软件,全部源 码开放,可以自由使用,复制,修改,发布,它遵守GPL许可协议,可以运行于大多数的 操作系统\.
+.
+.SH "命令"
+.
+.TP
+\fBconvert\fR
+转换图像格式和大小,模糊,裁剪,驱除污点,抖动,临近,图片上画图片,加 入新图片,生成缩略图等\.
+.
+.TP
+\fBidentify\fR
+描述一个或较多图像文件的格式和特性\.
+.
+.TP
+\fBmogrify\fR
+按规定尺寸制作一个图像,模糊,裁剪,抖动等\.Mogrify改写最初的图像文 件然后写到一个不同的图像文件\.
+.
+.TP
+\fBcomposite\fR
+根据一个图片或多个图片组合生成图片\.
+.
+.TP
+\fBmontage\fR
+创建一些分开的要素图像\.在含有要素图像任意的装饰图片,如边框,结构 ,图片名称等\.
+.
+.TP
+\fBcompare\fR
+在算术上和视觉上评估不同的图片及其它的改造图片\.
+.
+.TP
+\fBdisplay\fR
+在X server上显示一个或按次序的显示图片
+.
+.TP
+\fBanimate\fR
+利用X server显示动画图片
+.
+.TP
+\fBimport\fR
+在X server或任何可见的窗口上输出图片文件\. 你可以捕获单一窗口,整 个的荧屏或任何荧屏的矩形部分\.
+.
+.TP
+\fBconjure\fR
+解释执行 MSL (Magick Scripting Language) 写的脚本\.
+.
+.SH "快捷键"
+.
+.TP
+\fBSPACE\fR
+显示下一张图片
+.
+.TP
+\fBBACKSPACE\fR
+显示上一张图片
+.
+.TP
+\fBh\fR
+水平翻转
+.
+.TP
+\fBv\fR
+垂直翻转
+.
+.TP
+\fB/\fR
+顺时针旋转90度
+.
+.TP
+\fB\e\fR
+逆时针旋转90度
+.
+.TP
+\fB>\fR
+放大
+.
+.TP
+\fB<\fR
+缩小
+.
+.TP
+\fBF7\fR
+模糊图片
+.
+.TP
+\fBAlt+s\fR
+把图片中间的像素旋转
+.
+.TP
+\fBCtrl+s\fR
+另存
+.
+.TP
+\fBCtrl+d\fR
+删除图片
+.
+.TP
+\fBq\fR
+退出
+.
+.SH "参见"
+convert(1), identify(1), composite(1), montage(1), compare(1), display(1), animate(1), import(1), conjure(1), quantize(5), miff(4)

@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-for Path in ~/manpages/source/intetnet/ ~/manpages/ronn/; do
+for Path in ~/manpages/source/intetnet/ ~/manpages/ronn/ ~/manpages/plan/; do
 cd $Path
 
 mv -u *.ronn ~/manpages/ronn/

@@ -3,6 +3,14 @@
 
 ##man1
 
+[ImageMagick](./imagemagick.1.html) -- 用于创建,查看,编辑位图文件的开放源代码软件套装
+
+[vimdiff](./vimdiff.1.html) -- 比较同一文件的两、三或四个版本间的差异
+
+[dircolors](./dircolors.1.html) -- 设置 ls 指令在显示目录或文件时所用的色彩
+
+[unzip](./unzip.1.html) -- 处理zip文件
+
 [zip](./zip.1.html) -- 压缩文件 
 
 [ngspice](./ngspice.1.html) -- 基于SPICE3f5的电路仿真程序

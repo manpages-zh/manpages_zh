@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>ImageMagick(1) - 用于创建,查看,编辑位图文件的开放源代码软件套装</title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
+  </style>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
+
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
+
+  <div class='man-navigation' style='display:none'>
+    <a href="#NAME">NAME</a>
+    <a href="#-">语法</a>
+    <a href="#-">描述</a>
+    <a href="#-">命令</a>
+    <a href="#-">快捷键</a>
+    <a href="#-">参见</a>
+  </div>
+
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>ImageMagick(1)</li>
+    <li class='tc'></li>
+    <li class='tr'>ImageMagick(1)</li>
+  </ol>
+
+  <h2 id="NAME">NAME</h2>
+<p class="man-name">
+  <code>ImageMagick</code> - <span class="man-whatis">用于创建,查看,编辑位图文件的开放源代码软件套装</span>
+</p>
+
+<h2 id="-">语法</h2>
+
+<p><code>convert input-file [options] output-file</code></p>
+
+<h2 id="-">描述</h2>
+
+<p>ImageMagick是一套功能强大,稳定而且开源的工具集和开发包,它可以读取,编辑
+超过100种图象格式,包括流行的TIFF,JPEG,GIF,PNG,PDF以及PhotoCD等格式.利用
+ImageMagick,你可以对一个(或一组)图片进行切割,旋转,组合,锐化,减色,增加特
+效,或者增加文本,画直线,多边形,椭圆,曲线等操作,并将操作的结果以相同格式或
+其它格式保存.ImageMagick的大多数功能的使用都来源于命令行工具,也可以配合
+C/C++,Perl,Java,PHP,Python或Ruby编程来完成.ImageMagick是免费软件,全部源
+码开放,可以自由使用,复制,修改,发布,它遵守GPL许可协议,可以运行于大多数的
+操作系统.</p>
+
+<h2 id="-">命令</h2>
+
+<dl>
+<dt class="flush"><code>convert</code></dt><dd><p>转换图像格式和大小,模糊,裁剪,驱除污点,抖动,临近,图片上画图片,加
+入新图片,生成缩略图等.</p></dd>
+<dt><code>identify</code></dt><dd><p>描述一个或较多图像文件的格式和特性.</p></dd>
+<dt class="flush"><code>mogrify</code></dt><dd><p>按规定尺寸制作一个图像,模糊,裁剪,抖动等.Mogrify改写最初的图像文
+件然后写到一个不同的图像文件.</p></dd>
+<dt><code>composite</code></dt><dd><p>根据一个图片或多个图片组合生成图片.</p></dd>
+<dt class="flush"><code>montage</code></dt><dd><p>创建一些分开的要素图像.在含有要素图像任意的装饰图片,如边框,结构
+,图片名称等.</p></dd>
+<dt class="flush"><code>compare</code></dt><dd><p>在算术上和视觉上评估不同的图片及其它的改造图片.</p></dd>
+<dt class="flush"><code>display</code></dt><dd><p>在X server上显示一个或按次序的显示图片</p></dd>
+<dt class="flush"><code>animate</code></dt><dd><p>利用X server显示动画图片</p></dd>
+<dt class="flush"><code>import</code></dt><dd><p>在X server或任何可见的窗口上输出图片文件. 你可以捕获单一窗口,整
+个的荧屏或任何荧屏的矩形部分.</p></dd>
+<dt class="flush"><code>conjure</code></dt><dd><p>解释执行 MSL (Magick Scripting Language) 写的脚本.</p></dd>
+</dl>
+
+
+<h2 id="-">快捷键</h2>
+
+<dl>
+<dt class="flush"><code>SPACE</code></dt><dd><p>显示下一张图片</p></dd>
+<dt><code>BACKSPACE</code></dt><dd><p>显示上一张图片</p></dd>
+<dt class="flush"><code>h</code></dt><dd><p>水平翻转</p></dd>
+<dt class="flush"><code>v</code></dt><dd><p>垂直翻转</p></dd>
+<dt class="flush"><code>/</code></dt><dd><p>顺时针旋转90度</p></dd>
+<dt class="flush"><code>\</code></dt><dd><p>逆时针旋转90度</p></dd>
+<dt class="flush"><code>&gt;</code></dt><dd><p>放大</p></dd>
+<dt class="flush"><code>&lt;</code></dt><dd><p>缩小</p></dd>
+<dt class="flush"><code>F7</code></dt><dd><p>模糊图片</p></dd>
+<dt class="flush"><code>Alt+s</code></dt><dd><p>把图片中间的像素旋转</p></dd>
+<dt class="flush"><code>Ctrl+s</code></dt><dd><p>另存</p></dd>
+<dt class="flush"><code>Ctrl+d</code></dt><dd><p>删除图片</p></dd>
+<dt class="flush"><code>q</code></dt><dd><p>退出</p></dd>
+</dl>
+
+
+<h2 id="-">参见</h2>
+
+<p><span class="man-ref">convert<span class="s">(1)</span></span>, <span class="man-ref">identify<span class="s">(1)</span></span>, <span class="man-ref">composite<span class="s">(1)</span></span>, <span class="man-ref">montage<span class="s">(1)</span></span>, <span class="man-ref">compare<span class="s">(1)</span></span>,
+<span class="man-ref">display<span class="s">(1)</span></span>, <span class="man-ref">animate<span class="s">(1)</span></span>, <span class="man-ref">import<span class="s">(1)</span></span>, <span class="man-ref">conjure<span class="s">(1)</span></span>, <span class="man-ref">quantize<span class="s">(5)</span></span>, <span class="man-ref">miff<span class="s">(4)</span></span></p>
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'></li>
+    <li class='tc'>March 2015</li>
+    <li class='tr'>ImageMagick(1)</li>
+  </ol>
+
+  </div>
+</body>
+</html>
