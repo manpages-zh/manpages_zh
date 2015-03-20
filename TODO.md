@@ -14,7 +14,7 @@
 - coreutils /usr/share/man/man1/chmod.1.gz
 - coreutils /usr/share/man/man1/chown.1.gz
 - coreutils /usr/share/man/man1/chroot.1.gz
-- coreutils /usr/share/man/man1/cksum.1.gz
+- ~~coreutils /usr/share/man/man1/cksum.1.gz~~
 - coreutils /usr/share/man/man1/comm.1.gz
 - coreutils /usr/share/man/man1/cp.1.gz
 - coreutils /usr/share/man/man1/csplit.1.gz

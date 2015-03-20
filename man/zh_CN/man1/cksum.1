@@ -1,0 +1,40 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "CKSUM" "1" "March 2015" "" ""
+.
+.SH "NAME"
+\fBcksum\fR \- 文件校验和计算字节数
+.
+.SH "语法"
+\fBcksum [文件]\.\.\.\fR
+.
+.P
+\fBcksum [选项]\fR
+.
+.SH "描述"
+打印每个文件的CRC校验和以及字节数\.CRC是一种排错检查方式,该演算法的标准由 CCITT所指定,至少可检测到99\.998%的已知错误\.指定文件交由cksum演算,它会回报 计算结果,供用户核对文件是否正确无误\.若不指定任何文件名称或是所给予的文件 名为"\-",则cksum指令会从标准输入设备读取数据\.
+.
+.TP
+\fB\-\-help\fR
+显示帮助然后退出
+.
+.TP
+\fB\-\-version\fR
+输出版本信息然后退出
+.
+.SH "参见"
+cksum的完整文档是以Texinfo手册的方式维护的\.如果你正确地安装了info和cksum 程序,那么使用命令
+.
+.IP "" 4
+.
+.nf
+
+info coreutils \'cksum invocation\'
+.
+.fi
+.
+.IP "" 0
+.
+.P
+应该会让你访问到整个手册\.
