@@ -1,0 +1,64 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "FMT" "1" "March 2015" "" ""
+.
+.SH "NAME"
+\fBfmt\fR \- 简易的文本版式优化工具
+.
+.SH "语法"
+\fBfmt [\-WIDTH] [OPTION]\.\.\. [FILE]\.\.\.\fR
+.
+.SH "描述"
+fmt指令会从指定的文件里读取内容，按照指定的格式重新格式化文件中的每一个 段落,并将结果写到标准输出\.如果文件FILE不存在,或者FILE是’\-’,就从标准输入 读取数据\.
+.
+.SH "选项"
+长选项后面的参数对于短选项形式也是必须的\.
+.
+.TP
+\fB−c, −−crown−margin\fR
+每段前两列缩进
+.
+.TP
+\fB−p, −−prefix=STRING\fR
+只处理以字符串STRING起始的行
+.
+.TP
+\fB−s, −−split−only\fR
+拆开超出设置行宽的行，但不合并字数不足的行。
+.
+.TP
+\fB−t, −−tagged−paragraph\fR
+每段前两行缩进，但第1行和第2行使用不同的缩进格式。
+.
+.TP
+\fB−u, −−uniform−spacing\fR
+字符间以一个空格字符间隔，句子间以两个空格字符分隔。
+.
+.TP
+\fB−w, −−width=NUMBER\fR
+设置每行的最大字符数(缺省为75列),选项名"\-w, \-\-width"可以省略\.
+.
+.TP
+\fB−−help\fR
+显示帮助信息,然后退出\.
+.
+.TP
+\fB−−version\fR
+显示版本信息,然后退出\.
+.
+.SH "参考"
+fmt的完整文档以Texinfo手册形式维护\.如果正确安装了info和fmt程序,用命令
+.
+.IP "" 4
+.
+.nf
+
+info coreutils \'fmt invocation\'
+.
+.fi
+.
+.IP "" 0
+.
+.P
+能够访问到完整的手册\.

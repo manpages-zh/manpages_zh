@@ -1,0 +1,132 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "ARIA2C" "1" "March 2015" "" ""
+.
+.SH "NAME"
+\fBaria2c\fR \- 超快下载工具
+.
+.SH "语法"
+\fBaria2c [<OPTIONS>] [<URI>|<MAGNET>|<TORRENT_FILE>|<METALINK_FILE>] \.\.\.\fR
+.
+.SH "描述"
+Aria2是一个在命令行下运行的多协议,多链接下载工具,支持的协议有HTTP/HTTPS, FTP,BitTorrent,Metalink,内建XML\-RPC用户界面\.由于它具有分段下载引擎,所以 支持从多个地址或者从一个地址的多个连接来下载同一个文件\.这样自然就大大加 快了文件的下载速度\.aria2具有断点续传功能,这使你随时能够恢复已经中断的文 件下载\.
+.
+.SH "选项"
+.
+.TP
+\fB\-v, \-\-version\fR
+打印版本号并退出\.
+.
+.TP
+\fB\-h, \-\-help[=TAG|KEYWORD]\fR
+Print usage and exit\. The help messages are classified with tags\. A tag starts with "#"\. For example, type "\-\-help=#http" to get the usage for the options tagged with "#http"\. If non\-tag word is given, print the usage for the options whose name includes that word\.
+.
+.TP
+\fB\-l, \-\-log=LOG\fR
+日志文件名称\.如果指定\'\-\',日志将被写到标准输出\.
+.
+.TP
+\fB\-d, \-\-dir=DIR\fR
+用于存储已下载文件的目录\.
+.
+.TP
+\fB\-o, \-\-out=FILE\fR
+指定下载文件的文件名,如果同时使用"\-Z"选项,则这个选项会被忽略\.
+.
+.TP
+\fB\-s, \-\-split=N\fR
+下载文件时使用N个连接\.如果给定了超过N个链接,则仅使用前N个链接,其 它的链接会被保存起来备用\.如果给定的链接不足N个,则有些链接会被使 用多次,这样下载时的连接数依然为N个\.默认值是 5\."\-\-max\-connection\-per\-server"决定每个服务器的最大连接数,另见 "\-\-min\-split\-size"选项\.
+.
+.TP
+\fB\-\-file\-allocation=METHOD\fR
+指定文件分配方式\.可能的取值:none,prealloc,trunc,falloc\.\'none\'选 项表示不预分配空间\.\'prealloc\'表示在下载真正开始前预先分配空间\.根 据文件的大小,这可能会花费一些时间\.如果你正在使用的是新型文件系统 如ext4(启用扩展支持的),btrfs,xfs或NTFS(仅限MinGW环境),\'falloc\'是 你最好的选择\.它几乎能在一瞬间完成很大(几个GiB)文件的预分配\.但请 千万注意不要使用\'falloc\'在比较旧的文件系统上,如ext3和FAT32因为在 这些文件系统上该选项花费的时间和\'prealloc\'不相上下并且在分配完成 前aria2会被完全阻塞\.如果你的系统中不存在posix_fallocate()函数(在 嵌入式系统如OpenWRT中该函数一般由uClibc提供)\'falloc\'选项将不适用 ,强制使用该选项将不能启动aria2\.\'trunc\'将调用ftruncate()或平台指 定的相应功能创建一个制定大小的文件\.默认为prealloc\.
+.
+.TP
+\fB\-V, \-\-check\-integrity[=true|false]\fR
+通过验证文件块哈希值或整个文件哈希值检查文件的完整性\.该选项仅对 BitTorrent,Metalink生效\.下载启用"\-\-checksums"选项或HTTP(S)/FTP下 载启用"\-\-checksum"选项时,如果提供了文件块的哈希校验值,则会在下载 过程中就检测文件的那部分已损坏并且会重新下载损坏的部分;如果给定 的是整个文件的哈希值,那么校验只能在下载已经完成的情况下进行\.同时 ,这也取决于文件的长度,如果哈系校验失败,则会重新下载\.如果整个文件 哈希值和块哈希都存在,只有块哈希会被使用\.默认为false\.
+.
+.TP
+\fB\-c, \-\-continue[=true|false]\fR
+继续下载一个仅部分完成的文件\.使用这个选项来继续下载一个由浏览器 或其他程序从开头单线程下载的文件\.目前这个选项仅能用于http(s)/ftp 下载\.默认为false\.
+.
+.TP
+\fB\-i, \-\-input\-file=FILE\fR
+下载FILE中列出的地址\.可以一次使用多个地址,在同一行里使用制表符分 隔多个地址\.使用"\-"时从标准输入读取\.另外,在每一行地址后可以指定选 项\.包含选项的行必须以至少一个空格开始,并且每行一个选项\.另见 "\-\-deferred\-input"选项\.
+.
+.TP
+\fB\-j, \-\-max\-concurrent\-downloads=N\fR
+设置对于独立的(http/ftp)地址,torrent和metalink的最大并行下载数量 \.另见"\-\-split"选项\.默认:5
+.
+.TP
+\fB\-Z, \-\-force\-sequential[=true|false]\fR
+连续从命令行获取链接,并以单独的会话下载每个链接,如同常见的命令行 下载工具\.默认为false\.
+.
+.TP
+\fB\-x, \-\-max\-connection\-per\-server=NUM\fR
+每个服务器的最大连接数,可能的取值为1\-16,默认为1\.
+.
+.TP
+\fB\-k, \-\-min\-split\-size=SIZE\fR
+设定下载块大小的下限SIZE\.比如下载一个20M的文件,如果设定SIZE为 10M,aria2将把文件分成[0\-10MiB)和[10MiB\-20MiB)两部分,并通过两个连 接下载文件("\-\-split >= >2")\.如果设定SIZE为15M,则由于第二块文件小 于10M,所以aria2并不会分割文件,并将仅通过一个连接下载文件\.可以使 用的单位为K或M,默认为20M\.
+.
+.TP
+\fB\-\-ftp\-user=USER\fR
+设置FTP用户\.此设置对所有链接有效\.
+.
+.TP
+\fB\-\-ftp\-passwd=PASSWD\fR
+设置FTP密码\.此设置对所有链接有效\.
+.
+.TP
+\fB\-\-http\-user=USER\fR
+设置HTTP用户\.此设置对所有链接有效\.
+.
+.TP
+\fB\-\-http\-passwd=PASSWD\fR
+设置HTTP密码\.此设置对所有链接有效\.
+.
+.TP
+\fB\-\-load\-cookies=FILE\fR
+从FILE中载入Cookies,这些FILE通常使用Firefox3格式和 Mozilla/Firefox(1\.x/2\.x)/Netscape格式\.
+.
+.TP
+\fB\-S, \-\-show\-files[=true|false]\fR
+显示\.torrent,\.meta4和\.metalink等类型文件的列表然后退出\.如果是 torrent文件,会给出更详细信息\.默认: false
+.
+.TP
+\fB\-\-max\-overall\-upload\-limit=SPEED\fR
+设置全局最大上传速度为SPEED(bytes/sec)\.0意味着不限制\.使用K或 M(1K=1024,1M=1024K)也是可以的\.你也可以使用"\-\-max\-upload\-limit"为 单个torrent文件限速\.默认为0\.
+.
+.TP
+\fB\-u, \-\-max\-upload\-limit=SPEED\fR
+设置每个torrent上传速度最大值SPEED(b/s)\.0意味着不限制\.您可以附加 K或M(1K=1024,1M=1024K)\.要限制总体上传速度,使用 "\-\-max\-overall\-upload\-limitoption"选项\.默认为0\.
+.
+.TP
+\fB\-T, \-\-torrent\-file=TORRENT_FILE\fR
+指定\.torrent文件的路径\.
+.
+.TP
+\fB\-\-listen\-port=PORT\.\.\.\fR
+为BT下载设置TCP端口\.使用\',\'可以指定多个端口,例如"6881,6885"\.您也 可以使用\'\-\'指定一个范围,比如"6881\-6999"\.\',\'和\'\-\'可以一起使用\.可 能的取值为1024\-65535,默认为6881\-6999\.
+.
+.TP
+\fB\-\-enable\-dht[=true|false]`\fR
+Enable IPv4 DHT functionality\. It also enables UDP tracker support\. If a private flag is set in a torrent, aria2 doesn\'t use DHT for that download even iftrue`` is given\.默认为true
+.
+.TP
+\fB\-\-dht\-listen\-port=PORT\.\.\.\fR
+Set UDP listening port used by DHT(IPv4, IPv6) and UDP tracker\. Multiple ports can be specified by using \',\', for example: "6881,6885"\. You can also use \'\-\' to specify a range: "6881\-6999"\. \',\' and \'\-\' can be used together\. 可能的取值: 1024\-65535 默认: 6881\-6999
+.
+.TP
+\fB\-\-enable\-dht6[=true|false]\fR
+Enable IPv6 DHT functionality\. Use \-\-dht\-listen\-port option to specify port number to listen on\. See also \-\-dht\-listen\-addr6 option\.可能的取值: true, false 默认: false
+.
+.TP
+\fB\-\-dht\-listen\-addr6=ADDR\fR
+Specify address to bind socket for IPv6 DHT\. It should be a global unicast IPv6 address of the host\.
+.
+.TP
+\fB\-M, \-\-metalink\-file=METALINK_FILE\fR
+The file path to the \.meta4 and \.metalink file\. Reads input from stdin when \'\-\' is specified\.
+
