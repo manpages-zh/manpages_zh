@@ -3,6 +3,8 @@
 
 ##man1
 
+[xargs](./xargs.1.html) -- 从标准输入中读取并执行命令
+
 [ImageMagick](./imagemagick.1.html) -- 用于创建,查看,编辑位图文件的开放源代码软件套装
 
 [vimdiff](./vimdiff.1.html) -- 比较同一文件的两、三或四个版本间的差异
