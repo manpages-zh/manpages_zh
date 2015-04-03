@@ -1,0 +1,116 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "CHGRP" "1" "April 2015" "" ""
+.
+.SH "NAME"
+\fBchgrp\fR \- − 修改文件所属组
+.
+.SH "语法"
+\fBchgrp [选项] \.\.\. 组文件\.\.\.\fR
+.
+.P
+\fBchgrp [选项] \.\.\. −−reference=参考文件文件\.\.\.\fR
+.
+.SH "描述"
+修改每个文件的所属组为指定的组\.chgrp命令可采用群组名称或群组识别码的方式 改变文件或目录的所属群组\.使用参数"−−reference"时,修改每个文件的所属组为 参考文件的所属组\.使用权限是超级用户\.
+.
+.SH "选项"
+.
+.TP
+\fB−c, −−changes\fR
+类似verbose参数,但只会在发生变化时才会报告
+.
+.TP
+\fB−f, −−silent, −−quiet\fR
+禁止大部分的错误消息
+.
+.TP
+\fB−v, −−verbose\fR
+对于每个文件的处理,都会打印分析报告
+.
+.TP
+\fB−−dereference\fR
+影响每个符号链接所引用的文件(默认设置),而不是符号链接本身
+.
+.TP
+\fB−h, −−no−dereference\fR
+影响符号链接本身而不是其引用的文件(只在可以修改符号链接所有权的 系统上有效)
+.
+.TP
+\fB−−no−preserve−root\fR
+不对’/’特殊处理(默认设置)
+.
+.TP
+\fB−−preserve−root\fR
+不允许递归执行于’/’
+.
+.TP
+\fB−−reference=参考文件\fR
+使用参考文件的所属组代替指定所属组
+.
+.TP
+\fB−R, −−recursive\fR
+递归执行于文件和目录\.当指定了−R选项时,下面的几个选项会修改遍历层 次目录的方式\.如果指定了以下多个选项,只有最后一个选项才会生效\.
+.
+.TP
+\fB−H\fR
+如果命令行参数是一个指向目录的符号链接,则遍历该目录
+.
+.TP
+\fB−L\fR
+遍历目录中的每一个符号链接
+.
+.TP
+\fB−P\fR
+不遍历任何一个符号链接(默认设置)
+.
+.TP
+\fB−−help\fR
+显示帮助然后退出
+.
+.TP
+\fB−−version\fR
+输出版本信息然后退出
+.
+.SH "示例"
+修改/u的所属组为"staff"\.
+.
+.IP "" 4
+.
+.nf
+
+chgrp staff /u
+.
+.fi
+.
+.IP "" 0
+.
+.P
+修改/u和其子文件的所属组为"staff"\.
+.
+.IP "" 4
+.
+.nf
+
+chgrp −hR staff /u
+.
+.fi
+.
+.IP "" 0
+.
+.SH "请参阅"
+本程序的完整文档使用Texinfo手册进行维护\.如果info和本程序已经正确地安装在 了你的电脑上,通过下述命令
+.
+.IP "" 4
+.
+.nf
+
+info coreutils \'chgrp invocation\'
+.
+.fi
+.
+.IP "" 0
+.
+.P
+可以访问完整的使用手册\.

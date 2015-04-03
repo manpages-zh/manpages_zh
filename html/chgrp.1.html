@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>chgrp(1) - − 修改文件所属组</title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
+  </style>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
+
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
+
+  <div class='man-navigation' style='display:none'>
+    <a href="#NAME">NAME</a>
+    <a href="#-">语法</a>
+    <a href="#-">描述</a>
+    <a href="#-">选项</a>
+    <a href="#-">示例</a>
+    <a href="#-">请参阅</a>
+  </div>
+
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>chgrp(1)</li>
+    <li class='tc'></li>
+    <li class='tr'>chgrp(1)</li>
+  </ol>
+
+  <h2 id="NAME">NAME</h2>
+<p class="man-name">
+  <code>chgrp</code> - <span class="man-whatis">− 修改文件所属组</span>
+</p>
+
+<h2 id="-">语法</h2>
+
+<p><code>chgrp [选项] ... 组文件...</code></p>
+
+<p><code>chgrp [选项] ... −−reference=参考文件文件...</code></p>
+
+<h2 id="-">描述</h2>
+
+<p>修改每个文件的所属组为指定的组.chgrp命令可采用群组名称或群组识别码的方式
+改变文件或目录的所属群组.使用参数"−−reference"时,修改每个文件的所属组为
+参考文件的所属组.使用权限是超级用户.</p>
+
+<h2 id="-">选项</h2>
+
+<dl>
+<dt><code>−c, −−changes</code></dt><dd><p>类似verbose参数,但只会在发生变化时才会报告</p></dd>
+<dt><code>−f, −−silent, −−quiet</code></dt><dd><p>禁止大部分的错误消息</p></dd>
+<dt><code>−v, −−verbose</code></dt><dd><p>对于每个文件的处理,都会打印分析报告</p></dd>
+<dt><code>−−dereference</code></dt><dd><p>影响每个符号链接所引用的文件(默认设置),而不是符号链接本身</p></dd>
+<dt><code>−h, −−no−dereference</code></dt><dd><p>影响符号链接本身而不是其引用的文件(只在可以修改符号链接所有权的
+系统上有效)</p></dd>
+<dt><code>−−no−preserve−root</code></dt><dd><p>不对’/’特殊处理(默认设置)</p></dd>
+<dt><code>−−preserve−root</code></dt><dd><p>不允许递归执行于’/’</p></dd>
+<dt><code>−−reference=参考文件</code></dt><dd><p>使用参考文件的所属组代替指定所属组</p></dd>
+<dt><code>−R, −−recursive</code></dt><dd><p>递归执行于文件和目录.当指定了−R选项时,下面的几个选项会修改遍历层
+次目录的方式.如果指定了以下多个选项,只有最后一个选项才会生效.</p></dd>
+<dt class="flush"><code>−H</code></dt><dd><p>如果命令行参数是一个指向目录的符号链接,则遍历该目录</p></dd>
+<dt class="flush"><code>−L</code></dt><dd><p>遍历目录中的每一个符号链接</p></dd>
+<dt class="flush"><code>−P</code></dt><dd><p>不遍历任何一个符号链接(默认设置)</p></dd>
+<dt class="flush"><code>−−help</code></dt><dd><p>显示帮助然后退出</p></dd>
+<dt><code>−−version</code></dt><dd><p>输出版本信息然后退出</p></dd>
+</dl>
+
+
+<h2 id="-">示例</h2>
+
+<p>修改/u的所属组为"staff".</p>
+
+<pre><code>chgrp staff /u
+</code></pre>
+
+<p>修改/u和其子文件的所属组为"staff".</p>
+
+<pre><code>chgrp −hR staff /u
+</code></pre>
+
+<h2 id="-">请参阅</h2>
+
+<p>本程序的完整文档使用Texinfo手册进行维护.如果info和本程序已经正确地安装在
+了你的电脑上,通过下述命令</p>
+
+<pre><code>info coreutils 'chgrp invocation'
+</code></pre>
+
+<p>可以访问完整的使用手册.</p>
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'></li>
+    <li class='tc'>April 2015</li>
+    <li class='tr'>chgrp(1)</li>
+  </ol>
+
+  </div>
+</body>
+</html>
