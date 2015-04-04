@@ -1,0 +1,188 @@
+usermod(8) -− 修改一个用户账户
+===================================
+
+##语法
+
+`usermod [选项] 登录`
+
+##描述
+
+usermod修改系统账户文件和在命令行上指定的相关更改.
+
+##选项
+
+usermod可以接受的选项有:
+
+* `−a, −−append`:
+将用户添加到附加组.只能和−G选项一起使用.
+
+* `−c, −−comment COMMENT`:
+用户密码文件中注释字段的新值.通常使用chfn(1)工具对其进行修改.
+
+* `−d, −−home HOME_DIR`:
+用户的新登录目录.如果给了−m选项,当前主目录的内容将会移动到新主目
+录中,如果不存在,则创建.
+
+* `−e, −−expiredate EXPIRE_DATE`:
+用户账户将被禁用的日期.日期以YYYY−MM−DD格式指定.空EXPIRE_DATE参
+数将禁用账户过期.此选项需要一个/etc/passwd文件.如果没有,将会创建
+一条/etc/shadow项目.
+
+* `−f, −−inactive INACTIVE`:
+密码过期之后,账户被彻底禁用之前的天数.0表示密码过期时,立即禁用账
+户.−1表示不使用这个功能.此选项需要一个/etc/passwd文件.如果没有,
+将会创建一条/etc/shadow项目.
+
+* `−g, −−gid GROUP`:
+用户的新初始登录组的组名或数字代号.此组必须存在.用户主目录中,属
+于原来的主组的文件将转交新组所有.主目录之外的文件所属的组必须手
+动修改.
+
+* `−G, −−groups GROUP1[,GROUP2,...[,GROUPN]]]`:
+用户还属于的附加组列表.组之间使用逗号分隔,没有空格.这些组需要遵
+守和−g选项中给的组同样的限制.如果用户当前是一个组的成员,而这个组
+没有列在这里,用户将被从那个组里便删除.这个行为可以通过−a选项修改
+,这使用户追加到给出的附加组列表中.
+
+* `−l, −−login NEW_LOGIN`:
+用户的名称将会从LOGIN修改为NEW_LOGIN.不会更改别的任何东西.特别是
+,用户的主目录名和邮件池也需要手动修改以和新登录名对应.
+
+* `−L, −−lock`:
+锁定用户的密码.这会在用户加密的密码之前放置一个“!”,可以快速禁用
+密码.您可以和−p或−U配合使用此选项.注意:如果希望锁定账户(不仅仅是
+通过密码访问),您也需要设置EXPIRE_DATE为1.
+
+* `−m, −−move−home`:
+将用户的主目录移动到新位置.这个选项只有和−d(或−−home)选项组合使
+用时才有效.usermod会改写文件的属主并复制模式、ACL和扩展属性,但是
+稍后也可能需要手动修改.
+
+* `−o, −−non−unique`:
+使用−u选项时,可以将用户ID改为非唯一的值.
+
+* `−p, −−password PASSWORD`:
+已经加密过的密码,就像crypt(3)返回的那样.注意:不推荐使用这个选项,
+因为密码(或加密过的密码)会被用户通过列出这个过程而看到.您应该确
+保密码符合系统的密码政策.
+
+* `−R, −−root CHROOT_DIR`:
+Apply changes in the CHROOT_DIR directory and use the
+configuration files from the CHROOT_DIR directory.
+
+* `−s, −−shell SHELL`:
+用户的新登录shell的名称.将此字段设置为空会让系统选择默认的登录
+shell.
+
+* `−u, −−uid UID`:
+用户ID的新数值.这个值必须是唯一的,除非使用了−o选项,必须是非负值.
+用户的邮箱,用户主目录中属于此用户的文件的属主ID也将自动更改.用户
+主目录之外文件所有权必须手动修复.不会对/etc/login.defs中的
+UID_MIN,UID_MAX,SYS_UID_MIN和SYS_UID_MAX进行检查.
+
+* `−U, −−unlock`:
+解锁用户的密码.这将移除加密的密码之前的“!”.您可以将此选项和−p或−
+L配合使用.注意:如果您希望解锁账户(不只是使用密码访问),您也应该设
+置EXPIRE_DATE(例如设置为99999,或者/etc/default/useradd中的EXPIRE
+值).
+
+* `−v, −−add−sub−uids FIRST−LAST`:
+Add a range of subordinate uids to the user's account. This
+option may be specified multiple times to add multiple ranges to
+a users account. No checks will be performed with regard to
+SUB_UID_MIN, SUB_UID_MAX, or SUB_UID_COUNT from /etc/login.defs.
+
+* `−V, −−del−sub−uids FIRST−LAST`:
+Remove a range of subordinate uids from the user's account. This
+option may be specified multiple times to remove multiple ranges
+to a users account. When both −−del−sub−uids and −−add−sub−uids
+are specified, the removal of all subordinate uid ranges happens
+before any subordinate uid range is added. No checks will be
+performed with regard to SUB_UID_MIN, SUB_UID_MAX, or
+SUB_UID_COUNT from /etc/login.defs.
+
+* `−w, −−add−sub−gids FIRST−LAST`:
+Add a range of subordinate gids to the user's account. This
+option may be specified multiple times to add multiple ranges to
+a users account. No checks will be performed with regard to
+SUB_GID_MIN, SUB_GID_MAX, or SUB_GID_COUNT from /etc/login.defs.
+
+* `−W, −−del−sub−gids FIRST−LAST`:
+Remove a range of subordinate gids from the user's account. This
+option may be specified multiple times to remove multiple ranges
+to a users account. When both −−del−sub−gids and −−add−sub−gids
+are specified, the removal of all subordinate gid ranges happens
+before any subordinate gid range is added. No checks will be
+performed with regard to SUB_GID_MIN, SUB_GID_MAX, or
+SUB_GID_COUNT from /etc/login.defs.
+
+* `−Z, −−selinux−user SEUSER`:
+用户登陆的SELinux用户.空的SEUSER将移除用户LOGIN的SELinux用户映射
+(如果有).
+
+##CAVEATS
+
+如果要更改用户的数字ID、用户名或主目录,需要确保允许命令时,用户没有执行任
+何进程.usermod会在Linux上进行检查,但是在其它平台上,仅仅根据utmp检查用户
+是否已经登录.您必须手动更改crontab文件或at作业的属主.您必须更改NIS服务器
+上的NIS相关内容.
+
+##配置文件
+
+在/etc/login.defs中有如下配置变量,可以用来更改此工具的行为:
+
+* `MAIL_DIR (string)`:
+邮箱目录.修改或删除用户账户时需要处理邮箱,如果没有指定,将使用编
+译时指定的默认值.
+
+* `MAIL_FILE (string)`:
+定义用户邮箱文件的位置(相对于主目录).
+
+* `MAIL_DIR and MAIL_FILE `:
+变量由useradd,usermod和userdel用于创建、移动或删除用户邮箱.如果
+MAIL_CHECK_ENAB设置为yes,它们也被用于定义MAIL环境变量.
+
+* `MAX_MEMBERS_PER_GROUP (number)`:
+每个组条目的最大成员数.达到最大值时,在/etc/group开始一个新条目(
+行)(使用同样的名称,同样的密码,同样的GID).默认值是0,意味着组中的
+成员数没有限制.此功能(分割组)允许限制组文件中的行长度.这对于确保
+NIS组的行比长于1024字符.如果要强制这个限制,可以使用25.注意:分割
+组可能不受所有工具的支持(甚至在Shadow工具集中).您不应该使用这个
+变量,除非真的需要.
+
+* `SUB_GID_MIN (number), SUB_GID_MAX (number), SUB_GID_COUNT (number)`:
+If /etc/subuid exists, the commands useradd and newusers (unless
+the user already have subordinate group IDs) allocate
+SUB_GID_COUNT unused group IDs from the range SUB_GID_MIN to
+SUB_GID_MAX for each new user. The default values for
+SUB_GID_MIN, SUB_GID_MAX, SUB_GID_COUNT are respectively 100000,
+600100000 and 10000.
+
+* `SUB_UID_MIN (number), SUB_UID_MAX (number), SUB_UID_COUNT (number)`:
+If /etc/subuid exists, the commands useradd and newusers (unless
+the user already have subordinate user IDs) allocate
+SUB_UID_COUNT unused user IDs from the range SUB_UID_MIN to
+SUB_UID_MAX for each new user. The default values for
+SUB_UID_MIN, SUB_UID_MAX, SUB_UID_COUNT are respectively 100000,
+600100000 and 10000.
+
+##文件
+
+	/etc/group
+	组账户信息.
+	/etc/gshadow
+	安全组账户信息.
+	/etc/login.defs
+	Shadow密码套件配置.
+	/etc/passwd
+	用户账户信息.
+	/etc/shadow
+	安全用户账户信息.
+	/etc/subgid
+	Per user subordinate group IDs.
+	/etc/subuid
+	Per user subordinate user IDs.
+
+##参见
+
+chfn(1), chsh(1), passwd(1), crypt(3), gpasswd(8), groupadd(8), groupdel(8), groupmod(8), login.defs(5), subgid(5), subuid(5),useradd(8), userdel(8).
