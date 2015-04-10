@@ -1,0 +1,505 @@
+'\" et
+.TH CD "1P" 2013 "IEEE/The Open Group" "POSIX 程序员手册"
+.SH 序言 (PROLOG)
+本手册页面是 POSIX 程序员手册 (POSIX Programmer's Manual) 的一部分。
+Linux 对本接口的实现可能有所不同 (请查阅对应的 Linux 手册页以了解
+其详细行为) ，或者本接口可能未在 Linux 上实现。
+
+.SH "名称 (NAME)"
+cd
+\(em 改变工作目录
+.SH "总览 (SYNOPSIS)"
+.LP
+.nf
+cd \fB[\fR\(miL|\(miP\fB] [\fI目录\fB]\fR
+.P
+cd \(mi
+.fi
+.SH "描述 (DESCRIPTION)"
+.IR cd
+工具能够更改当前 shell 运行环境的工作目录, 其行为按照下列步骤进行：
+(在下列步骤中, 标志
+.BR curpath
+代表一个用来简化描述
+.IR cd
+工作算法的中间值。
+.BR curpath
+在程序中无需可见。
+.IP " 1." 4
+如果没有给出
+.IR 目录
+操作数, 且
+.IR HOME
+环境变量为空或未定义, 其默认行为由实现定义, 且程序不应采取进一步行为。
+.IP " 2." 4
+如果没有给出
+.IR 目录
+操作数, 且
+.IR HOME
+环境变量被设为非空值, 则
+.IR cd
+utility shall behave as if the directory named in the
+.IR HOME
+environment variable was specified as the
+.IR directory
+operand.
+.IP " 3." 4
+如果
+.IR 目录
+操作数以一个
+<斜杠 "/">
+字符开头, 则设置
+.BR curpath
+变量和目录操作数相同, 并跳转到第 7 步继续。
+.IP " 4." 4
+如果
+.IR 目录
+操作数的第一个组成部分是 "点“ 或 ”点点“, 跳转到第 6 步继续。
+.IP " 5." 4
+Starting with the first pathname in the
+<colon>-separated
+pathnames of
+.IR CDPATH
+(see the ENVIRONMENT VARIABLES section) if the pathname is non-null,
+test if the concatenation of that pathname, a
+<slash>
+character if that pathname did not end with a
+<slash>
+character, and the
+.IR directory
+operand names a directory. If the pathname is null, test if the
+concatenation of dot, a
+<slash>
+character, and the operand names a directory. In either case, if the
+resulting string names an existing directory, set
+.BR curpath
+to that string and proceed to step 7. Otherwise, repeat this step with
+the next pathname in
+.IR CDPATH
+until all pathnames have been tested.
+.IP " 6." 4
+将
+.BR curpath
+设为
+.IR 目录
+操作数。
+.IP " 7." 4
+If the
+.BR \(miP
+option is in effect, proceed to step 10. If
+.BR curpath
+does not begin with a
+<slash>
+character, set
+.BR curpath
+to the string formed by the concatenation of the value of
+.IR PWD ,
+a
+<slash>
+character if the value of
+.IR PWD
+did not end with a
+<slash>
+character, and
+.BR curpath .
+.IP " 8." 4
+The
+.BR curpath
+value shall then be converted to canonical form as follows, considering
+each component from beginning to end, in sequence:
+.RS 4
+.IP " a." 4
+Dot components and any
+<slash>
+characters that separate them from the next component shall be deleted.
+.IP " b." 4
+For each dot-dot component, if there is a preceding component and it is
+neither root nor dot-dot, then:
+.RS 4
+.IP " i." 5
+If the preceding component does not refer (in the context of pathname
+resolution with symbolic links followed) to a directory, then the
+.IR cd
+utility shall display an appropriate error message and no further steps
+shall be taken.
+.IP ii. 5
+The preceding component, all
+<slash>
+characters separating the preceding component from dot-dot, dot-dot,
+and all
+<slash>
+characters separating dot-dot from the following component (if any)
+shall be deleted.
+.RE
+.IP " c." 4
+An implementation may further simplify
+.BR curpath
+by removing any trailing
+<slash>
+characters that are not also leading
+<slash>
+characters, replacing multiple non-leading consecutive
+<slash>
+characters with a single
+<slash>,
+and replacing three or more leading
+<slash>
+characters with a single
+<slash>.
+If, as a result of this canonicalization, the
+.BR curpath
+variable is null, no further steps shall be taken.
+.RE
+.IP " 9." 4
+If
+.BR curpath
+is longer than
+{PATH_MAX}
+bytes (including the terminating null) and the
+.IR directory
+operand was not longer than
+{PATH_MAX}
+bytes (including the terminating null), then
+.BR curpath
+shall be converted from an absolute pathname to an equivalent relative
+pathname if possible. This conversion shall always be considered
+possible if the value of
+.IR PWD ,
+with a trailing
+<slash>
+added if it does not already have one, is an initial substring of
+.BR curpath .
+Whether or not it is considered possible under other circumstances is
+unspecified. Implementations may also apply this conversion if
+.BR curpath
+is not longer than
+{PATH_MAX}
+bytes or the
+.IR directory
+operand was longer than
+{PATH_MAX}
+bytes.
+.IP 10. 4
+The
+.IR cd
+utility shall then perform actions equivalent to the
+\fIchdir\fR()
+function called with
+.BR curpath
+as the
+.IR path
+argument. If these actions fail for any reason, the
+.IR cd
+utility shall display an appropriate error message and the remainder of
+this step shall not be executed. If the
+.BR \(miP
+option is not in effect, the
+.IR PWD
+environment variable shall be set to the value that
+.BR curpath
+had on entry to step 9 (i.e., before conversion to a relative
+pathname). If the
+.BR \(miP
+option is in effect, the
+.IR PWD
+environment variable shall be set to the string that would be output by
+.IR pwd
+.BR \(miP .
+If there is insufficient permission on the new directory, or on any
+parent of that directory, to determine the current working directory,
+the value of the
+.IR PWD
+environment variable is unspecified.
+.P
+If, during the execution of the above steps, the
+.IR PWD
+environment variable
+is set, the
+.IR OLDPWD
+environment variable shall also be set to
+the value of the old working directory (that is the current working
+directory immediately prior to the call to
+.IR cd ).
+.SH "选项 (OPTIONS)"
+.IR cd
+工具应当与
+the Base Definitions volume of POSIX.1\(hy2008,
+.IR "Section 12.2" ", " "Utility Syntax Guidelines"
+一致。
+.P
+下列选项应当被具体实现所支持：
+.IP "\fB\(miL\fP" 10
+Handle the operand dot-dot logically; symbolic link components shall
+not be resolved before dot-dot components are processed (see steps 8.
+and 9. in the DESCRIPTION).
+.IP "\fB\(miP\fP" 10
+Handle the operand dot-dot physically; symbolic link components shall
+be resolved before dot-dot components are processed (see step 7. in the
+DESCRIPTION).
+.P
+如果同时指定
+.BR \(miL
+与
+.BR \(miP
+选项, 这些选项中的最后一个应当被使用, 且之前所有其它选项应当被忽略。
+如果
+.BR \(miL
+与
+.BR \(miP
+选项都未被指定,
+the operand shall be handled dot-dot logically; see the
+DESCRIPTION.
+.SH "操作数 (OPERANDS)"
+下列操作数应当被支持：
+.IP "\fIdirectory\fR" 10
+An absolute or relative pathname of the directory that shall become
+the new working directory. The interpretation of a relative pathname
+by
+.IR cd
+depends on the
+.BR \(miL
+option and the
+.IR CDPATH
+and
+.IR PWD
+environment variables. If
+.IR directory
+is an empty string, the results are unspecified.
+.IP "\(mi" 10
+当一个
+<连字符 "-">
+被用作操作数时, 它应当与下述命令等同：
+.RS 10
+.sp
+.RS 4
+.nf
+\fB
+cd "$OLDPWD" && pwd
+.fi \fR
+.P
+.RE
+.P
+即将当前工作目录更改至上一个工作目录，并打印其名称。
+.RE
+.SH "标准输入 (STDIN)"
+未被使用。
+.SH "输入文件 (INPUT FILES)"
+无。
+.SH "环境变量 (ENVIRONMENT VARIBLES)"
+下列环境变量应当对
+.IR cd
+命令的执行产生影响：
+.IP "\fICDPATH\fP" 10
+A
+<colon>-separated
+list of pathnames that refer to directories. The
+.IR cd
+utility shall use this list in its attempt to change the directory, as
+described in the DESCRIPTION. An empty string in place of a directory
+pathname represents the current directory. If
+.IR CDPATH
+is not set, it shall be treated as if it were an empty string.
+.IP "\fIHOME\fP" 10
+The name of the directory, used when no
+.IR directory
+operand is specified.
+.IP "\fILANG\fP" 10
+Provide a default value for the internationalization variables that are
+unset or null. (See the Base Definitions volume of POSIX.1\(hy2008,
+.IR "Section 8.2" ", " "Internationalization Variables"
+for the precedence of internationalization variables used to determine
+the values of locale categories.)
+.IP "\fILC_ALL\fP" 10
+If set to a non-empty string value, override the values of all the
+other internationalization variables.
+.IP "\fILC_CTYPE\fP" 10
+Determine the locale for the interpretation of sequences of bytes of
+text data as characters (for example, single-byte as opposed to
+multi-byte characters in arguments).
+.IP "\fILC_MESSAGES\fP" 10
+.br
+Determine the locale that should be used to affect the format and
+contents of diagnostic messages written to standard error.
+.IP "\fINLSPATH\fP" 10
+Determine the location of message catalogs for the processing of
+.IR LC_MESSAGES .
+.IP "\fIOLDPWD\fP" 10
+A pathname of the previous working directory, used by
+.IR cd
+.BR \(mi .
+.IP "\fIPWD\fP" 10
+This variable shall be set as specified in the DESCRIPTION. If an
+application sets or unsets the value of
+.IR PWD ,
+the behavior of
+.IR cd
+is unspecified.
+.SH "ASYNCHRONOUS EVENTS"
+取默认情况。
+.SH "标准输出 (STDOUT)"
+If a non-empty directory name from
+.IR CDPATH
+is used, or if
+.IR cd
+.BR \(mi
+is used, an absolute pathname of the new working directory shall be
+written to the standard output as follows:
+.sp
+.RS 4
+.nf
+\fB
+"%s\en", <\fInew directory\fR>
+.fi \fR
+.P
+.RE
+.P
+否则，不应产生输出。
+.SH "标准错误输出 (STDERR)"
+标准错误应当仅用于输出诊断信息。
+.SH "输出文件 (OUTPUT FILES)"
+暂无。
+.SH "扩展描述 (EXTENDED DESCRIPTION)"
+暂无
+.SH "退出状态 (EXIT STATUS)"
+程序应当返回下列退出状态：
+.IP "\00" 6
+工作目录被成功更改。
+.IP >0 6
+有错误发生。
+.SH "错误发生结果 (CONSEQUENCES OF ERRORS)"
+工作目录应当不作改变。
+.LP
+.IR "下列段落仅用于提供更多信息。"
+.SH "APPLICATION USAGE"
+Since
+.IR cd
+affects the current shell execution environment, it is always provided
+as a shell regular built-in. If it is called in a subshell or separate
+utility execution environment, such as one of the following:
+.sp
+.RS 4
+.nf
+\fB
+(cd /tmp)
+nohup cd
+find . \(miexec cd {} \e;
+.fi \fR
+.P
+.RE
+.P
+it does not affect the working directory of the caller's environment.
+.P
+The user must have execute (search) permission in
+.IR directory
+in order to change to it.
+.SH EXAMPLES
+The following template can be used to perform processing in the directory
+specified by
+.IR location
+and end up in the current working directory in use before the first
+.IR cd
+command was issued:
+.sp
+.RS 4
+.nf
+\fB
+cd \fIlocation\fP
+if [ $? -ne 0 ]
+then
+    print error message
+    exit 1
+fi
+\&... do whatever is desired as long as the OLDPWD environment variable
+    is not modified
+cd -
+.fi \fR
+.P
+.RE
+.SH "基本原理 (RATIONALE)"
+对
+.IR CDPATH
+的使用
+was introduced in the System V shell. Its use is analogous to the use
+of the
+.IR PATH
+variable in the shell. The BSD C shell used a shell parameter
+.IR cdpath
+for this purpose.
+.P
+A common extension when
+.IR HOME
+is undefined is to get the login directory from the user database for
+the invoking user. This does not occur on System V implementations.
+.P
+Some historical shells, such as the KornShell, took special actions
+when the directory name contained a dot-dot component, selecting the
+logical parent of the directory, rather than the actual parent
+directory; that is, it moved up one level toward the
+.BR '/'
+in the pathname, remembering what the user typed, rather than
+performing the equivalent of:
+.sp
+.RS 4
+.nf
+\fB
+chdir("..");
+.fi \fR
+.P
+.RE
+.P
+In such a shell, the following commands would not necessarily produce
+equivalent output for all directories:
+.sp
+.RS 4
+.nf
+\fB
+cd .. && ls      ls ..
+.fi \fR
+.P
+.RE
+.P
+This behavior is now the default. It is not consistent with the
+definition of dot-dot in most historical practice; that is, while this
+behavior has been optionally available in the KornShell, other shells
+have historically not supported this functionality. The logical
+pathname is stored in the
+.IR PWD
+environment variable when the
+.IR cd
+utility completes and this value is used to construct the next
+directory name if
+.IR cd
+is invoked with the
+.BR \(miL
+option.
+.SH "未来方向 (FUTURE DIRECTIONS)"
+暂无。
+.SH "参见 (SEE ALSO)"
+.IR "Section 2.12" ", " "Shell Execution Environment",
+.IR "\fIpwd\fR\^"
+.P
+The Base Definitions volume of POSIX.1\(hy2008,
+.IR "Chapter 8" ", " "Environment Variables",
+.IR "Section 12.2" ", " "Utility Syntax Guidelines"
+.P
+The System Interfaces volume of POSIX.1\(hy2008,
+.IR "\fIchdir\fR\^(\|)"
+.SH "版权所有 (COPYRIGHT)"
+Portions of this text are reprinted and reproduced in electronic form
+from IEEE Std 1003.1, 2013 Edition, Standard for Information Technology
+-- Portable Operating System Interface (POSIX), The Open Group Base
+Specifications Issue 7, Copyright (C) 2013 by the Institute of
+Electrical and Electronics Engineers, Inc and The Open Group.
+(This is POSIX.1-2008 with the 2013 Technical Corrigendum 1 applied.) In the
+event of any discrepancy between this version and the original IEEE and
+The Open Group Standard, the original IEEE and The Open Group Standard
+is the referee document. The original Standard can be obtained online at
+http://www.unix.org/online.html .
+
+Any typographical or formatting errors that appear
+in this page are most likely
+to have been introduced during the conversion of the source files to
+man page format. To report such errors, see
+https://www.kernel.org/doc/man-pages/reporting_bugs.html .
+
+文档的非正式中文翻译由 manpages_zh 项目提供。
