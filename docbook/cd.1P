@@ -1,11 +1,11 @@
 '\" t
 .\"     Title: cd
-.\"    Author: [FIXME: author] [see http://docbook.sf.net/el/author]
+.\"    Author: Boyuan Yang <073plan@gmail.com>
 .\" Generator: DocBook XSL Stylesheets v1.78.1 <http://docbook.sf.net/>
 .\"      Date: 2013
 .\"    Manual: POSIX 程序员手册
 .\"    Source: IEEE/The Open Group
-.\"  Language: English
+.\"  Language: Chinese Simplified
 .\"
 .TH "CD" "1P" "2013" "IEEE/The Open Group" "POSIX 程序员手册"
 .\" -----------------------------------------------------------------
@@ -27,7 +27,7 @@
 .\" -----------------------------------------------------------------
 .\" * MAIN CONTENT STARTS HERE *
 .\" -----------------------------------------------------------------
-.SH "NAME"
+.SH "名称"
 cd \- 改变工作目录
 .SH "总览 (SYNOPSIS)"
 .HP \w'\fBcd\fR\ 'u
@@ -185,3 +185,13 @@ Portions of this text are reprinted and reproduced in electronic form from IEEE 
 Any typographical or formatting errors that appear in this page are most likely to have been introduced during the conversation of the source files to man page format\&.
 .PP
 本文档非正式中文翻译由\0manpages_zh\0项目提供。 请向本项目提交文法错误与建议。
+.SH "作者"
+.PP
+\fBBoyuan Yang\fR <\&073plan@gmail\&.com\&>
+.RS 4
+translated the document\&.
+.RE
+.SH "版权"
+.br
+版权 \(co 2013 IEEE/The Open Group
+.br

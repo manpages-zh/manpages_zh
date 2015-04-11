@@ -2,16 +2,35 @@
 <!DOCTYPE refentry PUBLIC
 "-//OASIS//DTD DocBook XML V4.5/zh_cn" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
 
-<!ENTITY mptitle "POSIX 程序员手册">
+<!ENTITY dhtitle "POSIX 程序员手册">
+<!ENTITY dhfirstname "Boyuan">
+<!ENTITY dhsurname "Yang">
+<!ENTITY dhpackage "IEEE/The Open Group">
+<!ENTITY dhemail "073plan@gmail.com">
 
 ]>
 <!-- TODO INCOMPLETE -->
 
-<refentry xml:id="cd">
+<refentry xml:id="cd" xml:lang="zh_cn">
 
 <refentryinfo>
-    <title>&mptitle;</title>
+    <title>&dhtitle;</title>
+    <productname>&dhpackage;</productname>
     <date>2013</date>
+    <authorgroup>
+        <author>
+            <firstname>&dhfirstname;</firstname>
+            <surname>&dhsurname;</surname>
+            <contrib>translated the document.</contrib>
+            <address>
+                <email>&dhemail;</email>
+            </address>
+        </author>
+    </authorgroup>
+    <copyright>
+        <year>2013</year>
+        <holder>&dhpackage;</holder>
+    </copyright>
 </refentryinfo>
 
 <refmeta>
