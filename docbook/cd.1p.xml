@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC
+"-//OASIS//DTD DocBook XML V4.5/zh_cn" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+
+<!ENTITY mptitle "POSIX 程序员手册">
+
+]>
+
+<refentry xml:id="cd">
+
+<refentryinfo>
+    <title>&mptitle;</title>
+    <date>2013</date>
+</refentryinfo>
+
+<refmeta>
+    <refentrytitle>
+        <application>cd</application>
+    </refentrytitle>
+    <manvolnum>1P</manvolnum>
+    <refmiscinfo>IEEE/The Open Group</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+    <!--<title>名称 (NAME)</title>-->
+    <refname>
+        <application>cd</application>
+    </refname>
+    <refpurpose>改变工作目录</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+    <title>总览 (SYNOPSIS)</title>
+    <refsynopsisdivinfo>
+        <date>2013</date>
+    </refsynopsisdivinfo>
+    <cmdsynopsis>
+        <command>cd</command>
+        <arg><option> -L|-P</option><replaceable class="parameter"></replaceable></arg>
+        <arg><replaceable class="parameter">目录</replaceable></arg>
+    </cmdsynopsis>
+    <cmdsynopsis>
+        <command>cd -</command>
+    </cmdsynopsis>
+</refsynopsisdiv>
+
+<refsect1>
+    <refsect1info>
+        <date>2013</date>
+    </refsect1info>
+    <title>描述 (DESCRIPTION)</title>
+    <para>
+        <command>cd</command> 工具能够更改当前 shell 运行环境的工作目录,
+        其行为按照下列步骤进行：
+        (在下列步骤中, 标志
+    </para>
+</refsect1>
+</refentry>
+
