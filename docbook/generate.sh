@@ -8,7 +8,8 @@
 declare -a LIST
 LIST=(cd.1p)
 for NAME in ${LIST}; do
-    db2x_xsltproc -s man ${NAME}.xml -o ${NAME}.mxml
-    db2x_manxml --encoding="UTF-8" ${NAME}.mxml
+#    db2x_xsltproc -s man ${NAME}.xml -o ${NAME}.mxml
+#    db2x_manxml --encoding="UTF-8" ${NAME}.mxml
+xsltproc /usr/share/xml/docbook/xsl-stylesheets-1.78.1/manpages/docbook.xsl ./${NAME}.xml
 done
-rm ./*.mxml
+#rm ./*.mxml
