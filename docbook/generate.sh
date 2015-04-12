@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Script used to convert DocBook XML file to groff-format man page.
 # author: @hosiet
