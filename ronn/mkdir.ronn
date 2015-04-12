@@ -1,0 +1,38 @@
+mkdir(1) -- 建立目录
+===========================
+
+##语法
+
+`mkdir [选项] 目录...`
+
+##描述
+
+mkdir可建立目录并同时设置目录的权限,要求创建目录的用户在当前目录中具有写
+权限,并且指定的目录名不能是当前目录中已有的目录.
+
+##选项
+
+* `-m, --mode=模式`:
+设定文件夹的权限模式,模式应使用chmod中的数字模式
+
+* `-p, --parents`:
+若所要建立目录的上层目录目前尚未建立,则会一并建立上层目录,即一次
+可以建立多层目录; 
+
+* `-v, --verbose`:
+执行时显示详细的信息
+
+* `−Z`:
+set SELinux security context of each created directory to the
+default type
+
+* `−−context[=CTX]`:
+like −Z, or if CTX is specified then set the SELinux or SMACK
+security context to CTX
+
+* `--help`:
+显示此帮助信息并退出
+
+* `--version`:
+输出版本信息并退出
+

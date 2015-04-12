@@ -1,0 +1,44 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "MKDIR" "1" "April 2015" "" ""
+.
+.SH "NAME"
+\fBmkdir\fR \- 建立目录
+.
+.SH "语法"
+\fBmkdir [选项] 目录\.\.\.\fR
+.
+.SH "描述"
+mkdir可建立目录并同时设置目录的权限,要求创建目录的用户在当前目录中具有写 权限,并且指定的目录名不能是当前目录中已有的目录\.
+.
+.SH "选项"
+.
+.TP
+\fB\-m, \-\-mode=模式\fR
+设定文件夹的权限模式,模式应使用chmod中的数字模式
+.
+.TP
+\fB\-p, \-\-parents\fR
+若所要建立目录的上层目录目前尚未建立,则会一并建立上层目录,即一次 可以建立多层目录;
+.
+.TP
+\fB\-v, \-\-verbose\fR
+执行时显示详细的信息
+.
+.TP
+\fB−Z\fR
+set SELinux security context of each created directory to the default type
+.
+.TP
+\fB−−context[=CTX]\fR
+like −Z, or if CTX is specified then set the SELinux or SMACK security context to CTX
+.
+.TP
+\fB\-\-help\fR
+显示此帮助信息并退出
+.
+.TP
+\fB\-\-version\fR
+输出版本信息并退出
+
