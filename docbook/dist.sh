@@ -1,18 +1,24 @@
 #!/bin/sh
 
-# 作者(author): hosiet
+# Script used to convert DocBook XML file to groff-format man page.
+# author: @hosiet
 #
+
 # #说明
 #
 # 文件按照命名方式放在 docbook/*/ 子文件夹下；自动根据文件名生成 groff 文件放入
 # man/manX/ 文件夹下
 #
+# #使用方法
+#
+# *  直接运行脚本：在 XML 文件所在目录生成 groff 文档
+# *  紧跟 dist 参数：自动生成文档，并将文档复制到 man/manX/ 文件夹中
+#
 
 DISTDIR="../man/"
 SRCDIR="$(pwd)"
-DOCBOOK_XSL="/usr/share/xml/docbook/xsl-stylesheets-1.78.1/manpages/docbook.xsl"
-#DOCBOOK_XSL="${SRCDIR}/xsl-stylesheets-1.78.1/manpages/docbook.xsl"
-
+#DOCBOOK_XSL="/usr/share/xml/docbook/xsl-stylesheets-1.78.1/manpages/docbook.xsl"
+DOCBOOK_XSL="${SRCDIR}/xsl-stylesheets-1.78.1/manpages/docbook.xsl"
 
 ##
 # 判断文件是 XML 文件
