@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC
+"-//OASIS//DTD DocBook XML V4.5/zh_cn" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+
+<!ENTITY dhtitle "POSIX 程序员手册">
+<!ENTITY dhfirstname "Boyuan">
+<!ENTITY dhsurname "Yang">
+<!ENTITY dhpackage "IEEE/The Open Group">
+<!ENTITY dhemail "073plan@gmail.com">
+
+]>
+<!-- TODO INCOMPLETE -->
+
+<refentry xml:id="cd" xml:lang="zh_cn">
+
+<refentryinfo>
+    <title>&dhtitle;</title>
+    <productname>&dhpackage;</productname>
+    <date>2013</date>
+    <authorgroup>
+        <author>
+            <firstname>&dhfirstname;</firstname>
+            <surname>&dhsurname;</surname>
+            <contrib>translated the document.</contrib>
+            <address>
+                <email>&dhemail;</email>
+            </address>
+        </author>
+    </authorgroup>
+    <copyright>
+        <year>2013</year>
+        <holder>&dhpackage;</holder>
+    </copyright>
+</refentryinfo>
+
+<refmeta>
+    <refentrytitle>cd</refentrytitle>
+    <manvolnum>1P</manvolnum>
+    <refmiscinfo>IEEE/The Open Group</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+    <!--<title>名称 (NAME)</title>-->
+    <refname>cd</refname>
+    <refpurpose>改变工作目录</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+    <title>总览 (SYNOPSIS)</title>
+    <refsynopsisdivinfo>
+        <date>2013</date>
+    </refsynopsisdivinfo>
+    <cmdsynopsis>
+        <command>cd</command>
+        <arg><option>-L|-P</option><replaceable class="parameter"></replaceable></arg>
+        <arg><replaceable class="parameter">目录</replaceable></arg>
+    </cmdsynopsis>
+    <cmdsynopsis>
+        <command>cd -</command>
+    </cmdsynopsis>
+</refsynopsisdiv>
+
+<refsect1>
+    <refsect1info>
+        <date>2013</date>
+    </refsect1info>
+    <title>描述 (DESCRIPTION)</title>
+    <!-- emphasis: underline -->
+    <!-- varname: none -->
+    <para>
+        <emphasis>cd</emphasis> 工具能够更改当前 shell 运行环境的工作目录, 其行为按照下列步骤进行：
+        (在下列步骤中, 标志 <envar>curpath</envar> 代表一个用来简化描述 <command>cd</command> 工作算法的中间值。<envar>curpath</envar> 在程序中无需可见。
+    </para>
+    <orderedlist>
+        <listitem>
+            <para>
+                如果没有给出 <emphasis>目录</emphasis> 操作数, 且 <envar>HOME</envar> 环境变量为空或未定义, 其默认行为由实现定义, 且程序不应采取进一步行为。
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                如果没有给出 <emphasis>目录</emphasis> 操作数, 且 <envar>HOME</envar> 环境变量被设为非空值, 则 <emphasis>cd</emphasis> 工具应当以假设 <emphasis>目录</emphasis> 操作数被设为 <envar>HOME</envar> 环境变量的情况运行。
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                如果 <emphasis>目录</emphasis> 操作数以一个 &lt;斜杠 "/"&gt; 字符开头, 则设置 <envar>curpath</envar> 变量和目录操作数相同, 并跳转到第 7 步继续。
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                如果 <emphasis>目录</emphasis> 操作数的第一个组成部分是 “点” 或 “点点”, 跳转到第 6 步继续。
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                由 <envar>CDPATH</envar> (参见“环境变量”一节的内容) 中由冒号分割的路径名列表 中的第一个起始, 如果该路径名非空, 测试……
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                将 <envar>curpath</envar> 设为 <emphasis>目录</emphasis> 操作数。
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                如果 <option>-P</option> 选项生效, 跳转到第 10 步继续。 如果 <envar>curpath</envar> 并非以一个 &lt;斜杠 "/"&gt; 起始, 将 <envar>curpath</envar> 设为……
+            </para>
+        </listitem>
+    </orderedlist>
+</refsect1>
+<refsect1>
+    <title>选项 (OPTIONS)</title>
+    <para>
+        <emphasis>cd</emphasis> 工具应当与 the Base Definitions volume of POSIX.1-2008, <emphasis>Section 12.2</emphasis>, <emphasis>Utility Syntax Guidelines</emphasis> 所述保持一致。
+    </para>
+    <para>下列选项应当被实现所支持：</para>
+    <variablelist>
+        <varlistentry>
+            <term><option>-L</option></term>
+            <listitem>
+                <para>
+                    参见第 8 步与第 9 步。
+                </para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><option>-P</option></term>
+            <listitem>
+                <para>
+                    参见第 7 步。
+                </para>
+            </listitem>
+        </varlistentry>
+    </variablelist>
+    <para>
+        如果同时指定 <option>-L</option> 与 <option>-P</option> 选项，这些选项中的最后一个应当被使用，且之前所有其它选项应当被忽略。 如果 <option>-L</option> 与 <option>-P</option> 选项都未被指定，则操作数会被默认处理；请参见描述部分。
+        <!-- TODO FIXME 重写默认内容 -->
+    </para>
+
+</refsect1>
+<refsect1>
+    <title>参见 (SEE ALSO)</title>
+    <para><emphasis>Section 2.12</emphasis>, <emphasis>Shell Execution Environment</emphasis>, <emphasis>pwd</emphasis></para>
+    <para>The System Interfaces volume of POSIX.1-2008, <emphasis>chdir</emphasis>()</para>
+</refsect1>
+<refsect1>
+    <refsect1info>
+        <date>2013</date>
+    </refsect1info>
+    <title>版权所有 (COPYRIGHT)</title>
+    <para>
+        Portions of this text are reprinted and reproduced in electronic form from IEEE Std 1003.1, 2013 Edition, Standard for Information Technology -- Portable Operation System Interface (POSIX), The Open Group Base Specifications Issue 7, Copyright (C) 2013 by the Institute of Electronical and Electronics Engineers, Inc and The Open Group. (This is POSIX.1-2008 with the 2013 Technical Corrigendum 1 applied.) In the event of any discrepancy between this version and the original IEEE and The Open Group Standard, the original IEEE and The Open Group Standard is the referee document. The original Standard can be obtained at http://www.unix.org/online.html .
+    </para>
+    <para>
+        Any typographical or formatting errors that appear in this page are most likely to have been introduced during the conversation of the source files to man page format.
+    </para>
+    <para>
+        本文档非正式中文翻译由 manpages_zh 项目提供。 请向本项目提交文法错误与建议。
+    </para>
+</refsect1>
+</refentry>
