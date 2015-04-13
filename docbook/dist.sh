@@ -20,6 +20,9 @@ SRCDIR="$(pwd)"
 #DOCBOOK_XSL="/usr/share/xml/docbook/xsl-stylesheets-1.78.1/manpages/docbook.xsl"
 DOCBOOK_XSL="${SRCDIR}/xsl-stylesheets-1.78.1/manpages/docbook.xsl"
 
+#declare -a NODIST_NAME
+#NODIST_NAME=(scp.1)
+
 ##
 # 判断文件是 XML 文件
 #
@@ -63,6 +66,14 @@ getManSection()
 #################### 主过程 ##########################
 
 ##
+# 判断工作目录
+#
+if [ ! "x$(echo $(pwd) | grep -o '/docbook$')" = "x/docbook" ]; then
+    echo "You must run this script with \$PWD set to docbook dir."
+    exit 1
+fi
+
+##
 # 进行 XSLT
 #
 echo " *  Processing XML file..."
@@ -73,7 +84,8 @@ for DNAME in $(ls); do
             if isValidXML ${FNAME}; then
                 # xsltproc
                 #echo "XSL is ${DOCBOOK_XSL}, FNAME is ${FNAME}"
-                xsltproc ${DOCBOOK_XSL} ./${FNAME}
+                xsltproc ${DOCBOOK_XSL} ./${FNAME} # 2> /dev/null
+                #echo -n "."
             fi
         done
     fi
