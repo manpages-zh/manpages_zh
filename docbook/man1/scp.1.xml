@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC
+"-//OASIS//DTD DocBook XML V4.5/zh_cn" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY dhtitle "一般命令手册">
+<!ENTITY dhfirstname "Boyuan">
+<!ENTITY dhsurname "Yang">
+<!ENTITY dhpackage "manpages_zh">
+<!ENTITY dhemail "073plan@gmail.com">
+]>
+
+<refentry xml:id="cd" xml:lang="zh_cn">
+<!-- INCOMPLETE FIXME -->
+
+<refentryinfo>
+    <title>&dhtitle;</title>
+    <productname>&dhpackage;</productname>
+    <date>2015-01-30</date>
+    <authorgroup>
+        <author>
+            <firstname>Timo</firstname>
+            <surname>Rinne</surname>
+            <contrib>作者</contrib>
+            <address>
+                <email>Mt tri@iki.fi</email>
+            </address>
+        </author>
+        <author>
+            <firstname>Tatu</firstname>
+            <surname>Ylonen</surname>
+            <contrib>作者</contrib>
+            <address>
+                <email>Mt ylo@cs.hut.fi</email>
+            </address>
+        </author>
+        <author>
+            <firstname>&dhfirstname;</firstname>
+            <surname>&dhsurname;</surname>
+            <contrib>翻译本篇文章</contrib>
+            <address>
+                <email>&dhemail;</email>
+            </address>
+        </author>
+    </authorgroup>
+    <copyright>
+        <year>2015</year>
+        <holder>&dhpackage;</holder>
+    </copyright>
+</refentryinfo>
+
+<refmeta>
+    <refentrytitle>scp</refentrytitle>
+    <manvolnum>1</manvolnum>
+    <refmiscinfo>manpages_zh</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+    <refname>scp</refname>
+    <refpurpose>安全复制 (远程文件复制程序)</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+    <title>总览 (SYNOPSIS)</title>
+    <refsynopsisdivinfo>
+        <date>2013</date>
+    </refsynopsisdivinfo>
+    <cmdsynopsis>
+        <command>scp</command>
+        <arg><option>-12346BCpqrv</option></arg>
+        <arg><option>-c</option> <replaceable class="parameter">cipher</replaceable></arg>
+        <arg><option>-F</option> <replaceable class="parameter">ssh_config</replaceable></arg>
+        <arg><option>-i</option> <replaceable class="parameter">identity_file</replaceable></arg>
+        <arg><option>-l</option> <replaceable class="parameter">limit</replaceable></arg>
+        <arg><option>-o</option> <replaceable class="parameter">ssh_option</replaceable></arg>
+        <arg><option>-P</option> <replaceable class="parameter">port</replaceable></arg>
+        <arg><option>-S</option> <replaceable class="parameter">program</replaceable></arg>
+        <arg><arg><replaceable class="parameter">user</replaceable>@</arg><replaceable class="parameter">host1</replaceable>:</arg><replaceable class="parameter">file1</replaceable> <replaceable class="parameter">...</replaceable>
+        <arg><arg><replaceable class="parameter">user</replaceable>@</arg><replaceable class="parameter">host2</replaceable>:</arg><replaceable class="parameter">file2</replaceable>
+    </cmdsynopsis>
+</refsynopsisdiv>
+
+<refsect1>
+    <title>描述 (DESCRIPTION)</title>
+    <para>
+        <command>scp</command> 在网络的主机间复制文件。 它使用 <command>ssh</command>(1) 实现数据传输, 使用相同的验证方式, 提供与 <command>ssh</command>(1) 同等的安全性。
+        <command>scp</command> 会在有必要的情况下 向用户询问密码与验证密文 (passphrase) 用来进行身份验证。
+    </para>
+    <para>
+        文件名可能包含一个用户名和主机信息, 以此指示文件将被 / 从该主机复制。
+        本地文件名称可以显式地使用绝对或相对路径名, 以此避免 <command>scp</command> 将含有 `:' 字符的文件名字符串当作主机信息处理。
+        在两台远程主机间进行文件复制同样是被允许的。
+    </para>
+</refsect1>
+<refsect1>
+    <title>选项 (OPTIONS)</title>
+    <para>
+        可接受的选项如下所示：
+    </para>
+    <para>
+        待翻译。
+    </para>
+</refsect1>
+<refsect1>
+    <title>返回状态 (EXIT STATUS)</title>
+    <para>
+        <wordasword>Ex -std scp</wordasword>
+    </para>
+    <note>
+        <para>
+            译者注：暂不明白以上原文的含义。
+        </para>
+    </note>
+</refsect1>
+<refsect1>
+    <title>参见 (SEE ALSO)</title>
+    <para>
+        <command>sftp</command>(1), <command>ssh</command>(1), <command>ssh-add</command>(1), <command>ssh-agent</command>(1), <command>ssh-keygen</command>(1), <command>ssh_config</command>(1), <command>sshd</command>(8)
+    </para>
+</refsect1>
+
+<refsect1>
+    <title>历史 (HISTORY)</title>
+    <para>
+        <command>scp</command> is based on the rcp program in Bx source code
+        from the Regents of the University of California.
+    </para>
+</refsect1>
+
+<refsect1>
+    <title>注记 (NOTES)</title>
+    <para>
+        本文档非正式翻译由 manpages_zh 项目提供。
+    </para>
+    <para>
+        请向本项目提交文法错误报告与改进建议：
+        <ulink url="https://github.com/intetnet/manpages_zh" />
+    </para>
+</refsect1>
+</refentry>
