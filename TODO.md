@@ -10,7 +10,7 @@
 - coreutils /usr/share/man/man1/
 - coreutils /usr/share/man/man1/base64.1.gz
 - coreutils /usr/share/man/man1/basename.1.gz
-- coreutils /usr/share/man/man1/cat.1.gz
+- ~~coreutils /usr/share/man/man1/cat.1.gz~~
 - coreutils /usr/share/man/man1/chcon.1.gz
 - coreutils /usr/share/man/man1/chgrp.1.gz
 - ~~coreutils /usr/share/man/man1/chmod.1.gz~~
@@ -103,7 +103,7 @@
 - coreutils /usr/share/man/man1/unlink.1.gz
 - coreutils /usr/share/man/man1/users.1.gz
 - coreutils /usr/share/man/man1/vdir.1.gz
-- coreutils /usr/share/man/man1/wc.1.gz
+- ~~coreutils /usr/share/man/man1/wc.1.gz~~
 - coreutils /usr/share/man/man1/who.1.gz
 - coreutils /usr/share/man/man1/whoami.1.gz
 - coreutils /usr/share/man/man1/yes.1.gz
