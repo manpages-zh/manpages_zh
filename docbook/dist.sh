@@ -18,7 +18,9 @@
 DISTDIR="../man/"
 SRCDIR="$(pwd)"
 #DOCBOOK_XSL="/usr/share/xml/docbook/xsl-stylesheets-1.78.1/manpages/docbook.xsl"
-DOCBOOK_XSL="${SRCDIR}/xsl-stylesheets-1.78.1/manpages/docbook.xsl"
+#DOCBOOK_XHTML_XSL="/usr/share/xml/docbook-xsl-stylesheets-1.78.1/xhtml5/xhtml-docbook.xsl"
+DOCBOOK_XSL="${SRCDIR}/xsl-stylesheets-1.78.1~manpages_zh/manpages/docbook.xsl"
+DOCBOOK_XHTML_XSL="${SRCDIR}/xsl-stylesheets-1.78.1~manpages_zh/xhtml5/xhtml-docbook-manpage.xsl"
 
 #declare -a NODIST_NAME
 #NODIST_NAME=(scp.1)
@@ -44,7 +46,7 @@ isValidManPage()
     if isValidXML $1; then
         return 1
     fi
-    TESTNAME=$(echo $1 | grep -o "^[_0-9a-zA-Z-]*\.[0-9]")
+    TESTNAME=$(echo $1 | grep -o "^[_0-9a-zA-Z-]*\.[0-9][a-zA-Z]*")
     if [ ! "x${TESTNAME}" = "x" ]; then
         # is valid man page file
         return 0
@@ -61,6 +63,16 @@ getManSection()
     TESTNAME=$(echo $1 | grep -o "\.[0-9]")
     TESTNAME1=$(echo ${TESTNAME} | grep -o "[0-9]")
     echo ${TESTNAME1}
+}
+
+##
+# 根据 XML 文件名获取 man 文件名
+#
+# TODO FIXME 判断大小写
+getManFileName()
+{
+    TESTNAME=$(echo $1 | grep -o "^[_0-9a-zA-Z-]*\.[0-9][a-zA-Z]*" 2> /dev/null)
+    echo "${TESTNAME}"
 }
 
 #################### 主过程 ##########################
@@ -85,6 +97,7 @@ for DNAME in $(ls); do
                 # xsltproc
                 #echo "XSL is ${DOCBOOK_XSL}, FNAME is ${FNAME}"
                 xsltproc ${DOCBOOK_XSL} ./${FNAME} # 2> /dev/null
+                xsltproc ${DOCBOOK_XHTML_XSL} ./${FNAME} > ./$(getManFileName ${FNAME}).xhtml
                 #echo -n "."
             fi
         done

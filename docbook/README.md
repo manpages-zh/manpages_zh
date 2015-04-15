@@ -40,3 +40,13 @@ http://www.tldp.org/HOWTO/DocBook-Install/using.html
 http://www.docbook.org/tdg5/en/html/refentry.html
 
 http://zh.wikipedia.org/wiki/%E7%A9%BA%E6%A0%BC
+
+----------------------------------------------------------------
+
+自带 XSL Stylesheet 说明
+------------------------
+
+为了更好地生成合适的 man 手册页`XHTML`文档，我(hosiet)对 DocBook
+项目自带的 XSL 文档做了适当的修改；
+
+所有修改可以在 Git 历史里查询得到；关键词是 `docbook: xsl-stylesheets:`
