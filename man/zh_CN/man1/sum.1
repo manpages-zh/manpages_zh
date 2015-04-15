@@ -1,0 +1,65 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "SUM" "1" "April 2015" "" ""
+.
+.SH "NAME"
+\fBsum\fR \- 计算文件的校验和以及块数
+.
+.SH "描述"
+sum命令用于计算并显示指定文件的校验和与文件所占用的磁盘块数。如果参数中 没有文件，或者文件为"−"，将从标准输入中读取。
+.
+.SH "语法"
+\fBsum [选项]\.\.\. [文件]\.\.\.\fR
+.
+.SH "选项"
+.
+.TP
+\fB−r\fR
+使用BSD校验和算法，块大小为1K
+.
+.TP
+\fB−s, −−sysv\fR
+使用SystemV校验和算法，块大小为512字节
+.
+.TP
+\fB−−help\fR
+显示帮助然后退出
+.
+.TP
+\fB−−version\fR
+输出版本信息然后退出
+.
+.SH "作者"
+由 Kayvan Aghaiepour 和 David MacKenzie 撰写。
+.
+.SH "报告错误"
+发送sum的错误信息到：<bug−coreutils@gnu\.org>
+.
+.P
+GNUcoreutils主页：\fIhttp://www\.gnu\.org/software/coreutils/\fR
+.
+.P
+使用GNU软件的常规帮助：\fIhttp://www\.gnu\.org/gethelp/\fR
+.
+.SH "版权声明"
+Copyright © 2013 Free Software Foundation, Inc\. License GPLv3+: GNU GPL version 3 or later \fIhttp://gnu\.org/licenses/gpl\.html\fR\.
+.
+.P
+这是一个自由软件：你可以自由修改和重新发布它。在法律允许的范围内，不提供 任何担保。
+.
+.SH "参阅"
+本程序的完整文档使用Texinfo手册进行维护。如果info和本程序已经正确地安装 在了你的电脑上，通过下述命令
+.
+.IP "" 4
+.
+.nf
+
+info coreutils \'sum invocation\'
+.
+.fi
+.
+.IP "" 0
+.
+.P
+可以访问完整的使用手册。
