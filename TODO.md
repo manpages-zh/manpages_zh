@@ -1,5 +1,7 @@
 最新的版本计划在最上部,其中删除线(或\~\~blabla\~\~)包括起来的是已完成的文档.发布时应包括如下文档,但具体情况由发布时决定.
 
+更多请参考`plan/`文件夹,本文件中的过期条目也会放于该文件夹中.
+
 对于未能及时跟进更新的条目,请协助我们来做这件事.
 
 #0.3版发布计划(2015.3.15)
@@ -10,7 +12,7 @@
 - coreutils /usr/share/man/man1/
 - coreutils /usr/share/man/man1/base64.1.gz
 - coreutils /usr/share/man/man1/basename.1.gz
-- coreutils /usr/share/man/man1/cat.1.gz
+- ~~coreutils /usr/share/man/man1/cat.1.gz~~
 - coreutils /usr/share/man/man1/chcon.1.gz
 - coreutils /usr/share/man/man1/chgrp.1.gz
 - ~~coreutils /usr/share/man/man1/chmod.1.gz~~
@@ -103,7 +105,7 @@
 - coreutils /usr/share/man/man1/unlink.1.gz
 - coreutils /usr/share/man/man1/users.1.gz
 - coreutils /usr/share/man/man1/vdir.1.gz
-- coreutils /usr/share/man/man1/wc.1.gz
+- ~~coreutils /usr/share/man/man1/wc.1.gz~~
 - coreutils /usr/share/man/man1/who.1.gz
 - coreutils /usr/share/man/man1/whoami.1.gz
 - coreutils /usr/share/man/man1/yes.1.gz
