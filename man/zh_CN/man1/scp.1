@@ -1,0 +1,418 @@
+'\" t
+.\"     Title: scp
+.\"    Author: Timo Rinne <Mt tri@iki.fi>
+.\" Generator: DocBook XSL Stylesheets v1.78.1 <http://docbook.sf.net/>
+.\"      Date: 2015-01-30
+.\"    Manual: 一般命令手册
+.\"    Source: manpages_zh
+.\"  Language: Chinese Simplified
+.\"
+.TH "SCP" "1" "2015\-01\-30" "manpages_zh" "一般命令手册"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "名称"
+scp \- 安全复制 (远程文件复制程序)
+.SH "总览 (SYNOPSIS)"
+.HP \w'\fBscp\fR\ 'u
+\fBscp\fR [\fB\-12346BCpqrv\fR] [\fB\-c\fR\ \fIcipher\fR] [\fB\-F\fR\ \fIssh_config\fR] [\fB\-i\fR\ \fIidentity_file\fR] [\fB\-l\fR\ \fIlimit\fR] [\fB\-o\fR\ \fIssh_option\fR] [\fB\-P\fR\ \fIport\fR] [\fB\-S\fR\ \fIprogram\fR] [[\fIuser\fR@]\fIhost1\fR:]\fIfile1\fR\0\fI\&.\&.\&.\fR [[\fIuser\fR@]\fIhost2\fR:]\fIfile2\fR
+.SH "描述 (DESCRIPTION)"
+.PP
+\fBscp\fR
+在网络的主机间复制文件。 它使用
+\fBssh\fR(1)
+实现数据传输, 使用相同的验证方式, 提供与
+\fBssh\fR(1)
+同等的安全性。
+\fBscp\fR
+会在有必要的情况下 向用户询问密码与验证密文 (passphrase) 用来进行身份验证。
+.PP
+文件名可能包含一个用户名和主机信息, 以此指示文件将被/从该主机复制。 本地文件名称可以显式地使用绝对或相对路径名, 以此避免
+\fBscp\fR
+将含有 `:\*(Aq 字符的文件名字符串当作主机信息处理。 在两台远程主机间进行文件复制同样是被允许的。
+.SH "选项 (OPTIONS)"
+.PP
+可接受的选项如下所示：
+.PP
+\fB\-1\fR
+.RS 4
+强制
+\fBscp\fR
+使用协议 1。
+.RE
+.PP
+\fB\-2\fR
+.RS 4
+强制
+\fBscp\fR
+使用协议 2。
+.RE
+.PP
+\fB\-3\fR
+.RS 4
+在两台远程主机之间复制文件时经由本地主机中转。 如果未指定该选项, 数据将在两台远程主机之间直接传输。 请注意该选项将禁用进度条显示。
+.RE
+.PP
+\fB\-4\fR
+.RS 4
+强制
+\fBscp\fR
+仅使用 IPv4 地址。
+.RE
+.PP
+\fB\-6\fR
+.RS 4
+强制
+\fBscp\fR
+仅使用 IPv6 地址。
+.RE
+.PP
+\fB\-B\fR
+.RS 4
+选择 batch 模式 (阻止对密码或验证密文的询问)。
+.RE
+.PP
+\fB\-C\fR
+.RS 4
+启用压缩。 向
+\fBssh\fR(1)
+传递
+\fB\-C\fR
+参数以启用压缩。
+.RE
+.PP
+\fB\-c\fR \fIcipher\fR
+.RS 4
+选择用来加密数据传输的 cipher。 该选项参数将直接传递至
+\fBssh\fR(1)。
+.RE
+.PP
+\fB\-F\fR \fIssh_config\fR
+.RS 4
+显式指定用于
+\fBssh\fR
+的用户配置文件。 该选项参数将直接传递至
+\fBssh\fR(1)。
+.RE
+.PP
+\fB\-i\fR \fIidentify_file\fR
+.RS 4
+选择用于公钥身份验证的身份 (私钥) 文件。 该选项参数将直接传递至
+\fBssh\fR(1)。
+.RE
+.PP
+\fB\-l\fR \fIlimit\fR
+.RS 4
+限制使用带宽, 单位为千字节每秒 (Kbit/s)。
+.RE
+.PP
+\fB\-o\fR \fIssh_option\fR
+.RS 4
+可被用来将
+\fBssh_config\fR(5)
+格式的参数传递给
+\fBssh\fR。 该选项在指定那些
+\fBscp\fR
+缺少的
+\fBssh\fR
+命令行参数时尤为有用。 如需了解下列支持选项的完整详细说明, 以及它们的可能取值, 请参阅
+\fBssh_config\fR(5)。
+.sp
+.RS 4
+AddressFamily
+.RE
+.RS 4
+BatchMode
+.RE
+.RS 4
+BindAddress
+.RE
+.RS 4
+CanonicalDomains
+.RE
+.RS 4
+CanonicalizeFallbackLocal
+.RE
+.RS 4
+CanonicalizeHostname
+.RE
+.RS 4
+CanonicalizeMaxDots
+.RE
+.RS 4
+CanonicalizePermittedCNAMEs
+.RE
+.RS 4
+ChallengeResponceAuthentication
+.RE
+.RS 4
+CheckHostIP
+.RE
+.RS 4
+Cipher
+.RE
+.RS 4
+Ciphers
+.RE
+.RS 4
+Compression
+.RE
+.RS 4
+CompressionLevel
+.RE
+.RS 4
+ConnectionAttempts
+.RE
+.RS 4
+ConnectTimeout
+.RE
+.RS 4
+ControlMaster
+.RE
+.RS 4
+ControlPath
+.RE
+.RS 4
+ControlPersist
+.RE
+.RS 4
+GlobalKnownHostsFile
+.RE
+.RS 4
+GSSAPIAuthentication
+.RE
+.RS 4
+GSSAPIDelegateCredentials
+.RE
+.RS 4
+HashKnownHosts
+.RE
+.RS 4
+Host
+.RE
+.RS 4
+HostbasedAuthentication
+.RE
+.RS 4
+HostbasedKeyTypes
+.RE
+.RS 4
+HostKeyAlgorithms
+.RE
+.RS 4
+HostKeyAlias
+.RE
+.RS 4
+HostName
+.RE
+.RS 4
+IdentityFile
+.RE
+.RS 4
+IdentitiesOnly
+.RE
+.RS 4
+IPQoS
+.RE
+.RS 4
+KbdInteractiveAuthentication
+.RE
+.RS 4
+KbdInteractiveDevices
+.RE
+.RS 4
+KexAlgorithms
+.RE
+.RS 4
+LogLevel
+.RE
+.RS 4
+MACs
+.RE
+.RS 4
+NoHostAuthenticationForLocalhost
+.RE
+.RS 4
+NumberOfPasswordPrompts
+.RE
+.RS 4
+PasswordAuthentication
+.RE
+.RS 4
+PKCS11Provider
+.RE
+.RS 4
+Port
+.RE
+.RS 4
+PreferredAuthentications
+.RE
+.RS 4
+Protocol
+.RE
+.RS 4
+ProxyCommand
+.RE
+.RS 4
+PubkeyAuthentication
+.RE
+.RS 4
+RekeyLimit
+.RE
+.RS 4
+RhostsRSAAuthentication
+.RE
+.RS 4
+RSAAuthentication
+.RE
+.RS 4
+SendEnv
+.RE
+.RS 4
+ServerAliveInerval
+.RE
+.RS 4
+ServerAliveCountMax
+.RE
+.RS 4
+StrictHostKeyChecking
+.RE
+.RS 4
+TCPKeepAlive
+.RE
+.RS 4
+UpdateHostKeys
+.RE
+.RS 4
+UsePrivilegedPort
+.RE
+.RS 4
+User
+.RE
+.RS 4
+UserKnownHostsFile
+.RE
+.RS 4
+VerifyHostKeyDNS
+.RE
+.RE
+.PP
+\fB\-P\fR \fIport\fR
+.RS 4
+指定连接远程主机的端口号。 请注意该选项使用大写 `P\*(Aq, 因为
+\fB\-p\fR
+已被用来指定保留文件的时间与模式信息。
+.RE
+.PP
+\fB\-p\fR
+.RS 4
+保留文件修改时间, 访问时间, 以及源文件的模式 (modes)。
+.RE
+.PP
+\fB\-q\fR
+.RS 4
+安静模式; 不显示由
+\fBssh\fR(1)
+传来的进度条、警告、诊断信息。
+.RE
+.PP
+\fB\-r\fR
+.RS 4
+递归地复制整个目录。 请注意,
+\fBscp\fR
+跟随遍历过程中遇到的符号链接。
+.RE
+.PP
+\fB\-S\fR \fIprogram\fR
+.RS 4
+指定用来进行加密连接的
+\fIprogram\fR
+(程序) 名称。 该程序必须能够识别
+\fBssh\fR(1)
+的参数与选项。
+.RE
+.PP
+\fB\-v\fR
+.RS 4
+详述 (Verbose) 模式。 使得
+\fBscp\fR
+和
+\fBssh\fR(1)
+打印执行过程中的调试信息。 该选项在调试连接、授权以及配置问题时十分有用。
+.RE
+.SH "返回状态 (EXIT STATUS)"
+.PP
+Ex \-std scp
+.if n \{\
+.sp
+.\}
+.RS 4
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+.ps +1
+\fB注意\fR
+.ps -1
+.br
+.PP
+译者注：暂不明白以上原文的含义。
+.sp .5v
+.RE
+.SH "参见 (SEE ALSO)"
+.PP
+\fBsftp\fR(1),
+\fBssh\fR(1),
+\fBssh-add\fR(1),
+\fBssh-agent\fR(1),
+\fBssh-keygen\fR(1),
+\fBssh-config\fR(1),
+\fBsshd\fR(8)
+.SH "历史 (HISTORY)"
+.PP
+\fBscp\fR
+is based on the rcp program in Bx source code from the Regents of the University of California\&.
+.SH "注记 (NOTES)"
+.PP
+本文档非正式翻译由 manpages_zh 项目提供。
+.PP
+请向本项目提交文法错误报告与改进建议：
+\m[blue]\fB\%https://github.com/intetnet/manpages_zh\fR\m[]
+.PP
+翻译更新日期：2015\-04\-15
+.SH "作者"
+.PP
+\fBTimo Rinne\fR <\&Mt tri@iki\&.fi\&>
+.RS 4
+作者
+.RE
+.PP
+\fBTatu Ylonen\fR <\&Mt ylo@cs\&.hut\&.fi\&>
+.RS 4
+作者
+.RE
+.PP
+\fBBoyuan Yang\fR <\&073plan@gmail\&.com\&>
+.RS 4
+翻译本篇文章
+.RE
+.SH "版权"
+.br
+版权 \(co 2015 manpages_zh
+.br

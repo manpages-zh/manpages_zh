@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head><title>scp</title><link rel="stylesheet" type="text/css" href="docbook.css"/><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"/></head><body><div xml:lang="zh_cn" class="refentry" id="cd"><div class="titlepage"/><div class="refnamediv"><h2>名称</h2><p>scp — 安全复制 (远程文件复制程序)</p></div><div class="refsynopsisdiv"><h2>总览 (SYNOPSIS)</h2><div class="cmdsynopsis"><p id="idm140430138308880"><code class="command">scp</code>  [<code class="option">-12346BCpqrv</code>] [<code class="option">-c</code> <em class="replaceable"><code>cipher</code></em>] [<code class="option">-F</code> <em class="replaceable"><code>ssh_config</code></em>] [<code class="option">-i</code> <em class="replaceable"><code>identity_file</code></em>] [<code class="option">-l</code> <em class="replaceable"><code>limit</code></em>] [<code class="option">-o</code> <em class="replaceable"><code>ssh_option</code></em>] [<code class="option">-P</code> <em class="replaceable"><code>port</code></em>] [<code class="option">-S</code> <em class="replaceable"><code>program</code></em>] [[<em class="replaceable"><code>user</code></em>@]<em class="replaceable"><code>host1</code></em>:]<em class="replaceable"><code>file1</code></em> <em class="replaceable"><code>...</code></em> [[<em class="replaceable"><code>user</code></em>@]<em class="replaceable"><code>host2</code></em>:]<em class="replaceable"><code>file2</code></em></p></div></div><div class="refsect1" id="idm140430141746080"><h2>描述 (DESCRIPTION)</h2><p>
+        <span class="command"><strong>scp</strong></span> 在网络的主机间复制文件。
+        它使用 <span class="citerefentry"><span class="refentrytitle">ssh</span>(1)</span> 实现数据传输, 使用相同的验证方式, 提供与 <span class="citerefentry"><span class="refentrytitle">ssh</span>(1)</span> 同等的安全性。
+        <span class="command"><strong>scp</strong></span> 会在有必要的情况下 向用户询问密码与验证密文 (passphrase) 用来进行身份验证。
+    </p><p>
+        文件名可能包含一个用户名和主机信息, 以此指示文件将被/从该主机复制。
+        本地文件名称可以显式地使用绝对或相对路径名, 以此避免 <span class="command"><strong>scp</strong></span> 将含有 `:' 字符的文件名字符串当作主机信息处理。
+        在两台远程主机间进行文件复制同样是被允许的。
+    </p></div><div class="refsect1" id="idm140430141739696"><h2>选项 (OPTIONS)</h2><p>
+        可接受的选项如下所示：
+    </p><div class="variablelist"><dl class="variablelist compact"><dt><span class="term"><code class="option">-1</code></span></dt><dd><p>
+                    强制 <span class="command"><strong>scp</strong></span> 使用协议 1。
+                </p></dd><dt><span class="term"><code class="option">-2</code></span></dt><dd><p>
+                    强制 <span class="command"><strong>scp</strong></span> 使用协议 2。
+                </p></dd><dt><span class="term"><code class="option">-3</code></span></dt><dd><p>
+                    在两台远程主机之间复制文件时经由本地主机中转。
+                    如果未指定该选项, 数据将在两台远程主机之间直接传输。
+                    请注意该选项将禁用进度条显示。
+                </p></dd><dt><span class="term"><code class="option">-4</code></span></dt><dd><p>
+                    强制 <span class="command"><strong>scp</strong></span> 仅使用 IPv4 地址。
+                </p></dd><dt><span class="term"><code class="option">-6</code></span></dt><dd><p>
+                    强制 <span class="command"><strong>scp</strong></span> 仅使用 IPv6 地址。
+                </p></dd><dt><span class="term"><code class="option">-B</code></span></dt><dd><p>
+                    选择 batch 模式 (阻止对密码或验证密文的询问)。
+                </p></dd><dt><span class="term"><code class="option">-C</code></span></dt><dd><p>
+                    启用压缩。
+                    向 <span class="citerefentry"><span class="refentrytitle">ssh</span>(1)</span> 传递 <code class="option">-C</code> 参数以启用压缩。
+                </p></dd><dt><span class="term"><code class="option">-c</code> <em class="replaceable"><code>cipher</code></em></span></dt><dd><p>
+                    选择用来加密数据传输的 cipher。
+                    该选项参数将直接传递至 <span class="citerefentry"><span class="refentrytitle">ssh</span>(1)</span>。
+                </p></dd><dt><span class="term"><code class="option">-F</code> <em class="replaceable"><code>ssh_config</code></em></span></dt><dd><p>
+                    显式指定用于 <span class="command"><strong>ssh</strong></span> 的用户配置文件。
+                    该选项参数将直接传递至 <span class="citerefentry"><span class="refentrytitle">ssh</span>(1)</span>。
+                </p></dd><dt><span class="term"><code class="option">-i</code> <em class="replaceable"><code>identify_file</code></em></span></dt><dd><p>
+                    选择用于公钥身份验证的身份 (私钥) 文件。
+                    该选项参数将直接传递至 <span class="citerefentry"><span class="refentrytitle">ssh</span>(1)</span>。
+                </p></dd><dt><span class="term"><code class="option">-l</code> <em class="replaceable"><code>limit</code></em></span></dt><dd><p>
+                    限制使用带宽, 单位为千字节每秒 (Kbit/s)。
+                </p></dd><dt><span class="term"><code class="option">-o</code> <em class="replaceable"><code>ssh_option</code></em></span></dt><dd><p>
+                    可被用来将 <span class="citerefentry"><span class="refentrytitle">ssh_config</span>(5)</span> 格式的参数传递给 <span class="command"><strong>ssh</strong></span>。
+                    该选项在指定那些 <span class="command"><strong>scp</strong></span> 缺少的 <span class="command"><strong>ssh</strong></span> 命令行参数时尤为有用。
+                    如需了解下列支持选项的完整详细说明, 以及它们的可能取值, 请参阅 <span class="citerefentry"><span class="refentrytitle">ssh_config</span>(5)</span>。
+                </p><p>
+                    </p><table style="border: 0; " class="simplelist"><tr><td>AddressFamily</td></tr><tr><td>BatchMode</td></tr><tr><td>BindAddress</td></tr><tr><td>CanonicalDomains</td></tr><tr><td>CanonicalizeFallbackLocal</td></tr><tr><td>CanonicalizeHostname</td></tr><tr><td>CanonicalizeMaxDots</td></tr><tr><td>CanonicalizePermittedCNAMEs</td></tr><tr><td>ChallengeResponceAuthentication</td></tr><tr><td>CheckHostIP</td></tr><tr><td>Cipher</td></tr><tr><td>Ciphers</td></tr><tr><td>Compression</td></tr><tr><td>CompressionLevel</td></tr><tr><td>ConnectionAttempts</td></tr><tr><td>ConnectTimeout</td></tr><tr><td>ControlMaster</td></tr><tr><td>ControlPath</td></tr><tr><td>ControlPersist</td></tr><tr><td>GlobalKnownHostsFile</td></tr><tr><td>GSSAPIAuthentication</td></tr><tr><td>GSSAPIDelegateCredentials</td></tr><tr><td>HashKnownHosts</td></tr><tr><td>Host</td></tr><tr><td>HostbasedAuthentication</td></tr><tr><td>HostbasedKeyTypes</td></tr><tr><td>HostKeyAlgorithms</td></tr><tr><td>HostKeyAlias</td></tr><tr><td>HostName</td></tr><tr><td>IdentityFile</td></tr><tr><td>IdentitiesOnly</td></tr><tr><td>IPQoS</td></tr><tr><td>KbdInteractiveAuthentication</td></tr><tr><td>KbdInteractiveDevices</td></tr><tr><td>KexAlgorithms</td></tr><tr><td>LogLevel</td></tr><tr><td>MACs</td></tr><tr><td>NoHostAuthenticationForLocalhost</td></tr><tr><td>NumberOfPasswordPrompts</td></tr><tr><td>PasswordAuthentication</td></tr><tr><td>PKCS11Provider</td></tr><tr><td>Port</td></tr><tr><td>PreferredAuthentications</td></tr><tr><td>Protocol</td></tr><tr><td>ProxyCommand</td></tr><tr><td>PubkeyAuthentication</td></tr><tr><td>RekeyLimit</td></tr><tr><td>RhostsRSAAuthentication</td></tr><tr><td>RSAAuthentication</td></tr><tr><td>SendEnv</td></tr><tr><td>ServerAliveInerval</td></tr><tr><td>ServerAliveCountMax</td></tr><tr><td>StrictHostKeyChecking</td></tr><tr><td>TCPKeepAlive</td></tr><tr><td>UpdateHostKeys</td></tr><tr><td>UsePrivilegedPort</td></tr><tr><td>User</td></tr><tr><td>UserKnownHostsFile</td></tr><tr><td>VerifyHostKeyDNS</td></tr></table><p>
+                </p></dd><dt><span class="term"><code class="option">-P</code> <em class="replaceable"><code>port</code></em></span></dt><dd><p>
+                    指定连接远程主机的端口号。
+                    请注意该选项使用大写 `P', 因为 <code class="option">-p</code> 已被用来指定保留文件的时间与模式信息。
+                </p></dd><dt><span class="term"><code class="option">-p</code></span></dt><dd><p>
+                    保留文件修改时间, 访问时间, 以及源文件的模式 (modes)。
+                </p></dd><dt><span class="term"><code class="option">-q</code></span></dt><dd><p>
+                    安静模式; 不显示由 <span class="citerefentry"><span class="refentrytitle">ssh</span>(1)</span> 传来的进度条、警告、诊断信息。
+                </p></dd><dt><span class="term"><code class="option">-r</code></span></dt><dd><p>
+                    递归地复制整个目录。
+                    请注意, <span class="command"><strong>scp</strong></span> 跟随遍历过程中遇到的符号链接。
+                </p></dd><dt><span class="term"><code class="option">-S</code> <em class="replaceable"><code>program</code></em></span></dt><dd><p>
+                    指定用来进行加密连接的 <em class="parameter"><code>program</code></em> (程序) 名称。
+                    该程序必须能够识别 <span class="citerefentry"><span class="refentrytitle">ssh</span>(1)</span> 的参数与选项。
+                </p></dd><dt><span class="term"><code class="option">-v</code></span></dt><dd><p>
+                    详述 (Verbose) 模式。
+                    使得 <span class="command"><strong>scp</strong></span> 和 <span class="citerefentry"><span class="refentrytitle">ssh</span>(1)</span> 打印执行过程中的调试信息。
+                    该选项在调试连接、授权以及配置问题时十分有用。
+                </p></dd></dl></div></div><div class="refsect1" id="idm140430136260448"><h2>返回状态 (EXIT STATUS)</h2><p>
+        <em class="wordasword">Ex -std scp</em>
+    </p><div class="note"><h3 class="title">注意</h3><p>
+            译者注：暂不明白以上原文的含义。
+        </p></div></div><div class="refsect1" id="idm140430136257984"><h2>参见 (SEE ALSO)</h2><p>
+        <span class="citerefentry"><span class="refentrytitle">sftp</span>(1)</span>,
+        <span class="citerefentry"><span class="refentrytitle">ssh</span>(1)</span>,
+        <span class="citerefentry"><span class="refentrytitle">ssh-add</span>(1)</span>,
+        <span class="citerefentry"><span class="refentrytitle">ssh-agent</span>(1)</span>,
+        <span class="citerefentry"><span class="refentrytitle">ssh-keygen</span>(1)</span>,
+        <span class="citerefentry"><span class="refentrytitle">ssh-config</span>(1)</span>,
+        <span class="citerefentry"><span class="refentrytitle">sshd</span>(8)</span>
+    </p></div><div class="refsect1" id="idm140430136251456"><h2>历史 (HISTORY)</h2><p>
+        <span class="command"><strong>scp</strong></span> is based on the rcp program in Bx source code
+        from the Regents of the University of California.
+    </p></div><div class="refsect1" id="idm140430136249552"><h2>注记 (NOTES)</h2><p>
+        本文档非正式翻译由 manpages_zh 项目提供。
+    </p><p>
+        请向本项目提交文法错误报告与改进建议：
+        <a class="ulink" href="https://github.com/intetnet/manpages_zh" target="_top">https://github.com/intetnet/manpages_zh</a>
+    </p><p>
+        翻译更新日期：<em class="wordasword">2015-04-15</em>
+    </p></div></div></body></html>

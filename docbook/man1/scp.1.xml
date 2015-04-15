@@ -9,7 +9,6 @@
 ]>
 
 <refentry xml:id="cd" xml:lang="zh_cn">
-<!-- INCOMPLETE FIXME -->
 
 <refentryinfo>
     <title>&dhtitle;</title>
@@ -81,11 +80,12 @@
 <refsect1>
     <title>描述 (DESCRIPTION)</title>
     <para>
-        <command>scp</command> 在网络的主机间复制文件。 它使用 <command>ssh</command>(1) 实现数据传输, 使用相同的验证方式, 提供与 <command>ssh</command>(1) 同等的安全性。
+        <command>scp</command> 在网络的主机间复制文件。
+        它使用 <citerefentry><refentrytitle>ssh</refentrytitle><manvolnum>1</manvolnum></citerefentry> 实现数据传输, 使用相同的验证方式, 提供与 <citerefentry><refentrytitle>ssh</refentrytitle><manvolnum>1</manvolnum></citerefentry> 同等的安全性。
         <command>scp</command> 会在有必要的情况下 向用户询问密码与验证密文 (passphrase) 用来进行身份验证。
     </para>
     <para>
-        文件名可能包含一个用户名和主机信息, 以此指示文件将被 / 从该主机复制。
+        文件名可能包含一个用户名和主机信息, 以此指示文件将被/从该主机复制。
         本地文件名称可以显式地使用绝对或相对路径名, 以此避免 <command>scp</command> 将含有 `:' 字符的文件名字符串当作主机信息处理。
         在两台远程主机间进行文件复制同样是被允许的。
     </para>
@@ -95,9 +95,228 @@
     <para>
         可接受的选项如下所示：
     </para>
-    <para>
-        待翻译。
-    </para>
+    <variablelist spacing="compact">
+        <varlistentry>
+            <term><option>-1</option></term>
+            <listitem>
+                <para>
+                    强制 <command>scp</command> 使用协议 1。
+                </para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><option>-2</option></term>
+            <listitem>
+                <para>
+                    强制 <command>scp</command> 使用协议 2。
+                </para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><option>-3</option></term>
+            <listitem>
+                <para>
+                    在两台远程主机之间复制文件时经由本地主机中转。
+                    如果未指定该选项, 数据将在两台远程主机之间直接传输。
+                    请注意该选项将禁用进度条显示。
+                </para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><option>-4</option></term>
+            <listitem>
+                <para>
+                    强制 <command>scp</command> 仅使用 IPv4 地址。
+                </para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><option>-6</option></term>
+            <listitem>
+                <para>
+                    强制 <command>scp</command> 仅使用 IPv6 地址。
+                </para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><option>-B</option></term>
+            <listitem>
+                <para>
+                    选择 batch 模式 (阻止对密码或验证密文的询问)。
+                </para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><option>-C</option></term>
+            <listitem>
+                <para>
+                    启用压缩。
+                    向 <citerefentry><refentrytitle>ssh</refentrytitle><manvolnum>1</manvolnum></citerefentry> 传递 <option>-C</option> 参数以启用压缩。
+                </para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><option>-c</option> <replaceable class="parameter">cipher</replaceable></term>
+            <listitem>
+                <para>
+                    选择用来加密数据传输的 cipher。
+                    该选项参数将直接传递至 <citerefentry><refentrytitle>ssh</refentrytitle><manvolnum>1</manvolnum></citerefentry>。
+                </para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><option>-F</option> <replaceable class="parameter">ssh_config</replaceable></term>
+            <listitem>
+                <para>
+                    显式指定用于 <command>ssh</command> 的用户配置文件。
+                    该选项参数将直接传递至 <citerefentry><refentrytitle>ssh</refentrytitle><manvolnum>1</manvolnum></citerefentry>。
+                </para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><option>-i</option> <replaceable class="parameter">identify_file</replaceable></term>
+            <listitem>
+                <para>
+                    选择用于公钥身份验证的身份 (私钥) 文件。
+                    该选项参数将直接传递至 <citerefentry><refentrytitle>ssh</refentrytitle><manvolnum>1</manvolnum></citerefentry>。
+                </para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><option>-l</option> <replaceable class="parameter">limit</replaceable></term>
+            <listitem>
+                <para>
+                    限制使用带宽, 单位为千字节每秒 (Kbit/s)。
+                </para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><option>-o</option> <replaceable class="parameter">ssh_option</replaceable></term>
+            <listitem>
+                <para>
+                    可被用来将 <citerefentry><refentrytitle>ssh_config</refentrytitle><manvolnum>5</manvolnum></citerefentry> 格式的参数传递给 <command>ssh</command>。
+                    该选项在指定那些 <command>scp</command> 缺少的 <command>ssh</command> 命令行参数时尤为有用。
+                    如需了解下列支持选项的完整详细说明, 以及它们的可能取值, 请参阅 <citerefentry><refentrytitle>ssh_config</refentrytitle><manvolnum>5</manvolnum></citerefentry>。
+                </para>
+                <para>
+                    <simplelist type="vert">
+                        <member>AddressFamily</member>
+                        <member>BatchMode</member>
+                        <member>BindAddress</member>
+                        <member>CanonicalDomains</member>
+                        <member>CanonicalizeFallbackLocal</member>
+                        <member>CanonicalizeHostname</member>
+                        <member>CanonicalizeMaxDots</member>
+                        <member>CanonicalizePermittedCNAMEs</member>
+                        <member>ChallengeResponceAuthentication</member>
+                        <member>CheckHostIP</member>
+                        <member>Cipher</member>
+                        <member>Ciphers</member>
+                        <member>Compression</member>
+                        <member>CompressionLevel</member>
+                        <member>ConnectionAttempts</member>
+                        <member>ConnectTimeout</member>
+                        <member>ControlMaster</member>
+                        <member>ControlPath</member>
+                        <member>ControlPersist</member>
+                        <member>GlobalKnownHostsFile</member>
+                        <member>GSSAPIAuthentication</member>
+                        <member>GSSAPIDelegateCredentials</member>
+                        <member>HashKnownHosts</member>
+                        <member>Host</member>
+                        <member>HostbasedAuthentication</member>
+                        <member>HostbasedKeyTypes</member>
+                        <member>HostKeyAlgorithms</member>
+                        <member>HostKeyAlias</member>
+                        <member>HostName</member>
+                        <member>IdentityFile</member>
+                        <member>IdentitiesOnly</member>
+                        <member>IPQoS</member>
+                        <member>KbdInteractiveAuthentication</member>
+                        <member>KbdInteractiveDevices</member>
+                        <member>KexAlgorithms</member>
+                        <member>LogLevel</member>
+                        <member>MACs</member>
+                        <member>NoHostAuthenticationForLocalhost</member>
+                        <member>NumberOfPasswordPrompts</member>
+                        <member>PasswordAuthentication</member>
+                        <member>PKCS11Provider</member>
+                        <member>Port</member>
+                        <member>PreferredAuthentications</member>
+                        <member>Protocol</member>
+                        <member>ProxyCommand</member>
+                        <member>PubkeyAuthentication</member>
+                        <member>RekeyLimit</member>
+                        <member>RhostsRSAAuthentication</member>
+                        <member>RSAAuthentication</member>
+                        <member>SendEnv</member>
+                        <member>ServerAliveInerval</member>
+                        <member>ServerAliveCountMax</member>
+                        <member>StrictHostKeyChecking</member>
+                        <member>TCPKeepAlive</member>
+                        <member>UpdateHostKeys</member>
+                        <member>UsePrivilegedPort</member>
+                        <member>User</member>
+                        <member>UserKnownHostsFile</member>
+                        <member>VerifyHostKeyDNS</member>
+                    </simplelist>
+                </para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><option>-P</option> <replaceable class="parameter">port</replaceable></term>
+            <listitem>
+                <para>
+                    指定连接远程主机的端口号。
+                    请注意该选项使用大写 `P', 因为 <option>-p</option> 已被用来指定保留文件的时间与模式信息。
+                </para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><option>-p</option></term>
+            <listitem>
+                <para>
+                    保留文件修改时间, 访问时间, 以及源文件的模式 (modes)。
+                </para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><option>-q</option></term>
+            <listitem>
+                <para>
+                    安静模式; 不显示由 <citerefentry><refentrytitle>ssh</refentrytitle><manvolnum>1</manvolnum></citerefentry> 传来的进度条、警告、诊断信息。
+                </para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><option>-r</option></term>
+            <listitem>
+                <para>
+                    递归地复制整个目录。
+                    请注意, <command>scp</command> 跟随遍历过程中遇到的符号链接。
+                </para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><option>-S</option> <replaceable class="parameter">program</replaceable></term>
+            <listitem>
+                <para>
+                    指定用来进行加密连接的 <parameter>program</parameter> (程序) 名称。
+                    该程序必须能够识别 <citerefentry><refentrytitle>ssh</refentrytitle><manvolnum>1</manvolnum></citerefentry> 的参数与选项。
+                </para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><option>-v</option></term>
+            <listitem>
+                <para>
+                    详述 (Verbose) 模式。
+                    使得 <command>scp</command> 和 <citerefentry><refentrytitle>ssh</refentrytitle><manvolnum>1</manvolnum></citerefentry> 打印执行过程中的调试信息。
+                    该选项在调试连接、授权以及配置问题时十分有用。
+                </para>
+            </listitem>
+        </varlistentry>
+    </variablelist>
 </refsect1>
 <refsect1>
     <title>返回状态 (EXIT STATUS)</title>
@@ -113,7 +332,13 @@
 <refsect1>
     <title>参见 (SEE ALSO)</title>
     <para>
-        <command>sftp</command>(1), <command>ssh</command>(1), <command>ssh-add</command>(1), <command>ssh-agent</command>(1), <command>ssh-keygen</command>(1), <command>ssh_config</command>(1), <command>sshd</command>(8)
+        <citerefentry><refentrytitle>sftp</refentrytitle><manvolnum>1</manvolnum></citerefentry>,
+        <citerefentry><refentrytitle>ssh</refentrytitle><manvolnum>1</manvolnum></citerefentry>,
+        <citerefentry><refentrytitle>ssh-add</refentrytitle><manvolnum>1</manvolnum></citerefentry>,
+        <citerefentry><refentrytitle>ssh-agent</refentrytitle><manvolnum>1</manvolnum></citerefentry>,
+        <citerefentry><refentrytitle>ssh-keygen</refentrytitle><manvolnum>1</manvolnum></citerefentry>,
+        <citerefentry><refentrytitle>ssh-config</refentrytitle><manvolnum>1</manvolnum></citerefentry>,
+        <citerefentry><refentrytitle>sshd</refentrytitle><manvolnum>8</manvolnum></citerefentry>
     </para>
 </refsect1>
 
@@ -133,6 +358,9 @@
     <para>
         请向本项目提交文法错误报告与改进建议：
         <ulink url="https://github.com/intetnet/manpages_zh" />
+    </para>
+    <para>
+        翻译更新日期：<wordasword>2015-04-15</wordasword>
     </para>
 </refsect1>
 </refentry>
