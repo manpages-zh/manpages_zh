@@ -509,12 +509,12 @@ Used by docbook.xsl, chunk-code.xsl and chunkfast.xsl -->
         <xsl:with-param name="node" select="$doc"/>
       </xsl:call-template>
     </head>
-    <body>
+    <body id="manpage">
       <xsl:call-template name="body.attributes"/>
-      <xsl:call-template name="hosiet.manpage.process1"/>
       <xsl:call-template name="user.header.content">
         <xsl:with-param name="node" select="$doc"/>
       </xsl:call-template>
+      <xsl:call-template name="hosiet.manpage.process1"/>
       <xsl:apply-templates select="."/>
       <xsl:call-template name="user.footer.content">
         <xsl:with-param name="node" select="$doc"/>

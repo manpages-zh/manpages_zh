@@ -15,8 +15,9 @@
 # *  紧跟 dist 参数：自动生成文档，并将文档复制到 man/manX/ 文件夹中
 #
 
-DISTDIR="../man/"
 SRCDIR="$(pwd)"
+TOPDIR="${SRCDIR}/.."
+DISTDIR="${TOPDIR}/man/"
 #DOCBOOK_XSL="/usr/share/xml/docbook/xsl-stylesheets-1.78.1/manpages/docbook.xsl"
 #DOCBOOK_XHTML_XSL="/usr/share/xml/docbook-xsl-stylesheets-1.78.1/xhtml5/xhtml-docbook.xsl"
 DOCBOOK_XSL="${SRCDIR}/xsl-stylesheets-1.78.1~manpages_zh/manpages/docbook.xsl"
@@ -39,11 +40,24 @@ isValidXML()
 }
 
 ##
+# 判断文件是 XHTML 文件
+#
+isValidXHTML()
+{
+    TESTNAME=$(echo $1 | grep -o "\.xhtml$")
+    if [ "x${TESTNAME}" = "x.xhtml" ]; then
+        return 0;
+    else
+        return 1;
+    fi
+}
+
+##
 # 判断文件是合法 man page
 #
 isValidManPage()
 {
-    if isValidXML $1; then
+    if isValidXML $1 || isValidXHTML $1; then
         return 1
     fi
     TESTNAME=$(echo $1 | grep -o "^[_0-9a-zA-Z-]*\.[0-9][a-zA-Z]*")
@@ -113,15 +127,23 @@ if [ "$1" = "dist" ]; then
     # begin
     echo " *  Moving man page into man/manX/ subdir..."
     cd ${SRCDIR}
+    cp ./*.css ../html/
     for DNAME in $(ls); do
         if [ -d ${DNAME} ]; then
             cd ${DNAME};
             for FNAME in $(ls); do
+                if isValidXHTML ${FNAME}; then
+                    # determine man section
+                    MAN_SECTION=$(getManSection ${FNAME});
+                    # move XHTML file
+                    mv -v ./${FNAME} ${TOPDIR}/html/
+                    continue
+                fi
                 if isValidManPage ${FNAME}; then
                     # determine man section
                     MAN_SECTION=$(getManSection ${FNAME});
-                    # move file now
-                    mv ./${FNAME} ${SRCDIR}/../man/zh_CN/man${MAN_SECTION}/
+                    # move groff file
+                    mv -v ./${FNAME} ${SRCDIR}/../man/zh_CN/man${MAN_SECTION}/
                 fi
             done
         fi

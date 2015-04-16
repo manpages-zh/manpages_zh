@@ -44,30 +44,29 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <!-- ==================================================================== -->
 
 <xsl:template name="hosiet.manpage.process1">
-    <xsl:variable name="man-head-proname">
-        <xsl:value-of select="refentry/refmeta/refentrytitle"/><xsl:value-of select="refentry/refmeta/manvolnum"/>
-    </xsl:variable>
-    <ol class="man man-head" id="man-head-ol">
-        <!-- process: CHGRP(1) "XX MANUAL" CHGRP(1) -->
-        <li class="man-head-tl"><xsl:copy-of select="$man-head-proname"/></li>
-        <li class="man-head-tm"><xsl:value-of select="refentry/refentryinfo/title"/></li>
-        <li class="man-head-tr"><xsl:copy-of select="$man-head-proname"/></li>
-    </ol>
+    <xsl:variable name="man-head-proname"><xsl:value-of select="/refentry/refmeta/refentrytitle"/>(<xsl:value-of select="/refentry/refmeta/manvolnum"/>)</xsl:variable>
+    <div id="man-head" class="man-head man">
+        <div class="tl"><xsl:copy-of select="$man-head-proname"/></div>
+        <div class="tc"><xsl:value-of select="/refentry/refentryinfo/title"/></div>
+        <div class="tr"><xsl:copy-of select="$man-head-proname"/></div>
+    </div>
 </xsl:template>
 
 <xsl:template name="hosiet.manpage.process2">
     <!-- to be finished -->
+    <xsl:variable name="man-head-proname-footer"><xsl:value-of select="/refentry/refmeta/refentrytitle"/>(<xsl:value-of select="/refentry/refmeta/manvolnum"/>)</xsl:variable>
+    <div id="man-foot" class="man-foot man">
+        <div class="tl"><xsl:value-of select="/refentry/refentryinfo/productname"/></div>
+        <div class="tc"><xsl:value-of select="/refentry/refentryinfo/date"/></div>
+        <div class="tr"><xsl:copy-of select="$man-head-proname-footer"/></div>
+    </div>
 </xsl:template>
 
 <xsl:template name="hosiet.manpage.header">
     <meta http-equiv="Content-Type" value="application/xhtml+xml; charset=UTF-8" />
-    <meta name="modifier" value="Boyuan Yang ('hosiet'): inserted self-modified XSL template" />
+    <meta name="modifier" content="Boyuan Yang ('hosiet'): inserted self-modified XSL template" />
     <!-- insert hard css here -->
-    <style type="text/css">
-#man-head-ol {
-    display: none
-}
-    </style>
+    <link rel="stylesheet" type="text/css" href="docbook-man.css"/>
 
 </xsl:template>
 

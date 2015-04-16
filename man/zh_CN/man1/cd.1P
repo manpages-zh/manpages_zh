@@ -1,0 +1,435 @@
+'\" t
+.\"     Title: cd
+.\"    Author: Boyuan Yang <073plan@gmail.com>
+.\" Generator: DocBook XSL Stylesheets v1.78.1 <http://docbook.sf.net/>
+.\"      Date: 2013
+.\"    Manual: POSIX 程序员手册
+.\"    Source: IEEE/The Open Group
+.\"  Language: Chinese Simplified
+.\"
+.TH "CD" "1P" "2013" "IEEE/The Open Group" "POSIX 程序员手册"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "序言 (PROLOG)"
+.PP
+本手册页是\0POSIX\0程序员手册 (POSIX Programmer\*(Aqs Manual) 的一部分。 Linux 对本接口的实现可能有所不同 (请查阅对应的 Linux 手册页以了解其详细行为), 或者本接口可能未在 Linux 上实现。
+.SH "名称"
+cd \- 改变工作目录
+.SH "总览 (SYNOPSIS)"
+.HP \w'\fBcd\fR\ 'u
+\fBcd\fR [\fB\-L|\-P\fR] [\fI目录\fR]
+.HP \w'\fBcd\ \-\fR\ 'u
+\fBcd \-\fR
+.SH "描述 (DESCRIPTION)"
+.PP
+\fIcd\fR\0工具能够更改当前\0shell\0运行环境的工作目录 (参见
+\fISection 2\&.12\fR,\0\fIShell Execution Environment\fR) 其行为按照下列步骤进行： (在下列步骤中, 标志
+\fBcurpath\fR
+代表一个用来简化描述
+\fBcd\fR
+工作算法的中间值。\fBcurpath\fR
+在程序中无需可见。)
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 1.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  1." 4.2
+.\}
+如果没有给出
+\fI目录\fR
+操作数, 且
+\fBHOME\fR
+环境变量为空或未定义, 其默认行为由实现定义, 且程序不应采取进一步行为。
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 2.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  2." 4.2
+.\}
+如果没有给出
+\fI目录\fR
+操作数, 且
+\fBHOME\fR
+环境变量被设为非空值, 则
+\fIcd\fR
+工具应当以假设
+\fI目录\fR
+操作数被设为
+\fBHOME\fR
+环境变量的情况运行。
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 3.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  3." 4.2
+.\}
+如果
+\fI目录\fR
+操作数以一个 <斜杠 "/"> 字符开头, 则设置
+\fBcurpath\fR
+变量和目录操作数相同, 并跳转到第 7 步继续。
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 4.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  4." 4.2
+.\}
+如果
+\fI目录\fR
+操作数的第一个组成部分是 \(lq点\(rq 或 \(lq点点\(rq, 跳转到第 6 步继续。
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 5.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  5." 4.2
+.\}
+由\0\fBCDPATH\fR\0(参见\(lq环境变量\(rq一节的内容) 中由冒号分割的路径名列表 中的第一个起始, 如果该路径名非空, 测试由该路径名, 一个 <斜杠 "/"> (如果该路径名未以斜杠结尾), 以及
+\fI目录\fR
+组合而成的路径。 如果上述所得路径仍为空, 再测试以一个点 ("\&."), 一个 <斜杠 "/">, 以及操作数组合而成的路径。 在上述任一情况下, 如果所得字符串代表了一个存在的目录, 则将
+\fBcurpath\fR
+设为该字符串并跳转到第 7 步继续。 否则, 重复第 5 步上述所有步骤 (以
+\fBCDPATH\fR
+的下一个路径名继续尝试), 直到所有路径名皆被测试。
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 6.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  6." 4.2
+.\}
+将
+\fBcurpath\fR
+设为
+\fI目录\fR
+操作数。
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 7.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  7." 4.2
+.\}
+如果
+\fB\-P\fR
+选项生效, 跳转到第 10 步继续。 如果
+\fBcurpath\fR
+并非以一个 <斜杠 "/"> 起始, 将
+\fBcurpath\fR
+设为由
+\fBPWD\fR
+的值, 一个 <斜杠 "/"> (如果
+\fBPWD\fR
+的值并未以一个 <斜杠 "/"> 结尾), 以及
+\fBcurpath\fR
+的值的字符串组合。
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 8.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  8." 4.2
+.\}
+在以上步骤之后,
+\fBcurpath\fR
+的值应当按顺序、 从第一个组成部分到最后一个、 按照以下规范转化为规范形式：
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 1.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  1." 4.2
+.\}
+所有
+点
+元素, 以及用来分隔它们与下一元素的 <斜杠 "/"> 字符都应当被删除。
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 2.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  2." 4.2
+.\}
+对每一个
+点点
+元素, 如果在它之前有一个元素, 且之前的元素不是根或
+点点, 则：
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 1.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  1." 4.2
+.\}
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 2.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  2." 4.2
+.\}
+.RE
+.RE
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 9.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  9." 4.2
+.\}
+如果
+\fBcurpath\fR
+比 {PATH_MAX} 字节还要长 (包括字符串末尾的 null 字符) 且
+\fI目录\fR
+操作数不大于 {PATH_MAX} 字节 (包括字符串末尾的 null 字符), 则
+\fBcurpath\fR
+应当由绝对路径转换成等价的相对路径, 如果可能的话。 该转换在\&...\&...的条件下应当总被认为是可能的。 \&...\&...
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'10.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "10." 4.2
+.\}
+\fIcd\fR
+工具应当与
+\fIchdir\fR() 函数调用在接受
+\fBcurpath\fR
+作为
+\fIpath\fR
+参数的情况下的行为等同。 如果上述操作的某一步因任何原因失败, 则
+\fIcd\fR
+工具应当显示一个合适的错误信息, 且不再进行剩余的步骤。 如果
+\fB\-P\fR
+选项未起作用, 则
+\fBPWD\fR
+环境变量应当被置为
+\fBcurpath\fR
+在第 9 步开始时所具有的值 (即, 在转换为一个相对路径之前)。 如果
+\fB\-P\fR
+选项起作用, 则
+\fBPWD\fR
+环境变量应当被设置为
+\fIpwd\fR\0\fB\-P\fR
+命令应当输出的字符串。 如果新目录的权限不足, 或其任意上级目录的权限不足, 以至于无法确认当前工作目录, 则此时
+\fBPWD\fR
+环境变量的值未被指定。
+.RE
+.PP
+如果在以上执行过程中,
+\fBPWD\fR
+环境变量被设置, 则
+\fBOLDPWD\fR
+环境变量同样应当被设为先前的工作目录。 (即紧挨 cd 调用之前时刻的 "当前工作目录")
+.SH "选项 (OPTIONS)"
+.PP
+\fIcd\fR
+工具应当与 the Base Definitions volume of POSIX\&.1\-2008,
+\fISection 12\&.2\fR,
+\fIUtility Syntax Guidelines\fR
+所述保持一致。
+.PP
+下列选项应当被实现所支持：
+.PP
+\fB\-L\fR
+.RS 4
+参见第 8 步与第 9 步。
+.RE
+.PP
+\fB\-P\fR
+.RS 4
+参见第 7 步。
+.RE
+.PP
+如果同时指定\0\fB\-L\fR\0与\0\fB\-P\fR\0选项，这些选项中的最后一个应当被使用，且之前所有其它选项应当被忽略。 如果\0\fB\-L\fR\0与\0\fB\-P\fR\0选项都未被指定，则操作数会被默认处理；请参见描述部分。
+.SH "操作数 (OPERANDS)"
+.PP
+下列操作数应当被支持：
+.SH "标准输入 (STDIN)"
+.PP
+未被使用。
+.SH "输入文件 (INPUT FILES)"
+.PP
+无。
+.SH "环境变量 (ENVIRONMENT VARIBLES)"
+.PP
+下列环境变量应当在
+\fIcd\fR
+的执行过程中生效：
+.PP
+\fICDPATH\fR
+.RS 4
+待翻译。
+.RE
+.PP
+\fIHOME\fR
+.RS 4
+目录名, 在没有指定
+\fI目录\fR
+操作数时使用。
+.RE
+.PP
+\fILANG\fR
+.RS 4
+在国际化 (i18n) 相关变量在未设置或为空的情况下, 为其提供默认值。 (参见 the Base Definitions volume of POSIX\&.1\-2008,
+\fISection 8\&.2\fR,
+\fIInternationalization Varibles\fR
+以确定用于决定 locale 类别的国际化 (i18n) 变量优先级)
+.RE
+.PP
+\fILC_ALL\fR
+.RS 4
+如果被设为非空字符串值, 则优先级设为最高, 覆盖所有其它国际化 (i18n) 变量。
+.RE
+.PP
+\fILC_CTYPE\fR
+.RS 4
+确定用于\&...\&...的 locale 取值。\&...\&...
+.RE
+.PP
+待翻译。
+.SH "异步事件 (ASYNCHRONOUS EVENTS)"
+.PP
+取默认值。
+.SH "标准输出 (STDOUT)"
+.PP
+如果由
+\fBCDPATH\fR
+而来的一个非空目录名被使用, 或者若
+\fIcd\fR
+\- 命令被使用, 则新目录的绝对路径应当按照如下方式 写入标准输出：
+.PP
+否则, 不应存在输出信息。
+.SH "标准错误 (STDERR)"
+.PP
+标准错误输出应当仅被用于诊断信息。
+.SH "输出文件 (OUTPUT FILES)"
+.PP
+无。
+.SH "扩展描述 (EXTENDED DESCRIPTION)"
+.PP
+无。
+.SH "退出状态 (EXIT STATUS)"
+.PP
+下列退出状态值应当被返回：
+.PP
+\fI下列部分 仅用于 提供参考信息。\fR
+.SH "示例 (EXAMPLES)"
+.PP
+如下所述的模板可被用来进行一些操作。 它可以在
+\fIlocation\fR
+所指定的目录内工作, 并且于
+\fIcd\fR
+命令第一次执行前的工作目录 结束执行：
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\fB
+cd \fR\fB\fIlocation\fR\fR\fB
+if [ $? \-ne 0 ]
+then
+    print error message
+    exit 1
+fi
+\&.\&.\&. do whatever is desired as long as the OLDPWD environment variable
+    is not modified
+cd \-
+    \fR
+    
+.fi
+.if n \{\
+.RE
+.\}
+.SH "未来方向 (FUTURE DIRECTIONS)"
+.PP
+暂无。
+.SH "参见 (SEE ALSO)"
+.PP
+\fISection 2\&.12\fR,
+\fIShell Execution Environment\fR,
+\fIpwd\fR
+.PP
+The Base Definitions of POSIX\&.1\-2008,
+\fIChapter 8, Environment Varibles, Section 12\&.2, Utility Syntax Guidelines\fR
+.PP
+The System Interfaces volume of POSIX\&.1\-2008,
+\fIchdir\fR()
+.SH "版权所有 (COPYRIGHT)"
+.PP
+Portions of this text are reprinted and reproduced in electronic form from IEEE Std 1003\&.1, 2013 Edition, Standard for Information Technology \-\- Portable Operation System Interface (POSIX), The Open Group Base Specifications Issue 7, Copyright (C) 2013 by the Institute of Electronical and Electronics Engineers, Inc and The Open Group\&. (This is POSIX\&.1\-2008 with the 2013 Technical Corrigendum 1 applied\&.) In the event of any discrepancy between this version and the original IEEE and The Open Group Standard, the original IEEE and The Open Group Standard is the referee document\&. The original Standard can be obtained at http://www\&.unix\&.org/online\&.html \&.
+.PP
+Any typographical or formatting errors that appear in this page are most likely to have been introduced during the conversation of the source files to man page format\&.
+.PP
+本文档非正式中文翻译由\0manpages_zh\0项目提供。 请向本项目报告文法错误与建议。
+.SH "作者"
+.PP
+\fBBoyuan Yang\fR <\&073plan@gmail\&.com\&>
+.RS 4
+翻译本篇文章
+.RE
+.SH "版权"
+.br
+版权 \(co 2013 IEEE/The Open Group
+.br
