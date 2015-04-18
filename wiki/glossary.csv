@@ -54,7 +54,7 @@ number	       , 号码，数字
 NOTES          , 注意             
 OPTIONS        , 选项             
 OUTPUT	       , 输出  	
-packet         , 包,报文          
+packet         , 包，报文          
 PARAMETER      , 参数             
 pipe           , 管道             
 Port           , 移植             
