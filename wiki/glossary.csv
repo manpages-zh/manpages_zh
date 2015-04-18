@@ -4,7 +4,7 @@ Aborting       , 正在退出
 Alert          , 警报             
 ARGUMENTS      , 参数             
 AUTHOR         , 作者             
-Aviability     , 可用性,可得性 
+Aviability     , 可用性，可得性 
 block          , 阻塞             
 BrowseClusters , 流览集群         
 BUGS	       , BUGS  	   
@@ -47,10 +47,10 @@ mask           , 掩码
 metric	       , 步跳  	
 miss	       , 脱靶  	
 modifier       , 修饰词	
-mount          , 装配,装载        
+mount          , 装配，装载        
 NAME           , 名字             
 named pipe     , 命名管道         
-number	       , 号码,数字	
+number	       , 号码，数字	
 NOTES          , 注意             
 OPTIONS        , 选项             
 OUTPUT	       , 输出  	
@@ -61,7 +61,7 @@ Port           , 移植
 Portable       , 可移植的         
 privileges     , 权限             
 PROMPT         , 提示符           
-quota	       , 限额,配额	
+quota	       , 限额，配额	
 RESERVED WORD  , 保留字           
 RETURN VALUE   , 返回值           
 Route	       , 路由  	
