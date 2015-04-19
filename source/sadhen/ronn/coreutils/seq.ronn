@@ -1,12 +1,12 @@
 seq(1) - 打印数列
 ==================
 
-## 概要
+## SYNOPSIS
 `seq` [<OPTION>]... <LAST><br>
 `seq` [<OPTION>]... <FIRST> <LAST><br> 
 `seq` [<OPTION>]... <FIRST> <INCREMENT> <LAST>
 
-## 描述
+## DESCRIPTION
 以INCREMENT为步长，打印从FIRST到LAST的数列。
 
 长选项的命令参数同样适用于短选项。
@@ -33,14 +33,23 @@ FIRST和INCREMENT的默认值为1。注意，在LAST小于FIRST的时候，INCRE
 LAST都是精度最高为PREC的定点十进制数，那么FORMAT默认为%.PRECf，否则为
 %g。
 
-## 作者
+## AUTHOR
 Ulrich Drepper
+
+## REPORTING BUGS
+GNU coreutils online help: &lt;http://www.gnu.org/software/coreutils/><br>
+Report seq translation bugs to &lt;http://translationproject.org/team/>
+
+## COPYRIGHT
+Copyright  ©  2014  Free Software Foundation, Inc.  License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html>.<br>
+This is free software: you are free  to  change  and  redistribute  it. There is NO WARRANTY, to the extent permitted by law.<br>
+
+## SEE ALSO
+Full documentation at: &lt;http://www.gnu.org/software/coreutils/seq><br>
+or available locally via: info '(coreutils) seq invocation'
 
 ## 中文版维护人
 sadhen &lt;sadhen1992@gmail.com>
 
 ## 中文版最新更新
 2015.04.19
-
-## manpages_zh
-https://github.com/intetnet/manpages_zh
