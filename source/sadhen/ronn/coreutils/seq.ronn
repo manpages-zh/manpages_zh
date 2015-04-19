@@ -1,0 +1,46 @@
+seq(1) - 打印数列
+==================
+
+## 概要
+`seq` [<OPTION>]... <LAST><br>
+`seq` [<OPTION>]... <FIRST> <LAST><br> 
+`seq` [<OPTION>]... <FIRST> <INCREMENT> <LAST>
+
+## 描述
+以INCREMENT为步长，打印从FIRST到LAST的数列。
+
+长选项的命令参数同样适用于短选项。
+
+* `-f`, `--format`=<FORMAT>:
+  使用printf样式浮点格式
+
+* `-s`, `--separator`=<STRING>:
+  以STRING分隔数据（默认值为\n）
+
+* `-w`, `--equal-width`:
+  在数据前填充零以使之等宽
+
+* `--help`:
+  显示帮助并退出
+
+* `--version`:
+  输出版本信息并退出
+
+FIRST和INCREMENT的默认值为1。注意，在LAST小于FIRST的时候，INCREMENT默认
+值仍旧是1。数列生成的终止条件是当前数值与INCREMENT的和大于LAST。通常情
+况下，若FIRST小于LAST，INCREMENT应当用正值；若FIRST大于LAST，INCREMENT
+应当用负值。FIRST，INCREMENT和LAST都被视为浮点数。若FIRST，INCREMENT和
+LAST都是精度最高为PREC的定点十进制数，那么FORMAT默认为%.PRECf，否则为
+%g。
+
+## 作者
+Ulrich Drepper
+
+## 中文版维护人
+sadhen &lt;sadhen1992@gmail.com>
+
+## 中文版最新更新
+2015.04.19
+
+## manpages_zh
+https://github.com/intetnet/manpages_zh
