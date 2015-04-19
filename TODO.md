@@ -8,8 +8,6 @@
 
 包含之前未完成的内容,完成archlinux coreutils包的手册翻译整理.
 
-- coreutils /usr/share/man/
-- coreutils /usr/share/man/man1/
 - coreutils /usr/share/man/man1/base64.1.gz
 - coreutils /usr/share/man/man1/basename.1.gz
 - ~~coreutils /usr/share/man/man1/cat.1.gz~~
@@ -35,7 +33,7 @@
 - coreutils /usr/share/man/man1/expand.1.gz
 - coreutils /usr/share/man/man1/expr.1.gz
 - coreutils /usr/share/man/man1/factor.1.gz
-- coreutils /usr/share/man/man1/false.1.gz
+- ~~coreutils /usr/share/man/man1/false.1.gz~~
 - coreutils /usr/share/man/man1/fmt.1.gz
 - coreutils /usr/share/man/man1/fold.1.gz
 - coreutils /usr/share/man/man1/head.1.gz
@@ -128,11 +126,9 @@ v0.2版计划包括archlinux procps-ng包中的手册翻译整理.
 - procps-ng /usr/share/man/man1/uptime.1.gz
 - ~~procps-ng /usr/share/man/man1/w.1.gz~~
 - procps-ng /usr/share/man/man1/watch.1.gz
-- procps-ng /usr/share/man/man3/
 - procps-ng /usr/share/man/man3/openproc.3.gz
 - procps-ng /usr/share/man/man3/readproc.3.gz
 - procps-ng /usr/share/man/man3/readproctab.3.gz
-- procps-ng /usr/share/man/man5/
 - procps-ng /usr/share/man/man5/sysctl.conf.5.gz
 - procps-ng /usr/share/man/man8/
 - procps-ng /usr/share/man/man8/sysctl.8.gz
