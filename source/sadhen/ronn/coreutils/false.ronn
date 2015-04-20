@@ -1,0 +1,36 @@
+false(1) - (失败的)什么都不做
+==================
+
+## SYNOPSIS
+`false` [<忽略命令行参数>]<br>
+`false` <OPTION>
+
+## DESCRIPTION
+程序结束时，产生表示失败的状态码。
+
+* `--help`:
+  显示帮助并退出
+* `--version`:
+  显示版本信息并退出
+
+## REPORTING BUGS
+GNU coreutils在线帮助：&lt;http://www.gnu.org/software/coreutils/><br>
+手册页翻译错误请报告至：&lt;https://github.com/intetnet/manpages_zh>
+
+## COPYRIGHT
+Copyright  ©  2014  Free Software Foundation, Inc.  License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html>.<br>
+This is free software: you are free  to  change  and  redistribute  it. There is NO WARRANTY, to the extent permitted by law.
+
+## SEE ALSO
+Full documentation at: &lt;http://www.gnu.org/software/coreutils/false><br>
+or available locally via: info '(coreutils) false invocation'
+
+## 中文版维护人
+sadhen &lt;sadhen1992@gmail.com><br>
+徐明 &lt;xuming@iname.com>
+
+## 中文版最新更新
+2015.04.20
+
+## manpages_zh
+https://github.com/intetnet/manpages_zh
