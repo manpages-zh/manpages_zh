@@ -1,12 +1,9 @@
-最新的版本计划在最上部,其中删除线(或\~\~blabla\~\~)包括起来的是已完成的文档.发布时应包括如下文档,但具体情况由发布时决定.
+archlinux coreutils包
+==========================
 
-更多请参考`plan/`文件夹,本文件中的过期条目也会放于该文件夹中.
+删除线(或\~\~blabla\~\~)包括起来的是已完成的文档.
 
 对于未能及时跟进更新的条目,请协助我们来做这件事.
-
-#0.3版发布计划(2015.3.15)
-
-包含之前未完成的内容,完成archlinux coreutils包的手册翻译整理.
 
 - coreutils /usr/share/man/man1/base64.1.gz
 - coreutils /usr/share/man/man1/basename.1.gz
@@ -108,28 +105,3 @@
 - coreutils /usr/share/man/man1/whoami.1.gz
 - ~~coreutils /usr/share/man/man1/yes.1.gz~~
 - ~~openssh /usr/share/man/man1/scp.1.gz~~
-
-#v0.2版发布计划
-
-v0.2版计划包括archlinux procps-ng包中的手册翻译整理.
-
-- ~~procps-ng /usr/share/man/man1/free.1.gz~~
-- procps-ng /usr/share/man/man1/pgrep.1.gz
-- procps-ng /usr/share/man/man1/pidof.1.gz
-- procps-ng /usr/share/man/man1/pkill.1.gz
-- procps-ng /usr/share/man/man1/pmap.1.gz
-- ~~procps-ng /usr/share/man/man1/ps.1.gz~~
-- procps-ng /usr/share/man/man1/pwdx.1.gz
-- procps-ng /usr/share/man/man1/slabtop.1.gz
-- procps-ng /usr/share/man/man1/tload.1.gz
-- ~~procps-ng /usr/share/man/man1/top.1.gz~~
-- procps-ng /usr/share/man/man1/uptime.1.gz
-- ~~procps-ng /usr/share/man/man1/w.1.gz~~
-- procps-ng /usr/share/man/man1/watch.1.gz
-- procps-ng /usr/share/man/man3/openproc.3.gz
-- procps-ng /usr/share/man/man3/readproc.3.gz
-- procps-ng /usr/share/man/man3/readproctab.3.gz
-- procps-ng /usr/share/man/man5/sysctl.conf.5.gz
-- procps-ng /usr/share/man/man8/
-- procps-ng /usr/share/man/man8/sysctl.8.gz
-- ~~procps-ng /usr/share/man/man8/vmstat.8.gz~~
