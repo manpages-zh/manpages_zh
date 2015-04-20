@@ -30,8 +30,6 @@ There is NO WARRANTY, to the extent permitted by law.
 Full documentation at: &lt;http://www.gnu.org/software/coreutils/yes><br>
 or available locally via: info '(coreutils) yes invocation'
 
-## 中文版维护人
-sadhen &lt;sadhen1992@gmail.com><br>
-riser &lt;boomer@ccidnet.com>
-## 中文版最新更新
-2015.04.20
+## 文档信息
+翻译：riser &lt;boomer@ccidnet.com><br>
+维护：sadhen &lt;sadhen1992@gmail.com>

@@ -25,12 +25,6 @@ This is free software: you are free  to  change  and  redistribute  it. There is
 Full documentation at: &lt;http://www.gnu.org/software/coreutils/false><br>
 or available locally via: info '(coreutils) false invocation'
 
-## 中文版维护人
-sadhen &lt;sadhen1992@gmail.com><br>
-徐明 &lt;xuming@iname.com>
-
-## 中文版最新更新
-2015.04.20
-
-## manpages_zh
-https://github.com/intetnet/manpages_zh
+## 文档信息
+翻译：徐明 &lt;xuming@iname.com><br>
+维护：sadhen &lt;sadhen1992@gmail.com>

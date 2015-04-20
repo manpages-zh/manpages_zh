@@ -65,9 +65,6 @@ This is free software: you are free to change and redistribute it. There is NO W
 Full documentation at: &lt;http://www.gnu.org/software/coreutils/who><br>
 or available locally via: info '(coreutils) who invocation'
 
-## 中文版维护人
-sadhen &lt;sadhen1992@gmail.com><br>
-徐明 &lt;xuming@users.sourceforge.net>
-
-## 中文版最新更新
-2015.04.20
+## 文档信息
+翻译：徐明 &lt;xuming@users.sourceforge.net><br>
+维护: sadhen &lt;sadhen1992@gmail.com>

@@ -48,8 +48,5 @@ This is free software: you are free  to  change  and  redistribute  it. There is
 Full documentation at: &lt;http://www.gnu.org/software/coreutils/seq><br>
 or available locally via: info '(coreutils) seq invocation'
 
-## 中文版维护人
-sadhen &lt;sadhen1992@gmail.com>
-
-## 中文版最新更新
-2015.04.19
+## 文档信息
+翻译：sadhen &lt;sadhen1992@gmail.com>
