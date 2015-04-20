@@ -1,5 +1,3 @@
-#另一个中文手册计划（AMP计划）
-
 #项目主页
 
 项目在:<https://www.github.com/intetnet/manpages_zh>。
