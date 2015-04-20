@@ -1,0 +1,73 @@
+who(1) - 显示已经登入的用户
+===============
+
+## SYNOPSIS
+**who** [<OPTION>]... [< FILE | ARG1 ARG2 >]
+
+## DESCRIPTION
+显示已经登入用户的信息。
+
+* `-a`, `--all`:
+  等价于`-b` `-d` `--login` `-p` `-r` `-t` `-T` `-u`
+* `-b`, `--boot`:
+  最近一次系统启动时间
+* `-d`, `--dead`:
+  显示死进程
+* `-H`, `--heading`:
+  显示栏目标题行
+* `--ips`:
+  显示IP地址而不是主机名。加上`--lookup`，则会尽可能基于已存储
+  的IP而不是已存储的主机名规范化
+* `-l`, `--login`:
+  显示系统登入进程
+* `--lookup`:
+  试图通过DNS规范主机名
+* `-m`:
+  仅显示和stdin关联的主机名和用户
+* `-p`, `--process`:
+  print active processes spawned by init
+* `-q`, `--count`:
+  显示全部的登入名和登入数
+* `-r`, `--runlevel`:
+  显示当前运行级别
+* `-s`, `--short`:
+  只显示名称(NAME)、线路(LINE)、时间(TIME)和备注(COMMENT)（默认）
+* `-t`, `--time`:
+  显示最近一次系统时钟更改
+* `-T`, `-w`, `--mesg`:
+  用+,-或?表示用户的消息(message)状态
+* `-u`, `--users`:
+  显示登入用户
+* `--message`:
+  等价于`-T`
+* `--writable`:
+  等价于`-T`
+* `--help`:
+  显示帮助信息并退出
+* `--version`:
+  显示版本信息并结束
+
+如果没有指定FILE，默认使用*/var/run/utmp*。*/var/log/wtmp*是比较常用的
+FILE。如果给出ARG1和ARG2，则等价于`-m`：通常可以是'am i'或'mom likes'。
+
+## AUTHOR
+Written by Joseph Arceneaux, David MacKenzie, and Michael Stone.
+
+## REPORTING BUGS
+GNU coreutils online help: &lt;http://www.gnu.org/software/coreutils/><br>
+Report who translation bugs to &lt;http://translationproject.org/team/>
+
+## COPYRIGHT
+Copyright © 2014 Free Software Foundation, Inc. License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html>.<br>
+This is free software: you are free to change and redistribute it. There is NO WARRANTY, to the extent permitted by law.
+
+## SEE ALSO
+Full documentation at: &lt;http://www.gnu.org/software/coreutils/who><br>
+or available locally via: info '(coreutils) who invocation'
+
+## 中文版维护人
+sadhen &lt;sadhen1992@gmail.com><br>
+徐明 &lt;xuming@users.sourceforge.net>
+
+## 中文版最新更新
+2015.04.20

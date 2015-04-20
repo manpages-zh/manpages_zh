@@ -33,7 +33,7 @@
 - coreutils /usr/share/man/man1/expand.1.gz
 - coreutils /usr/share/man/man1/expr.1.gz
 - coreutils /usr/share/man/man1/factor.1.gz
-- ~~coreutils /usr/share/man/man1/false.1.gz~~
+- coreutils /usr/share/man/man1/false.1.gz
 - coreutils /usr/share/man/man1/fmt.1.gz
 - coreutils /usr/share/man/man1/fold.1.gz
 - coreutils /usr/share/man/man1/head.1.gz
@@ -106,7 +106,7 @@
 - ~~coreutils /usr/share/man/man1/wc.1.gz~~
 - coreutils /usr/share/man/man1/who.1.gz
 - coreutils /usr/share/man/man1/whoami.1.gz
-- ~~coreutils /usr/share/man/man1/yes.1.gz~~
+- coreutils /usr/share/man/man1/yes.1.gz
 - ~~openssh /usr/share/man/man1/scp.1.gz~~
 
 #v0.2版发布计划
