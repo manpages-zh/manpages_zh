@@ -11,7 +11,7 @@
 实能用的中文manpages。我本身非常乐观，因为我们现在有比之前更好更多的资源
 ，网络手册和书籍降低了翻译的门槛，计算机辅助翻译CAT技术已经也慢慢在改变
 翻译流程，借助众人的力量，使翻译变得更加灵活，轻松和规范。现在大多数人也
-不再直接编写Groff文件，而是通过一些软件将诸如`markdown/docbook/po`之类
+不再直接编写Groff文件，而是通过一些软件将诸如 `markdown/docbook/po `之类
 常见格式转换成手册文件，但你不用理会这个过程，你只需提交你的作品，或者帮
 助改善中文文档，这些都是没有任何门槛的。
 
@@ -45,16 +45,16 @@
 ## 怎么安装？
 
 manpages为文本文件，是不需要安装的。man使用特定的文件结构，类似于
-`/home/youname/man/zh_CN/man1/man.1`这样子，你把下载的manpages手册放在硬
+`/home/youname/man/zh_CN/man1/man.1 `这样子，你把下载的manpages手册放在硬
 盘上你心仪的位置，然后保证manpath能找到即可。manpath可以通过设置环境变量
 来实现，如果你使用的是bash，并且把本项目clone在用户根目录下manpages文件夹
-，那么你可以在`.bashrc`加入下面语句：
+，那么你可以在 `.bashrc `加入下面语句：
 
 	export MANPATH=/usr/man:/usr/share/man:～/manpages/man/
 	
 不同的文件夹间使用分号隔开。
 
-更多请参考`wiki/`文件夹。
+更多请参考 `wiki/ `文件夹。
 
 ## 加入我们
 
@@ -71,7 +71,7 @@ manpages为文本文件，是不需要安装的。man使用特定的文件结构
 
 ## TODO
 
-参考TODO和`plan/`文件夹。
+参考 `todo/` 文件夹。
 
 ## 版权
 
