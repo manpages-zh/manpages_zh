@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>gc(1) - 统计图表组成 </title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
+  </style>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
+
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
+
+  <div class='man-navigation' style='display:none'>
+    <a href="#NAME">NAME</a>
+    <a href="#-SYNOPSIS-">总览 (SYNOPSIS)</a>
+    <a href="#-DESCRIPTION-">描述 (DESCRIPTION)</a>
+    <a href="#-">选项 (OPTIONS)</a>
+    <a href="#-OPERANDS-">操作数 (OPERANDS)</a>
+    <a href="#-EXIT-STATUS-">返回值 (EXIT STATUS)</a>
+    <a href="#-AUTHOR-">作者 (AUTHOR)</a>
+    <a href="#-SEE-ALSO-">参见 (SEE ALSO)</a>
+    <a href="#-NOTES-">注记 (NOTES)</a>
+  </div>
+
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>gc(1)</li>
+    <li class='tc'>一般命令手册</li>
+    <li class='tr'>gc(1)</li>
+  </ol>
+
+  <h2 id="NAME">NAME</h2>
+<p class="man-name">
+  <code>gc</code> - <span class="man-whatis">统计图表组成 </span>
+</p>
+
+<h2 id="-SYNOPSIS-">总览 (SYNOPSIS)</h2>
+
+<p><code>gc</code> [ <code>-necCaDUrsv?</code> ] [ <em>文件名</em> ]</p>
+
+<h2 id="-DESCRIPTION-">描述 (DESCRIPTION)</h2>
+
+<p><code>gc</code> 是一个类似于 <code>wc</code> 的图表工具。它可以向标准输出打印所输入文件的节点、 边、被连接的组成成分 (components) 或集合信息。如果多于一个图表被给出， 它同样能够打印出所给图表的数目。</p>
+
+<h2 id="-">选项 (OPTIONS)</h2>
+
+<p>下列选项被程序支持：</p>
+
+<dl>
+<dt class="flush"><code>-n</code></dt><dd><p>对节点计数。</p></dd>
+<dt class="flush"><code>-e</code></dt><dd><p>对边计数。</p></dd>
+<dt class="flush"><code>-c</code></dt><dd><p>对所连接的组成成分 (components) 计数。</p></dd>
+<dt class="flush"><code>-C</code></dt><dd><p>对集合 (clusters) 计数。按照定义，一个集合是名字以 "cluster" 起始的图表或子图表。</p></dd>
+<dt class="flush"><code>-a</code></dt><dd><p>计数所有信息。等效于 <code>-encC</code>。</p></dd>
+<dt class="flush"><code>-r</code></dt><dd><p>递归地分析子图表。</p></dd>
+<dt class="flush"><code>-s</code></dt><dd><p>不进行输出，只关心返回值。</p></dd>
+<dt class="flush"><code>-D</code></dt><dd><p>只分析有向图。</p></dd>
+<dt class="flush"><code>-U</code></dt><dd><p>只分析无向图。</p></dd>
+<dt class="flush"><code>-v</code></dt><dd><p>打印详细输出。(Verbose)</p></dd>
+<dt class="flush"><code>-?</code></dt><dd><p>打印使用帮助信息。</p></dd>
+</dl>
+
+
+<p>默认情况下，<em>gc</em> 返回节点及边的个数。</p>
+
+<h2 id="-OPERANDS-">操作数 (OPERANDS)</h2>
+
+<p>下列操作数被支持：</p>
+
+<dl>
+<dt class="flush"><em>文件名</em></dt><dd>以 dot 格式存储的，包含一个或更多个图表的文件名。如果没有指定 <em>文件名</em> 操作数，则会使用标准输入。</dd>
+</dl>
+
+
+<h2 id="-EXIT-STATUS-">返回值 (EXIT STATUS)</h2>
+
+<p>下列返回值将被返回：</p>
+
+<dl>
+<dt class="flush"><code>0</code></dt><dd><p>成功完成。</p></dd>
+<dt class="flush"><code>1</code></dt><dd><p><code>-U</code> 或 <code>-E</code> 选项被使用，且处理中遇到了错误类型的图表。</p></dd>
+</dl>
+
+
+<h2 id="-AUTHOR-">作者 (AUTHOR)</h2>
+
+<p>Emden R. Gansner &lt;erg@research.att.com&gt;</p>
+
+<h2 id="-SEE-ALSO-">参见 (SEE ALSO)</h2>
+
+<p><span class="man-ref">wc<span class="s">(1)</span></span>, <span class="man-ref">acyclic<span class="s">(1)</span></span>, <span class="man-ref">gvpr<span class="s">(1)</span></span>, <span class="man-ref">gvcolor<span class="s">(1)</span></span>, <span class="man-ref">ccomps<span class="s">(1)</span></span>, <span class="man-ref">sccmap<span class="s">(1)</span></span>, <span class="man-ref">tred<span class="s">(1)</span></span>, <span class="man-ref">libgraph<span class="s">(3)</span></span></p>
+
+<h2 id="-NOTES-">注记 (NOTES)</h2>
+
+<p>本文档非正式中文翻译由 <strong>manpages_zh</strong> 项目提供。</p>
+
+<p>请向本项目提交文法错误报告与改进建议。</p>
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'>graphviz</li>
+    <li class='tc'>21 March 2001</li>
+    <li class='tr'>gc(1)</li>
+  </ol>
+
+  </div>
+</body>
+</html>

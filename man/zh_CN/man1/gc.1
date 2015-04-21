@@ -1,0 +1,101 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.\" left justification
+.ad l
+.
+.TH "GC" "1" "21 March 2001" "graphviz" "General Commands Manual"
+.
+.SH "NAME"
+\fBgc\fR \- 统计图表组成
+.
+.SH "总览 (SYNOPSIS)"
+\fBgc\fR [ \fB\-necCaDUrsv?\fR ] [ \fI文件名\fR ]
+.
+.SH "描述 (DESCRIPTION)"
+\fBgc\fR 是一个类似于 \fBwc\fR 的图表工具。 它可以向标准输出打印所输入文件的节点、 边、 被连接的组成成分 (components) 或集合信息。 如果多于一个图表被给出， 它同样能够打印出所给图表的数目。
+.
+.SH "选项"
+下列选项被程序支持：
+.
+.TP
+\fB\-n\fR
+对节点计数。
+.
+.TP
+\fB\-e\fR
+对边计数。
+.
+.TP
+\fB\-c\fR
+对所连接的组成成分 (components) 计数。
+.
+.TP
+\fB\-C\fR
+对集合 (clusters) 计数。按照定义，一个集合是名字以 "cluster" 起始的图表或子图表。
+.
+.TP
+\fB\-a\fR
+计数所有信息。等效于 \fB\-encC\fR。
+.
+.TP
+\fB\-r\fR
+递归地分析子图表。
+.
+.TP
+\fB\-s\fR
+不进行输出，只关心返回值。
+.
+.TP
+\fB\-D\fR
+只分析有向图。
+.
+.TP
+\fB\-U\fR
+只分析无向图。
+.
+.TP
+\fB\-v\fR
+打印详细输出。(Verbose)
+.
+.TP
+\fB\-?\fR
+打印使用帮助信息。
+.
+.P
+默认情况下，\fIgc\fR 返回节点及边的个数。
+.
+.SH "操作数 (OPERANDS)"
+下列操作数被支持：
+.
+.TP
+\fI文件名\fR
+以 dot 格式存储的，包含一个或更多个图表的文件名。如果没有指定 \fI文件名\fR 操作数，则会使用标准输入。
+.
+.SH "返回值 (EXIT STATUS)"
+下列返回值将被返回：
+.
+.TP
+\fB0\fR
+成功完成。
+.
+.TP
+\fB1\fR
+\fB\-U\fR 或 \fB\-E\fR 选项被使用，且处理中遇到了错误类型的图表。
+.
+.SH "作者 (AUTHOR)"
+Emden R\. Gansner <erg@research\.att\.com>
+.
+.SH "参见 (SEE ALSO)"
+wc(1), acyclic(1), gvpr(1), gvcolor(1), ccomps(1), sccmap(1), tred(1), libgraph(3)
+.
+.SH "注记 (NOTES)"
+本文档非正式中文翻译由 \fBmanpages_zh\fR 项目提供。
+.
+.P
+译者：Boyuan Yang <073plan@gmail.com>
+.
+.P
+请向本项目提交文法错误报告与改进建议。
+.
+.P
+最后翻译时间：2015-04-21
