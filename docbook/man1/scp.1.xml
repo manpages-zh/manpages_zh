@@ -8,7 +8,7 @@
 <!ENTITY dhemail "073plan@gmail.com">
 ]>
 
-<refentry xml:id="cd" xml:lang="zh_cn">
+<refentry xml:id="scp" xml:lang="zh_cn">
 
 <refentryinfo>
     <title>&dhtitle;</title>

@@ -52,8 +52,12 @@ body {
     height: 1.2em;
 }
 
-#man-head .tl, #man-head .tr, #man-foot .tl, #man-foot .tr {
+#man-head .tl, #man-head .tr, #man-foot .tr {
     text-transform: uppercase;
+    width: 25%;
+}
+
+#man-foot .tl {
     width: 25%;
 }
 
