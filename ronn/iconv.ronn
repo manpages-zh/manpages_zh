@@ -1,11 +1,11 @@
 iconv(1) -- 文件内容编码转换 
 ============================
 
-##总览
+## 总览
 
 `iconv [选项...] [文件...]`
 
-##描述
+## 描述
 
 iconv程序把文本从一种编码转换为另一种编码。它把"-f"选项指定的编码转换为
 "-t"选项指定的编码。这两种编码默认都是当前locale的编码，所有文件都依次进
@@ -19,7 +19,7 @@ iconv_open(3)手册页。
 
    $ iconv -f ISO-8859-15 -t UTF-8 < input.txt > output.txt
 
-##选项
+## 选项
 
 输入/输出格式规范:
 
@@ -57,11 +57,11 @@ iconv_open(3)手册页。
 * `-V, --version`:
 打印程序版本号
 
-##EXIT STATUS
+## EXIT STATUS
 
 Zero on success, non-zero on errors.
 
-##FILES
+## FILES
 
 /usr/lib/gconv
 
@@ -75,11 +75,11 @@ Zero on success, non-zero on errors.
 	
 	Usual system gconv module configuration cache.
 
-##参见(SEEALSO)
+## 参见 (SEE ALSO)
 
 iconv_open(3),locale(7)
 
-##版权
+## 版权
 
 本文档引用了下面网页的文档
 
